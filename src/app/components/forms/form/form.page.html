@@ -1,0 +1,50 @@
+<!-- <ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>form</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]='form' (ngSubmit)='onSubmit()'>
+    <ion-list >
+      <ion-list>
+        <ion-item>
+          <ion-input label="Catégorie" placeholder="Category" formControlName="category"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="Sous-catégorie" type="text" placeholder="sous-catégorie" formControlName="subcategory"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="Adresse" type="text" placeholder='Lieu' formControlName="address"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-textarea [autoGrow]="true" label="Description" placeholder="Décrivez la situation" formControlName="description"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="Nom" type="text" placeholder="Votre nom" placeholder='Votre nom' formControlName="contact_name"></ion-input>
+        </ion-item>
+    <ion-item>
+      <ion-input label="Prénom" type="text" placeholder="Votre prénom" placeholder='Votre prénom' formControlName="contact_firstname">
+      </ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Mail" type="email" placeholder="contact@contact.com" placeholder='Votre e-mail'
+        formControlName="contact_mail">
+      </ion-input>
+    </ion-item>
+        <ion-item>
+          <ion-input label="Tél" type="text" placeholder="06 00 00 00 00" placeholder='Votre téléphone'
+            formControlName="contact_tel">
+          </ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  <ion-button expand="full" type='submit'>Envoyer</ion-button>
+  </form>
+
+</ion-content>
+

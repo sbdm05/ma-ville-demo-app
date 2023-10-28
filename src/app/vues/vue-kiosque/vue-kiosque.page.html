@@ -1,0 +1,128 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Kiosque</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text='Retour' defaultHref='home-page'>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">page-posts</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+  <ion-card *ngFor="let post of datas">
+    <img [alt]="post.title.rendered" [src]="post.featuredImage.imageUrl" />
+    <ion-card-header>
+      <ion-card-title>{{ post.rendered }}</ion-card-title>
+      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Here's a small text description for the card content. Nothing more, nothing less.
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+<!-- [
+{
+"id": 36,
+"date": "2023-10-28T19:20:27",
+"date_gmt": "2023-10-28T17:20:27",
+"guid": {
+"rendered": "https://ma-ville-demo.ohmycode.io/?post_type=create_publications&#038;p=36"
+},
+"modified": "2023-10-28T19:23:27",
+"modified_gmt": "2023-10-28T17:23:27",
+"slug": "eaubonne-mag",
+"status": "publish",
+"type": "create_publications",
+"link": "https://ma-ville-demo.ohmycode.io/create_publications/eaubonne-mag/",
+"title": {
+"rendered": "Eaubonne Mag"
+},
+"content": {
+"rendered": "",
+"protected": false
+},
+"featured_media": 37,
+"template": "",
+"meta": {
+"_EventAllDay": false,
+"_EventTimezone": "",
+"_EventStartDate": "",
+"_EventEndDate": "",
+"_EventStartDateUTC": "",
+"_EventEndDateUTC": "",
+"_EventShowMap": false,
+"_EventShowMapLink": false,
+"_EventURL": "",
+"_EventCost": "",
+"_EventCostDescription": "",
+"_EventCurrencySymbol": "",
+"_EventCurrencyCode": "",
+"_EventCurrencyPosition": "",
+"_EventDateTimeSeparator": "",
+"_EventTimeRangeSeparator": "",
+"_EventOrganizerID": [],
+"_EventVenueID": [],
+"_OrganizerEmail": "",
+"_OrganizerPhone": "",
+"_OrganizerWebsite": "",
+"_VenueAddress": "",
+"_VenueCity": "",
+"_VenueCountry": "",
+"_VenueProvince": "",
+"_VenueState": "",
+"_VenueZip": "",
+"_VenuePhone": "",
+"_VenueURL": "",
+"_VenueStateProvince": "",
+"_VenueLat": "",
+"_VenueLng": "",
+"_VenueShowMap": false,
+"_VenueShowMapLink": false,
+"url_link": "https://www.calameo.com/read/002146741364b86687058"
+},
+"_links": {
+"self": [
+{
+"href": "https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/create_publications/36"
+}
+],
+"collection": [
+{
+"href": "https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/create_publications"
+}
+],
+"about": [
+{
+"href": "https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/types/create_publications"
+}
+],
+"wp:featuredmedia": [
+{
+"embeddable": true,
+"href": "https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/media/37"
+}
+],
+"wp:attachment": [
+{
+"href": "https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/media?parent=36"
+}
+],
+"curies": [
+{
+"name": "wp",
+"href": "https://api.w.org/{rel}",
+"templated": true
+}
+]
+}
+}
+] -->
