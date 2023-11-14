@@ -11,18 +11,26 @@ import { IonicModule } from '@ionic/angular';
 import { SwipperPage } from '../../swipper/swipper.page';
 import { DatasService } from 'src/app/service/datas.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
 
 @Component({
   selector: 'app-home-posts',
   templateUrl: './home-posts.page.html',
   styleUrls: ['./home-posts.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, SwipperPage],
+  imports: [IonicModule, CommonModule, FormsModule, SwipperPage, ExploreContainerComponent],
 })
 export class HomePostsPage implements OnInit {
   public posts$!: Observable<any[]>;
+  public datas!: []
   @Output() emitted = new EventEmitter();
-  constructor(private datasService: DatasService) {}
+  constructor(private datasService: DatasService, private router: Router) {
+    // this.datasService.getTest().subscribe(data=>{
+    //   console.log(data, 'test');
+
+    // })
+  }
 
   ngOnInit() {
 
@@ -32,5 +40,15 @@ export class HomePostsPage implements OnInit {
 
       this.emitted.next('value');
     }
+  }
+
+  onReadMoreDetails(obj: any){
+    // ici on récupère l'obj cliqué et on redirige vers vue-post-details/:id
+    this.router.navigate(['/', 'actus', obj.id], { replaceUrl: true })
+  }
+
+  ngOnChanges(){
+    console.log(this.datas);
+
   }
 }

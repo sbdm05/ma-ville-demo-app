@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { FormPage } from 'src/app/components/forms/form/form.page';
 import { CategoriesPage } from 'src/app/components/categories/categories.page';
-import { catSignal } from 'src/app/shared/categories';
+import { catHome } from 'src/app/shared/categories';
 
 @Component({
   selector: 'app-vue-signal',
@@ -14,11 +14,14 @@ import { catSignal } from 'src/app/shared/categories';
   imports: [IonicModule, CommonModule, FormsModule, FormPage, CategoriesPage],
 })
 export class VueSignalPage implements OnInit {
-  public categories = catSignal;
-  public title= 'Signaler'
-  public backBtn = 'Retour'
+  public title = 'Signaler';
+  public backBtn = 'Retour';
+  public category!: any;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.category = catHome.filter((item) => item.slug === 'signaler');
+    console.log(this.category[0].categories);
+  }
 }

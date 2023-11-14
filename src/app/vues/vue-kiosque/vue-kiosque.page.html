@@ -1,6 +1,6 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Kiosque</ion-title>
+    <ion-title>{{ title | uppercase}}</ion-title>
     <ion-buttons slot="start">
       <ion-back-button text='Retour' defaultHref='home-page'>
       </ion-back-button>
@@ -9,25 +9,36 @@
 
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
+<ion-content [fullscreen]="true" *ngIf='datas'>
+  <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">page-posts</ion-title>
+      <ion-title>{{ title | uppercase}}</ion-title>
     </ion-toolbar>
-  </ion-header> -->
+  </ion-header>
 
   <ion-card *ngFor="let post of datas">
-    <img [alt]="post.title.rendered" [src]="post.featuredImage.imageUrl" />
+    <a [href]="post.urlLink" target='_blank'>
+      <img [alt]="post.title.rendered" [src]="post.featuredImage.imageUrl" />
+    </a>
     <ion-card-header>
       <ion-card-title>{{ post.rendered }}</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      <ion-card-subtitle>{{ post.title}}</ion-card-subtitle>
     </ion-card-header>
 
-    <ion-card-content>
+    <!-- <ion-card-content>
       Here's a small text description for the card content. Nothing more, nothing less.
-    </ion-card-content>
+    </ion-card-content> -->
   </ion-card>
 
+</ion-content>
+
+
+<ion-content *ngIf='!datas'>
+  <app-explore-container>
+
+      <ion-spinner name="circles"></ion-spinner>
+
+  </app-explore-container>
 </ion-content>
 <!-- [
 {

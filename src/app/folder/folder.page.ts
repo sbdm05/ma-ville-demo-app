@@ -20,7 +20,7 @@ export class FolderPage implements OnInit {
   ngOnInit(): void {
     setTimeout(()=>{
       // rediriger
-      this.router.navigate(['home-page'])
+      this.router.navigate(['home-page'], { replaceUrl: true });
     }, 1500)
   }
 

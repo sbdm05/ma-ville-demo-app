@@ -13,9 +13,13 @@
 
 
 
-    <app-swipper *ngIf="posts$ | async as datas" [datas]="datas"></app-swipper>
+    <app-swipper *ngIf="posts$ | async as datas" [datas]="datas" (onReadMoreEvent)='onReadMoreDetails($event)'></app-swipper>
 
+        <!-- <app-explore-container *ngIf="!datas">
 
+          <ion-spinner name="circles"></ion-spinner>
+
+        </app-explore-container> -->
 
 
 

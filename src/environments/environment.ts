@@ -2,10 +2,12 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+
 export const environment = {
   production: false,
   base_url: 'https://ma-ville-demo.ohmycode.io',
-  eaubonne_url: 'https://www.eaubonne.fr'
+  eaubonne_url: 'https://www.eaubonne.fr',
+  GOOGLE_MAP_API_KEY: 'AIzaSyDSCxohpwG_1PZkW6j9hDMiM62rgmVrV2i',
 };
 
 /*

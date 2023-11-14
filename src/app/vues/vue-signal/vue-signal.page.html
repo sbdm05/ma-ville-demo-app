@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header >
   <ion-toolbar>
     <ion-title>{{ title | uppercase}}</ion-title>
           <ion-buttons slot="start">
@@ -13,13 +13,13 @@
 
 
 <ion-content [fullscreen]="true" id='main-content'>
-  <!-- <ion-header collapse="condense">
+  <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">vue-signal</ion-title>
+      <ion-title>{{ title | uppercase}}</ion-title>
     </ion-toolbar>
-  </ion-header> -->
+  </ion-header>
 
-  <app-categories [datas]='categories'></app-categories>
+  <app-categories [categoryDatas]='this.category[0].categories'></app-categories>
 
 
 

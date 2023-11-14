@@ -20,14 +20,13 @@ import { catHome } from 'src/app/shared/categories';
   ],
 })
 export class HomePagePage implements OnInit {
-
   public categories = catHome;
   public confirmed!: any;
+  public colorBg = '#138088';
 
-  public onData(value: Event){
+  public onData(value: Event) {
     this.confirmed = value;
     console.log(this.confirmed);
-
   }
 
   constructor() {

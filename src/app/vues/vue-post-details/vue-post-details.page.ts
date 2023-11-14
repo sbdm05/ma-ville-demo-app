@@ -1,0 +1,36 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
+import { DatasService } from 'src/app/service/datas.service';
+import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
+
+@Component({
+  selector: 'app-vue-post-details',
+  templateUrl: './vue-post-details.page.html',
+  styleUrls: ['./vue-post-details.page.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule, FormsModule, ExploreContainerComponent],
+})
+export class VuePostDetailsPage implements OnInit {
+  public data: any;
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private datasService: DatasService
+  ) {}
+
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe((params) => {
+      const id = Number(params.get('id'));
+      if (id) {
+        this.datasService.getPostDetails(id).subscribe((post) => {
+          console.log(post);
+
+          this.data = post;
+        });
+      }
+    });
+  }
+}

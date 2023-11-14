@@ -1,0 +1,19 @@
+ion-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* Center content vertically */
+  align-items: center;
+  /* Center content horizontally */
+  text-align: center;
+  /* Center text content horizontally */
+  // height: 100%;
+  /* Ensure the card takes up the full available height */
+}
+ion-card{
+  background-color: var(--dark-green);
+  padding: 10px !important;
+}
+ion-card-subtitle{
+  color: white;
+}

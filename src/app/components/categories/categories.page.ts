@@ -12,7 +12,9 @@ import { RouterLink } from '@angular/router';
   imports: [IonicModule, CommonModule, FormsModule, RouterLink],
 })
 export class CategoriesPage implements OnInit {
-  @Input() datas!: any[];
+  @Input() mainDatas!: any[];
+  @Input() categoryDatas!: any[];
+  categoryColors = ['#a10d59', '#0B555A', '#138088', '#909e30'];
 
   constructor() {}
 

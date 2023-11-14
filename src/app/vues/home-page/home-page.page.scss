@@ -1,6 +1,19 @@
 // ion-grid{
 //   height: 100%;
 // }
-.home-page-content{
-  margin: 0 10px 0 10px!important;
+// .home-page-content{
+//   margin: 0 10px 0 10px!important;
+// }
+
+ion-header{
+  background-color: var(--text-light-green)!important;
+}
+ion-toolbar{
+  background-color: var(--text-light-green) !important;
+}
+ion-header img{
+  height: 100px;
+}
+.toolbar-content{
+  background: var(--text-light-green) !important;
 }

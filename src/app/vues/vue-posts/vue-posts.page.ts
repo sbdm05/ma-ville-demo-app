@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { DatasService } from 'src/app/service/datas.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vue-posts',
@@ -14,13 +15,18 @@ import { Observable } from 'rxjs';
 })
 export class VuePostsPage implements OnInit {
   public datas$!: Observable<any[]>;
+  public title:string = 'Actualités'
 
-  constructor(private datasService: DatasService) {
+  constructor(private datasService: DatasService, private router: Router) {
     console.log('from pagePostsPogae');
 
   }
 
   ngOnInit() {
     this.datas$ = this.datasService.getNewsPosts();
+  }
+
+  public onReadMore(data: any){
+    this.router.navigate(['/', 'actus', data.id], { replaceUrl: true });
   }
 }

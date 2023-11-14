@@ -1,4 +1,12 @@
 import { Routes } from '@angular/router';
+import { VueConfirmationPage } from './vues/vue-confirmation/vue-confirmation.page';
+import { VueDemarchesPage } from './vues/vue-demarches/vue-demarches.page';
+import { VueFormPage } from './vues/vue-form/vue-form.page';
+import { VueKiosquePage } from './vues/vue-kiosque/vue-kiosque.page';
+import { VuePostDetailsPage } from './vues/vue-post-details/vue-post-details.page';
+import { VuePostsPage } from './vues/vue-posts/vue-posts.page';
+import { VueSignalPage } from './vues/vue-signal/vue-signal.page';
+import { VueWorksSitesPage } from './vues/vue-works-sites/vue-works-sites.page';
 
 export const routes: Routes = [
   {
@@ -13,11 +21,48 @@ export const routes: Routes = [
   },
   {
     path: 'home-page',
-    loadChildren: () => {
-      console.log('loading home-page');
-
-      return import('./vues/home-page/home-page.routes').then((m) => m.routes)
-    },
+    loadComponent: () =>
+      import('./vues/home-page/home-page.page').then((m) => m.HomePagePage),
+  },
+  {
+    path: 'actus',
+    component: VuePostsPage,
+  },
+  {
+    path: 'actus',
+    component: VuePostsPage,
+  },
+  {
+    path: 'actus/:id',
+    component: VuePostDetailsPage,
+  },
+  {
+    path: 'signaler',
+    component: VueSignalPage,
+  },
+  {
+    path: 'signaler/:id',
+    component: VueFormPage,
+  },
+  {
+    path: 'mes-demarches',
+    component: VueDemarchesPage,
+  },
+  {
+    path: 'mes-demarches/:id',
+    component: VueFormPage,
+  },
+  {
+    path: 'confirmation',
+    component: VueConfirmationPage,
+  },
+  {
+    path: 'kiosque',
+    component: VueKiosquePage,
+  },
+  {
+    path: 'travaux',
+    component: VueWorksSitesPage,
   },
 ];
 

@@ -32,6 +32,33 @@
   --dark-green: #0B555A;
   --text-light-green : #138088;
 }
-*{
-  padding: 0!important;
+// *{
+//   padding: 0!important;
+// }
+
+ion-header {
+  background-color: var(--text-light-green) !important;
+}
+
+ion-toolbar {
+  --background: var(--dark-green) !important;
+  --color: white
+}
+ion-back-button{
+  color: white;
+}
+ion-button{
+  --background: var(--dark-green) !important;
+}
+
+// .toolbar-content {
+//   background: var(--text-light-green) !important;
+// }
+
+// .toolbar-background {
+//   background: var(--text-light-green) !important;
+// }
+// appliquer styles au niveau global
+ion-toggle {
+  touch-action: auto;
 }

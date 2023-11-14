@@ -1,12 +1,25 @@
-<ion-grid class='grid-categories'>
+<!-- <div class='grid-categories'>
+    <div class='col-tab' *ngFor='let cat of datas'>
+      <a [routerLink]="['/',cat.slug]" replaceUrl="true">{{cat.name}}</a>
+
+    </div>
+</div> -->
+
+<ion-grid *ngIf='mainDatas'>
   <ion-row>
-    <ion-col size="4" class='col-tab' *ngFor='let cat of datas'>
-      <!-- Contenu de la cellule -->
-      <!-- <a [routerLink]="cat.slug">{{cat.name}}</a> -->
-      <a [routerLink]="[cat.slug]">{{cat.name}}</a>
-
+    <ion-col class='col-tab' size='4' *ngFor='let cat of mainDatas; let i = index'
+      [style.background-color]="categoryColors[i % categoryColors.length]">
+      <a [routerLink]="['/',cat.slug]" replaceUrl="true">{{cat.name}}</a>
     </ion-col>
-
-
   </ion-row>
+</ion-grid>
+
+<ion-grid *ngIf='categoryDatas'>
+<ion-row>
+  <ion-col class='col-tab' size='12' *ngFor='let cat of categoryDatas; let i = index' [style.background-color]="categoryColors[i % categoryColors.length]">
+    <a [routerLink]="[cat.slug]" replaceUrl="true" >
+      {{cat.name}}
+    </a>
+  </ion-col>
+</ion-row>
 </ion-grid>
