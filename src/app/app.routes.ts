@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { ModalPage } from './components/modal/modal.page';
+import { HomePagePage } from './vues/home-page/home-page.page';
 import { VueConfirmationPage } from './vues/vue-confirmation/vue-confirmation.page';
 import { VueDemarchesPage } from './vues/vue-demarches/vue-demarches.page';
 import { VueFormPage } from './vues/vue-form/vue-form.page';
@@ -21,8 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'home-page',
-    loadComponent: () =>
-      import('./vues/home-page/home-page.page').then((m) => m.HomePagePage),
+    component: HomePagePage,
   },
   {
     path: 'actus',
@@ -63,6 +64,10 @@ export const routes: Routes = [
   {
     path: 'travaux',
     component: VueWorksSitesPage,
+  },
+  {
+    path: 'modal',
+    component: ModalPage
   },
 ];
 

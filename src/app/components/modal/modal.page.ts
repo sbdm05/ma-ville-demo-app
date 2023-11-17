@@ -1,8 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { IonIcon } from '@ionic/angular/standalone';
+
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonContent,
+  IonHeader,
+  IonIcon,
+  IonToolbar,
+  IonTitle,
+  IonModal
+} from '@ionic/angular/standalone';
 import { DateFormatPipe } from 'src/app/shared/pipes/date-format.pipe';
 
 @Component({
@@ -10,17 +21,28 @@ import { DateFormatPipe } from 'src/app/shared/pipes/date-format.pipe';
   templateUrl: './modal.page.html',
   styleUrls: ['./modal.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, IonIcon, DateFormatPipe]
+  imports: [
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    IonContent,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent,
+    CommonModule,
+    FormsModule,
+    IonIcon,
+    DateFormatPipe,
+    IonModal
+  ],
 })
 export class ModalPage implements OnInit {
+  @Input() marker!: any;
 
-  @Input() marker!: any
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     console.log(this.marker);
-
   }
-
 }

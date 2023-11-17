@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+// import { IonicModule } from '@ionic/angular';
 import { HomePostsPage } from '../../components/home/home-posts/home-posts.page';
 import { CategoriesPage } from 'src/app/components/categories/categories.page';
 import { catHome } from 'src/app/shared/categories';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home-page',
@@ -12,11 +13,16 @@ import { catHome } from 'src/app/shared/categories';
   styleUrls: ['./home-page.page.scss'],
   standalone: true,
   imports: [
-    IonicModule,
+    // IonicModule,
     CommonModule,
     FormsModule,
     HomePostsPage,
     CategoriesPage,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonButtons
   ],
 })
 export class HomePagePage implements OnInit {

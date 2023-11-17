@@ -1,7 +1,7 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent } from '@ionic/angular/standalone';
+import { IonContent } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 
 @Component({
@@ -9,7 +9,7 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
   templateUrl: './folder.page.html',
   styleUrls: ['./folder.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, ExploreContainerComponent],
+  imports: [IonContent, ExploreContainerComponent],
 })
 export class FolderPage implements OnInit {
   public folder!: string;

@@ -15,9 +15,9 @@
             <!-- <img [alt]="data.featuredImage.title" [src]="data.featuredImage.imageUrl" /> -->
             <div>
               <ion-card-header>
-              <ion-card-title [innerHtml]="data.title"></ion-card-title>
+                <ion-card-title [innerHtml]="data.title"></ion-card-title>
 
-            </ion-card-header>
+              </ion-card-header>
 
             <ion-card-content [innerHtml]="(data.content| slice:0:120) + '...'">
 
@@ -29,3 +29,5 @@
       </swiper-slide>
     </swiper-container>
 </ion-content>
+
+<!-- solution à tester : utiliser ng-content -->

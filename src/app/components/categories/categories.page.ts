@@ -1,7 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+// import { IonicModule } from '@ionic/angular';
+import {
+  IonRow,
+  IonCol,
+  IonGrid,
+} from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -9,7 +14,16 @@ import { RouterLink } from '@angular/router';
   templateUrl: './categories.page.html',
   styleUrls: ['./categories.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterLink],
+  imports: [
+    // IonicModule,
+
+    IonRow,
+    IonCol,
+    IonGrid,
+    CommonModule,
+    FormsModule,
+    RouterLink,
+  ],
 })
 export class CategoriesPage implements OnInit {
   @Input() mainDatas!: any[];

@@ -1,10 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Form } from '@angular/forms';
+
 import { catchError, forkJoin, map, mergeMap, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { FormMessage } from '../types/form/form';
-import { CapacitorHttp } from '@capacitor/core';
 
 @Injectable({
   providedIn: 'root',

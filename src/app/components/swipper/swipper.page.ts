@@ -6,10 +6,17 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { CommonModule, registerLocaleData } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 import { register } from 'swiper/element/bundle';
+import {
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonContent,
+} from '@ionic/angular/standalone';
 
 register();
 
@@ -18,7 +25,16 @@ register();
   templateUrl: './swipper.page.html',
   styleUrls: ['./swipper.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonContent,
+    IonCard,
+    IonCardHeader,
+    IonButton,
+    IonCardTitle,
+    IonCardContent
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SwipperPage implements OnInit {

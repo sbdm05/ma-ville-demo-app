@@ -13,7 +13,9 @@
 
 
 
-    <app-swipper *ngIf="posts$ | async as datas" [datas]="datas" (onReadMoreEvent)='onReadMoreDetails($event)'></app-swipper>
+    <app-swipper *ngIf="posts$ | async as datas" [datas]="datas" (onReadMoreEvent)='onReadMoreDetails($event)'>
+      
+    </app-swipper>
 
         <!-- <app-explore-container *ngIf="!datas">
 
