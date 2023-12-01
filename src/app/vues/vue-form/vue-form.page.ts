@@ -35,7 +35,7 @@ export class VueFormPage implements OnInit {
     this.datasService.sendMessage(obj).subscribe(data=>{
       console.log(data);
       // redirection vers composant de confirmation
-      this.router.navigate(['/home-page', 'confirmation'])
+      this.router.navigate(['confirmation'])
     })
   }
 }

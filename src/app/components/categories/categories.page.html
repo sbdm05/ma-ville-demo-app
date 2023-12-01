@@ -5,6 +5,8 @@
     </div>
 </div> -->
 
+<!-- utilisé pour les categories dans la home-page -->
+
 <ion-grid *ngIf='mainDatas'>
   <ion-row>
     <ion-col class='col-tab' size='4' *ngFor='let cat of mainDatas; let i = index'
@@ -14,6 +16,8 @@
   </ion-row>
 </ion-grid>
 
+
+<!-- utilisé pour les sous-categories par exemple carte d'identite-->
 <ion-grid *ngIf='categoryDatas'>
 <ion-row>
   <ion-col class='col-tab' size='12' *ngFor='let cat of categoryDatas; let i = index' [style.background-color]="categoryColors[i % categoryColors.length]">

@@ -4,6 +4,7 @@ import {
   ElementRef,
   Input,
   OnInit,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -53,24 +54,32 @@ export class GoogleMapPage implements OnInit {
     console.log('dans init');
   }
 
-  ngOnChanges() {}
-
   async createMap() {
     // on crée une carte
     console.log(this.api_key, 'test');
+    console.log(this.mapRef.nativeElement);
 
-    this.newMap = await GoogleMap.create({
-      id: 'city-map',
-      element: this.mapRef.nativeElement,
-      apiKey: this.api_key,
-      config: {
-        center: {
-          lat: 48.992128,
-          lng: 2.2779189,
+    try {
+      this.newMap = await GoogleMap.create({
+        id: 'city-map',
+        element: this.mapRef.nativeElement,
+        apiKey: this.api_key,
+        config: {
+          center: {
+            lat: 48.992128,
+            lng: 2.2779189,
+          },
+          zoom: 12,
         },
-        zoom: 12,
-      },
-    });
+      });
+      console.log(this.newMap);
+
+    } catch (error) {
+      console.error('Error fetching or processing the map:', error);
+      // Handle the error appropriately
+    }
+
+    //window.alert('after this.newMap');
 
     // on extrait les markers avec lat + lng
     if (this.datas) {
@@ -81,54 +90,13 @@ export class GoogleMapPage implements OnInit {
         date_debut: country.acf.date_debut,
         date_fin: country.acf.date_fin,
       }));
-      //this.markers = countryCoordinates;
-      // console.log(this.markers);
 
-      // Define an interface for marker options
-      interface MarkerOptions {
-        coordinate: {
-          lat: any;
-          lng: any;
-        };
-        title: any;
-        date_debut?: any; // Make date property optional
-        date_fin?: any;
-        snippet?: any;
-      }
-
-      //
-      if (countryCoordinates) {
-        countryCoordinates.forEach(async (coord) => {
-          console.log(coord, 'coord');
-          const markerOptions: MarkerOptions = {
-            coordinate: {
-              lat: coord.lat,
-              lng: coord.lng,
-            },
-            title: coord.title,
-            snippet: coord.title,
-            date_debut: coord.date_debut,
-            date_fin: coord.date_fin,
-          };
-
-          const marker = await this.newMap.addMarker(markerOptions);
-
-          // console.log(marker);// 0 /1
-
-          // Store the marker reference in the array
-          if (marker) {
-            this.markers.push({
-              markerOptions,
-            });
-          }
-
-          console.log(this.markers);
-        });
-      }
+      await this.addMarkers(countryCoordinates);
 
       this.newMap.setOnMarkerClickListener(async (clickedMarker) => {
         console.log(clickedMarker);
         console.log(this.markers);
+        //window.alert('inside setOnMarker');
 
         // Find the corresponding marker reference in the array
         const selectedMarker = this.markers.find(
@@ -138,7 +106,7 @@ export class GoogleMapPage implements OnInit {
             markerInfo.markerOptions.coordinate.lng === clickedMarker.longitude
         );
 
-        console.log(selectedMarker, 'test'); // undefined
+        console.log(selectedMarker, 'test');
 
         const modal = await this.modalCtrl.create({
           component: ModalPage,
@@ -150,6 +118,50 @@ export class GoogleMapPage implements OnInit {
         });
         console.log(modal, 'MODAL');
         await modal.present();
+      });
+    }
+  }
+
+  async addMarkers(countryCoordinates: any) {
+    interface MarkerOptions {
+      coordinate: {
+        lat: any;
+        lng: any;
+      };
+      title: any;
+      date_debut?: any; // Make date property optional
+      date_fin?: any;
+      snippet?: any;
+    }
+
+    if (countryCoordinates) {
+      //window.alert('coutrny');
+      countryCoordinates.forEach(async (coord: any) => {
+        console.log(coord, 'coord');
+        const markerOptions: MarkerOptions = {
+          coordinate: {
+            lat: coord.lat,
+            lng: coord.lng,
+          },
+          title: coord.title,
+          snippet: coord.title,
+          date_debut: coord.date_debut,
+          date_fin: coord.date_fin,
+        };
+
+        const marker = await this.newMap.addMarker(markerOptions);
+
+        // console.log(marker);// 0 /1
+
+        // Store the marker reference in the array
+        if (marker) {
+          // window.alert('inside marker')
+          this.markers.push({
+            markerOptions,
+          });
+        }
+
+        console.log(this.markers);
       });
     }
   }
@@ -180,5 +192,14 @@ export class GoogleMapPage implements OnInit {
         this.createMap();
       }
     });
+  }
+
+  // ngOnChanges(changes: SimpleChanges) {
+  //   console.log(changes, 'changes');
+  // }
+
+  ngOnDestroy() {
+    // Clean up map reference
+    this.newMap.destroy();
   }
 }

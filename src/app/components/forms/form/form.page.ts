@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { FormMessage } from 'src/app/types/form/form';
 
@@ -24,14 +24,35 @@ export class FormPage implements OnInit {
   ngOnInit() {
     console.log(this.obj)
     this.form = this.fb.group({
-      category: [this.obj.category],
-      subcategory: [this.obj.subcategory],
-      address: [this.obj.address],
-      description: [this.obj.description],
-      contact_name: [this.obj.contact?.name],
-      contact_firstname: [this.obj.contact?.firstname],
-      contact_mail: [this.obj.contact?.mail],
-      contact_tel: [this.obj.contact?.tel]
+      category: [this.obj.category, [Validators.required]],
+      // subcategory: [this.obj.subcategory],
+      address: [
+        this.obj.address,
+        [Validators.required, Validators.minLength(3)],
+      ],
+      description: [
+        this.obj.description,
+        [Validators.required, , Validators.minLength(3)],
+      ],
+      contact_name: [
+        this.obj.contact?.name,
+        [Validators.required, , Validators.minLength(3)],
+      ],
+      contact_firstname: [
+        this.obj.contact?.firstname,
+        [Validators.required, , Validators.minLength(3)],
+      ],
+      contact_mail: [
+        this.obj.contact?.mail,
+        [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),
+        ],
+      ],
+      contact_tel: [
+        this.obj.contact?.tel,
+        [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')],
+      ],
     });
   }
 

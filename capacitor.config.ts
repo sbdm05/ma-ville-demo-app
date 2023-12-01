@@ -4,12 +4,20 @@ const config: CapacitorConfig = {
   appId: 'io.maville.demoapp',
   appName: 'ma-ville-demo-app',
   webDir: 'www',
-  server: {
-    androidScheme: 'https',
-  },
   plugins: {
     CapacitorHttp: {
-      enabled: true,
+      enabled: true
+    }
+  },
+  cordova: {
+    preferences: {
+      ScrollEnabled: 'false',
+      BackupWebStorage: 'none',
+      SplashMaintainAspectRatio: 'true',
+      FadeSplashScreenDuration: '300',
+      SplashShowOnlyFirstTime: 'false',
+      SplashScreen: 'screen',
+      SplashScreenDelay: '3000',
     },
   },
 };

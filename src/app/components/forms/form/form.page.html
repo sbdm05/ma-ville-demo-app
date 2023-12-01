@@ -12,38 +12,51 @@
           <ion-input label="Catégorie" placeholder="Category" formControlName="category"></ion-input>
         </ion-item>
 
-        <ion-item>
+        <!-- <ion-item>
           <ion-input label="Sous-catégorie" type="text" placeholder="sous-catégorie" formControlName="subcategory"></ion-input>
-        </ion-item>
-
+        </ion-item> -->
+          <div *ngIf="form.controls['category'].errors?.['required']">Ce champ doit être complété</div>
         <ion-item>
           <ion-input label="Adresse" type="text" placeholder='Lieu' formControlName="address"></ion-input>
+          <div *ngIf="form.controls['address'].errors?.['minlength']">Ce champ doit être complété</div>
         </ion-item>
 
         <ion-item>
           <ion-textarea [autoGrow]="true" label="Description" placeholder="Décrivez la situation" formControlName="description"></ion-textarea>
+          <div *ngIf="form.controls['description'].errors?.['minlength']">Ce champ doit être complété</div>
         </ion-item>
+
+
 
         <ion-item>
           <ion-input label="Nom" type="text" placeholder="Votre nom" placeholder='Votre nom' formControlName="contact_name"></ion-input>
+        <div *ngIf="form.controls['contact_name'].errors?.['minlength']">Ce champ doit être complété</div>
+
         </ion-item>
+
     <ion-item>
       <ion-input label="Prénom" type="text" placeholder="Votre prénom" placeholder='Votre prénom' formControlName="contact_firstname">
       </ion-input>
+        <div *ngIf="form.controls['contact_firstname'].errors?.['minlength']">Ce champ doit être complété</div>
+
     </ion-item>
     <ion-item>
       <ion-input label="Mail" type="email" placeholder="contact@contact.com" placeholder='Votre e-mail'
         formControlName="contact_mail">
       </ion-input>
+        <div *ngIf="form.controls['contact_mail'].errors?.['pattern']">Email invalide</div>
+
     </ion-item>
         <ion-item>
-          <ion-input label="Tél" type="text" placeholder="06 00 00 00 00" placeholder='Votre téléphone'
+          <ion-input label="Tél" type="text" placeholder="0600000000"
             formControlName="contact_tel">
           </ion-input>
+        <div *ngIf="form.controls['contact_tel'].errors?.['pattern']">10 chiffres sans espace</div>
+
         </ion-item>
       </ion-list>
     </ion-list>
-  <ion-button expand="block" type='submit'>Envoyer</ion-button>
+  <ion-button expand="block" type='submit' [disabled]='this.form.invalid'>Envoyer</ion-button>
   </form>
 
 </ion-content>

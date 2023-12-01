@@ -1,6 +1,9 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { RouteReuseStrategy, provideRouter, withDebugTracing } from '@angular/router';
+import {
+  RouteReuseStrategy,
+  provideRouter,
+} from '@angular/router';
 import {
   IonicRouteStrategy,
   provideIonicAngular,
@@ -10,7 +13,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
-import { ModalPage } from './app/components/modal/modal.page';
+
 
 if (environment.production) {
   enableProdMode();
@@ -21,6 +24,6 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideHttpClient(),
     provideIonicAngular(),
-    provideRouter(routes),
+    provideRouter(routes)
   ],
-})
+});

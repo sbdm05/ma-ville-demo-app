@@ -68,6 +68,7 @@ export class DatasService {
   }
 
   sendMessage(obj: FormMessage) {
+    console.log(obj)
     return this.http
       .post<any>(`${this.base_url}/wp-json/custom/v1/send-email`, obj)
       .pipe(catchError(this.handleError));

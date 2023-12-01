@@ -1,7 +1,9 @@
 {
   "name": "ma-ville-demo-app",
   "integrations": {
+    "cordova": {},
     "capacitor": {}
   },
   "type": "angular-standalone"
+
 }

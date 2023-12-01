@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+//import { IonicModule } from '@ionic/angular';
 import { DatasService } from 'src/app/service/datas.service';
 import { forkJoin, Observable } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
+import { IonBackButton, IonButtons, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonSpinner, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-vue-kiosque',
@@ -13,7 +14,18 @@ import { ExploreContainerComponent } from 'src/app/explore-container/explore-con
   styleUrls: ['./vue-kiosque.page.scss'],
   standalone: true,
   imports: [
-    IonicModule,
+    //IonicModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
+    IonBackButton,
+    IonContent,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonSpinner,
     CommonModule,
     FormsModule,
     RouterLink,

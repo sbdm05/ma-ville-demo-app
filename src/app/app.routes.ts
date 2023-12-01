@@ -13,14 +13,14 @@ import { VueWorksSitesPage } from './vues/vue-works-sites/vue-works-sites.page';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'accueil',
+    redirectTo: 'actus',
     pathMatch: 'full',
   },
-  {
-    path: 'accueil',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
-  },
+  // {
+  //   path: 'accueil',
+  //   loadComponent: () =>
+  //     import('./folder/folder.page').then((m) => m.FolderPage),
+  // },
   {
     path: 'home-page',
     component: HomePagePage,

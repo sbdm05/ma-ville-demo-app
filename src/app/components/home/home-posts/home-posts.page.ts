@@ -19,6 +19,7 @@ import {
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
+  IonSpinner
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -27,7 +28,7 @@ import {
   styleUrls: ['./home-posts.page.scss'],
   standalone: true,
   imports: [
-    IonicModule,
+    //IonicModule,
     IonCard,
     IonCardHeader,
     IonCardTitle,
@@ -37,6 +38,7 @@ import {
     FormsModule,
     SwipperPage,
     ExploreContainerComponent,
+    IonSpinner
   ],
 })
 export class HomePostsPage implements OnInit {
