@@ -3,6 +3,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import {
   RouteReuseStrategy,
   provideRouter,
+  withDebugTracing,
 } from '@angular/router';
 import {
   IonicRouteStrategy,
@@ -24,6 +25,6 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideHttpClient(),
     provideIonicAngular(),
-    provideRouter(routes)
+    provideRouter(routes, withDebugTracing()),
   ],
 });

@@ -1,0 +1,66 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ title | uppercase}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text='Retour' defaultHref='home-page'>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title>{{ title | uppercase}}</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+
+  <ion-card *ngIf="title ===  'votre maire'  ">
+    <ion-card-header>
+      <ion-card-title>Allo Mme La Maire</ion-card-title>
+      <ion-card-subtitle>Mme LAMAIRE</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+    <ion-text color="primary">
+      <h2>Vice-présidente de la Communauté d’agglomération déléguée à la culture</h2>
+      <br>
+      <h3>Permanence sur rendez-vous au 01 34 27 33 80</h3>
+      <br>
+      <h3>Le vendredi de 14h à 17h</h3>
+
+
+    </ion-text>
+
+
+    </ion-card-content>
+
+  </ion-card>
+
+
+  <ng-container *ngIf="title ===  'vos elus'  ">
+    <ion-card *ngFor='let contact of contacts'>
+      <ion-card-header>
+        <ion-card-title>{{ contact.nom}}</ion-card-title>
+        <!-- <ion-card-subtitle>Mme LAMAIRE</ion-card-subtitle> -->
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-text color="primary">
+          <h2>{{contact.role}}</h2>
+          <br>
+          <h3>Permanence sur rendez-vous au {{contact.permanence_tel}}</h3>
+          <br>
+          <h3 *ngFor='let horaires of contact.permanence_horaires'>{{horaires.hor}}</h3>
+
+
+        </ion-text>
+
+
+      </ion-card-content>
+
+    </ion-card>
+  </ng-container>
+
+</ion-content>

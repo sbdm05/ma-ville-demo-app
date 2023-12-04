@@ -13,7 +13,7 @@ import { VueWorksSitesPage } from './vues/vue-works-sites/vue-works-sites.page';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'actus',
+    redirectTo: 'home-page',
     pathMatch: 'full',
   },
   // {
@@ -68,6 +68,18 @@ export const routes: Routes = [
   {
     path: 'modal',
     component: ModalPage
+  },
+  {
+    path: 'contactez-vos-elus',
+    loadComponent: () => import('./vues/vue-contact-representant/vue-contact-representant.page').then( m => m.VueContactRepresentantPage)
+  },
+  {
+    path: 'contactez-details/:arg',
+    loadComponent: () => import('./vues/vue-contact-representant-detail/vue-contact-representant-detail.page').then( m => m.VueContactRepresentantDetailPage)
+  },
+  {
+    path: '**',
+    loadComponent: () => import('./vues/vue-not-found/vue-not-found.page').then( m => m.VueNotFoundPage)
   },
 ];
 

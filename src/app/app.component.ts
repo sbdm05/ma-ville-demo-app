@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import {
   IonApp,
@@ -64,7 +64,7 @@ import OneSignal, { OneSignalPlugin } from 'onesignal-cordova-plugin';
 export class AppComponent implements OnInit {
   statusBar: any;
   splashScreen: any;
-  constructor(private platform: Platform) {
+  constructor(private platform: Platform, private router: Router) {
     // pour faire fonctionner la modal
     // https://github.com/ionic-team/ionic-framework/issues/28385
     this.initializeApp();
@@ -100,9 +100,29 @@ export class AppComponent implements OnInit {
 
   OneSignalInit() {
     OneSignal.initialize('63767350-84be-4d5b-b23e-1b77c8aa5c71');
+    const self = this; // Preserve reference to 'this'
 
     let myClickListener = async function (event: any) {
-      let notificationData = JSON.stringify(event);
+      console.log(event.result.url, 'event ligne 105');
+      const url = event.result.url;
+      console.log(url, 'after saved');
+
+      const schemeSeparatorIndex = event.result.url.indexOf('://');
+      if (schemeSeparatorIndex !== -1) {
+        const schemeRemoved = url.substring(schemeSeparatorIndex + 2); // Remove the scheme and '://'
+        const pathStartIndex = schemeRemoved.indexOf('/');
+        if (pathStartIndex !== -1) {
+          console.log(schemeRemoved.substring(pathStartIndex + 1));
+          const urlToFollow = schemeRemoved.substring(pathStartIndex + 1);
+          // this is not working
+          // i want to use the key work this here
+          self.router.navigate([urlToFollow])
+        }
+      }
+      return null;
+
+      // let notificationData = JSON.stringify(event);
+      // console.log(notificationData, 'event ligne 108');
     };
     OneSignal.Notifications.addEventListener('click', myClickListener);
 
@@ -114,9 +134,8 @@ export class AppComponent implements OnInit {
       }
     );
   }
-  // buffer() {
-  //   throw new Error('Method not implemented.');
-  // }
+
+
 
   ngOnInit() {
     // OneSignal.initialize('63767350-84be-4d5b-b23e-1b77c8aa5c71');
@@ -133,3 +152,5 @@ export class AppComponent implements OnInit {
     // );
   }
 }
+
+

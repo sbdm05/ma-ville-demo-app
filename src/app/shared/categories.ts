@@ -55,6 +55,11 @@ export const catHome = [
     slug: 'actus',
     name: 'Actualités',
   },
+  {
+    slug: 'contact-elus',
+    name: 'Contactez vos élus',
+    url: 'contactez-vos-elus',
+  },
 ];
 
 // export const catSignal = [
@@ -237,6 +242,35 @@ export const locations: any[] = [
                         dynasty. Today it’s known for its centuries-old fortresses and temples. One of its most famous sites
                         is Chihkan Tower, an 18th-century Chinese complex with gardens, intricately carved towers and a temple
                         erected on the foundations of Fort Provintia, a Dutch outpost dating to the mid-1600s.`,
+      },
+    ],
+  },
+];
+
+export const contacts: any[] = [
+  {
+    role: '1er Adjoint à la Maire délégué aux Finances, au Sport et au Numérique',
+    nom: 'Jean Aubin',
+    permanence_tel: '01 34 27 33 50',
+    permanence_horaires: [
+      {
+        hor: 'Vendredi de 16h à 18h',
+      },
+      {
+        hor: 'Samedi de 10h à 12h',
+      },
+    ],
+  },
+  {
+    role: ' Adjointe à la Maire déléguée à l’Éducation',
+    nom: 'Christine Mattei',
+    permanence_tel: '01 34 27 33 50',
+    permanence_horaires: [
+      {
+        hor: 'Mercredi de 14h à 16h',
+      },
+      {
+        hor: 'Samedi de 10h à 12h',
       },
     ],
   },

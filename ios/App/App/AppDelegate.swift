@@ -34,9 +34,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        // Called when the app was launched with a url. Feel free to add additional processing here,
-        // but if you want the App API to support tracking app url opens, make sure to keep this call
-        return ApplicationDelegateProxy.shared.application(app, open: url, options: options)
+        print("URL Scheme:", url.scheme);
+        print("URL Host", url.host)
+        print("Complete URL:", url.absoluteString);
+        print("Extracted URL:" , url);
+        //if url.scheme == "app-ma-ville-demo", url.host == "actus" {
+            // Perform navigation or handle the custom path URL scheme here
+            
+            // Example: Instantiate the desired view controller and navigate to it
+            //print("inside", url.scheme)
+            //return true
+        //}
+        return true
     }
 
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {

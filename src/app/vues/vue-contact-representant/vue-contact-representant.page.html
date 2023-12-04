@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+<ion-toolbar>
+  <ion-title>{{ title | uppercase}}</ion-title>
+  <ion-buttons slot="start">
+    <ion-back-button text='Retour' defaultHref='home-page'>
+    </ion-back-button>
+  </ion-buttons>
+</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title>{{ title | uppercase}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Allo Mme Le Maire</ion-card-title>
+      <ion-card-subtitle>Mme LAMAIRE</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      Echangez avec Mme la Maire
+      <ion-button (click)="onReadMore('votre maire')">Contactez</ion-button>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Vos élus</ion-card-title>
+      <!-- <ion-card-subtitle>Mme LAMAIRE</ion-card-subtitle> -->
+    </ion-card-header>
+    <ion-card-content>
+      Echangez avec les élus de votre ville
+      <ion-button (click)="onReadMore('vos elus')">Contactez</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
