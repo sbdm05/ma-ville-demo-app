@@ -51,6 +51,8 @@ export class SwipperPage implements OnInit {
   }
 
   onReadMore(data: any) {
+    console.log(data, 'data');
+
     this.onReadMoreEvent.next(data);
   }
 }

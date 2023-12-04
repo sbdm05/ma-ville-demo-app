@@ -103,22 +103,28 @@ export class AppComponent implements OnInit {
     const self = this; // Preserve reference to 'this'
 
     let myClickListener = async function (event: any) {
-      console.log(event.result.url, 'event ligne 105');
+      console.log(event, 'event ligne 105');
       const url = event.result.url;
       console.log(url, 'after saved');
 
-      const schemeSeparatorIndex = event.result.url.indexOf('://');
-      if (schemeSeparatorIndex !== -1) {
-        const schemeRemoved = url.substring(schemeSeparatorIndex + 2); // Remove the scheme and '://'
-        const pathStartIndex = schemeRemoved.indexOf('/');
-        if (pathStartIndex !== -1) {
-          console.log(schemeRemoved.substring(pathStartIndex + 1));
-          const urlToFollow = schemeRemoved.substring(pathStartIndex + 1);
-          // this is not working
-          // i want to use the key work this here
-          self.router.navigate([urlToFollow])
+      if (url) {
+        const schemeSeparatorIndex = event.result.url.indexOf('://');
+        if (schemeSeparatorIndex !== -1) {
+          const schemeRemoved = url.substring(schemeSeparatorIndex + 2); // Remove the scheme and '://'
+          const pathStartIndex = schemeRemoved.indexOf('/');
+          if (pathStartIndex !== -1) {
+            console.log(schemeRemoved.substring(pathStartIndex + 1));
+            const urlToFollow = schemeRemoved.substring(pathStartIndex + 1);
+            // this is not working
+            // i want to use the key work this here
+            self.router.navigate([urlToFollow]);
+          }
         }
+      }else{
+        //const create_adress_url =
+        self.router.navigate(['travaux']);
       }
+
       return null;
 
       // let notificationData = JSON.stringify(event);
@@ -135,8 +141,6 @@ export class AppComponent implements OnInit {
     );
   }
 
-
-
   ngOnInit() {
     // OneSignal.initialize('63767350-84be-4d5b-b23e-1b77c8aa5c71');
     // let myClickListener = async function (event: any) {
@@ -152,5 +156,3 @@ export class AppComponent implements OnInit {
     // );
   }
 }
-
-

@@ -10,7 +10,13 @@
     >
       <swiper-slide *ngFor='let data of datas'>
 
-          <ion-card [ngStyle]="{'background-image': 'url(' + data.featuredImage.imageUrl + ')'}">
+
+
+<ion-card [ngStyle]="{
+  'background-image': 'url(' + data.featuredImage.imageUrl + ')', 'background-size': 'cover',
+  'background-position': 'center',
+  'background-repeat': 'no-repeat'}"
+>
             <div class="overlay"></div>
             <!-- <img [alt]="data.featuredImage.title" [src]="data.featuredImage.imageUrl" /> -->
             <div>
