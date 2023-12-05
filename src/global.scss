@@ -62,3 +62,11 @@ ion-button{
 ion-toggle {
   touch-action: auto;
 }
+
+// ajouter pour google maps sur android
+.md body, .ios body{
+  --ion-background-color: none;
+}
+ion-modal{
+  --background: #FFF; 
+}

@@ -2,5 +2,9 @@ capacitor-google-map {
   display: inline-block;
   width: 500px;
   height: 500px;
-  //border: red solid 1px;
+  border: red solid 1px;
+}
+// pour android
+ion-content{
+  --background: none;
 }

@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Platform } from '@ionic/angular';
 
 import { catchError, forkJoin, map, mergeMap, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,7 +12,7 @@ import { FormMessage } from '../types/form/form';
 export class DatasService {
   private base_url = environment.base_url;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private platform: Platform) {}
 
   // getTest() {
   //   const url = 'https://jsonplaceholder.typicode.com/todos/1';
