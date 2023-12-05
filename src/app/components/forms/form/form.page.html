@@ -35,7 +35,7 @@
             <ion-col size="6" *ngFor="let photo of photos; index as position">
 
               <img [src]="photo.src">
-              <ion-button (click)='onDeletePic()'>Supprimer</ion-button>
+              <ion-button (click)='onDeletePic()' color="danger">Supprimer</ion-button>
             </ion-col>
           </ion-row>
         </ion-grid>
