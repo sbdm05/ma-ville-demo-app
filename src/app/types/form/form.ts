@@ -1,3 +1,4 @@
+import { Photo } from '@capacitor/camera';
 import { FormI } from './form-i';
 
 export class FormMessage implements FormI {
@@ -5,6 +6,7 @@ export class FormMessage implements FormI {
   subcategory!: string;
   address!: string;
   description!: string;
+  picture!: Photo;
   contact!: {
     name: string;
     firstname: string;

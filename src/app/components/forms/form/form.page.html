@@ -26,6 +26,20 @@
           <div *ngIf="form.controls['description'].errors?.['minlength']">Ce champ doit être complété</div>
         </ion-item>
 
+        <ion-item>
+          <ion-button (click)='onSelectPic()' [disabled]='addPicActive'>Sélectionner une image dans votre album</ion-button>
+        </ion-item>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" *ngFor="let photo of photos; index as position">
+
+              <img [src]="photo.src">
+              <ion-button (click)='onDeletePic()'>Supprimer</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
 
 
         <ion-item>
