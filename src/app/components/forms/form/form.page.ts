@@ -81,20 +81,24 @@ export class FormPage implements OnInit {
       source: CameraSource.Camera,
     });
 
-    console.log(image);
+    console.log(image, '[IMAGE ONSELECTPIC]');
 
-    if (image) {
+    if (image.base64String) {
+      //console.log(image.base64String, '[IMAGE.BASE64STRING');
+
+
       this.obj.picture = image;
 
+      // pour affichage dans template HTML
       let imageConverted;
       imageConverted = 'data:image/jpeg;base64, ' + image.base64String;
+        // disabled the add button
+        this.addPicActive = true;
+        // pusher l'image dans la boucle
+        this.photos.unshift({
+          src: imageConverted,
+        });
 
-      // disabled the add button
-      this.addPicActive = true;
-
-      this.photos.unshift({
-        src: imageConverted,
-      });
     }
   }
 
@@ -104,7 +108,9 @@ export class FormPage implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    console.log(this.obj.picture + `this.obj.picture`);
+    console.log();
+
     const tempForm = this.form.value;
     tempForm.picture = this.obj.picture;
     console.log(tempForm);
@@ -127,3 +133,6 @@ export class FormPage implements OnInit {
 // sub-category: ['sous-category'],
 // address : ['Rue du General Leclerc'],
 // description: ['ici votre message']
+
+
+

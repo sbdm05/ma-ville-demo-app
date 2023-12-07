@@ -69,7 +69,7 @@ export class DatasService {
   }
 
   sendMessage(obj: FormMessage) {
-    console.log(obj)
+    console.log(obj);
     return this.http
       .post<any>(`${this.base_url}/wp-json/custom/v1/send-email`, obj)
       .pipe(catchError(this.handleError));
@@ -78,10 +78,27 @@ export class DatasService {
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error);
 
-    // You can customize the error handling here, for example, by returning a specific error message or re-throwing the error.
-    const errorMessage =
+    let errorMessage =
       'An error occurred while sending the message. Please try again later.';
-    return throwError(() => error);
+
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Client-side error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      if (error && error.error && error.error.text === 'Email sent successfully') {
+        // Perform actions if the text property is "Email sent successfully"
+        console.log('Email was sent successfully from the service!');
+        return throwError('Email sent successfully');
+      } else {
+        // Handle other cases
+        console.log('Email sending failed or different error occurred.');
+      }
+      errorMessage = `Server-side error: ${error.status}, ${error.error.message}`;
+      // You can also log additional details such as error.error for more specific information from the server response.
+    }
+
+    return throwError(errorMessage);
   }
 
   getKiosquePosts() {

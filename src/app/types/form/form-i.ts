@@ -5,7 +5,7 @@ export interface FormI {
   subcategory: string;
   address: string;
   description: string;
-  picture: Photo;
+  picture: Photo | string;
   contact: {
     name:string;
     firstname: string;

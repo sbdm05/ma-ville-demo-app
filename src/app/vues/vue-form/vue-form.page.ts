@@ -17,25 +17,43 @@ import { DatasService } from 'src/app/service/datas.service';
 })
 export class VueFormPage implements OnInit {
   title!: string;
-  obj!: FormMessage
+  obj!: FormMessage;
 
-  constructor(private activatedRoute: ActivatedRoute, private datasService: DatasService, private router: Router) {}
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private datasService: DatasService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {
       this.title = String(params.get('id'));
       console.log(this.title);
-      this.obj = new FormMessage({category: this.title});
-      console.log(this.obj, 'this.obj')
+      this.obj = new FormMessage({ category: this.title });
+      console.log(this.obj, 'this.obj');
     });
   }
 
-  submit(obj: FormMessage){
+  submit(obj: FormMessage) {
     console.log(obj);
-    this.datasService.sendMessage(obj).subscribe(data=>{
-      console.log(data);
-      // redirection vers composant de confirmation
-      this.router.navigate(['confirmation'])
-    })
+    this.datasService.sendMessage(obj).subscribe(
+      (data) => {
+        console.log(data); // email sent successfully
+        this.router.navigate(['confirmation']);
+      },
+      (error) => {
+        if (
+          error === 'Email sent successfully'
+        ) {
+          console.log('Email was sent successfully from the form!');
+          // Handle success, navigate to confirmation page, etc.
+          this.router.navigate(['confirmation']);
+        } else {
+          // Handle other cases if needed
+          console.error('Error occurred:', error);
+          // Handle error or display an error message if needed
+        }
+      }
+    );
   }
 }
