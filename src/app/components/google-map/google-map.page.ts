@@ -39,31 +39,26 @@ import {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class GoogleMapPage implements OnInit {
-  @ViewChild('map') mapRef!: ElementRef<HTMLElement>;
+export class GoogleMapPage {
+  @ViewChild('citymap') mapRef!: ElementRef<HTMLElement>;
   @Input() datas!: any[];
   private api_key!: string;
   private newMap!: GoogleMap;
   public markers: any[] = [];
+  //mapView: any;
   // isModalOpen = false;
+
+  //@ViewChild('map') mapView!: ElementRef;
 
   constructor(private modalCtrl: ModalController, private platform: Platform) {}
 
-  ngOnInit() {
-    //this.createMap();
-    console.log('dans init');
-  }
-
   async createMap() {
-    // on crée une carte
-    console.log(this.api_key, 'test');
-    console.log(this.mapRef.nativeElement);
-
     try {
+      console.log(this.mapRef.nativeElement, 'MAPREF');
       this.newMap = await GoogleMap.create({
-        id: 'city-map',
+        id: 'citymap',
         element: this.mapRef.nativeElement,
-        apiKey: this.api_key,
+        apiKey: 'AIzaSyAR7BRFO3RvtXBOZ0gohW-Gp_aFTzjsdIA',
         config: {
           center: {
             lat: 48.992128,
@@ -72,99 +67,99 @@ export class GoogleMapPage implements OnInit {
           zoom: 12,
         },
       });
-      console.log(this.newMap);
 
+      console.log(this.mapRef.nativeElement, 'NEWMAP');
     } catch (error) {
       console.error('Error fetching or processing the map:', error);
       // Handle the error appropriately
     }
 
-    //window.alert('after this.newMap');
+    // //window.alert('after this.newMap');
 
-    // on extrait les markers avec lat + lng
-    if (this.datas) {
-      const countryCoordinates = this.datas.map((country) => ({
-        lat: country.acf.adresse.lat,
-        lng: country.acf.adresse.lng,
-        title: country.acf.adresse.name,
-        date_debut: country.acf.date_debut,
-        date_fin: country.acf.date_fin,
-      }));
+    // // on extrait les markers avec lat + lng
+    // if (this.datas) {
+    //   const countryCoordinates = this.datas.map((country) => ({
+    //     lat: country.acf.adresse.lat,
+    //     lng: country.acf.adresse.lng,
+    //     title: country.acf.adresse.name,
+    //     date_debut: country.acf.date_debut,
+    //     date_fin: country.acf.date_fin,
+    //   }));
 
-      await this.addMarkers(countryCoordinates);
+    //   await this.addMarkers(countryCoordinates);
 
-      this.newMap.setOnMarkerClickListener(async (clickedMarker) => {
-        console.log(clickedMarker);
-        console.log(this.markers);
-        //window.alert('inside setOnMarker');
+    //   this.newMap.setOnMarkerClickListener(async (clickedMarker) => {
+    //     console.log(clickedMarker);
+    //     console.log(this.markers);
+    //     //window.alert('inside setOnMarker');
 
-        // Find the corresponding marker reference in the array
-        const selectedMarker = this.markers.find(
-          (markerInfo) =>
-            markerInfo.markerOptions.coordinate.lat ===
-              clickedMarker.latitude &&
-            markerInfo.markerOptions.coordinate.lng === clickedMarker.longitude
-        );
+    //     // Find the corresponding marker reference in the array
+    //     const selectedMarker = this.markers.find(
+    //       (markerInfo) =>
+    //         markerInfo.markerOptions.coordinate.lat ===
+    //           clickedMarker.latitude &&
+    //         markerInfo.markerOptions.coordinate.lng === clickedMarker.longitude
+    //     );
 
-        console.log(selectedMarker, 'test');
+    //     console.log(selectedMarker, 'test');
 
-        const modal = await this.modalCtrl.create({
-          component: ModalPage,
-          componentProps: {
-            marker: selectedMarker,
-          },
-          breakpoints: [0, 0.3],
-          initialBreakpoint: 0.3,
-        });
-        console.log(modal, 'MODAL');
-        await modal.present();
-      });
-    }
+    //     const modal = await this.modalCtrl.create({
+    //       component: ModalPage,
+    //       componentProps: {
+    //         marker: selectedMarker,
+    //       },
+    //       breakpoints: [0, 0.3],
+    //       initialBreakpoint: 0.3,
+    //     });
+    //     console.log(modal, 'MODAL');
+    //     await modal.present();
+    //   });
+    // }
   }
 
-  async addMarkers(countryCoordinates: any) {
-    interface MarkerOptions {
-      coordinate: {
-        lat: any;
-        lng: any;
-      };
-      title: any;
-      date_debut?: any; // Make date property optional
-      date_fin?: any;
-      snippet?: any;
-    }
+  // async addMarkers(countryCoordinates: any) {
+  //   interface MarkerOptions {
+  //     coordinate: {
+  //       lat: any;
+  //       lng: any;
+  //     };
+  //     title: any;
+  //     date_debut?: any; // Make date property optional
+  //     date_fin?: any;
+  //     snippet?: any;
+  //   }
 
-    if (countryCoordinates) {
-      //window.alert('coutrny');
-      countryCoordinates.forEach(async (coord: any) => {
-        console.log(coord, 'coord');
-        const markerOptions: MarkerOptions = {
-          coordinate: {
-            lat: coord.lat,
-            lng: coord.lng,
-          },
-          title: coord.title,
-          snippet: coord.title,
-          date_debut: coord.date_debut,
-          date_fin: coord.date_fin,
-        };
+  //   if (countryCoordinates) {
+  //     //window.alert('coutrny');
+  //     countryCoordinates.forEach(async (coord: any) => {
+  //       console.log(coord, 'coord');
+  //       const markerOptions: MarkerOptions = {
+  //         coordinate: {
+  //           lat: coord.lat,
+  //           lng: coord.lng,
+  //         },
+  //         title: coord.title,
+  //         snippet: coord.title,
+  //         date_debut: coord.date_debut,
+  //         date_fin: coord.date_fin,
+  //       };
 
-        const marker = await this.newMap.addMarker(markerOptions);
+  //       const marker = await this.newMap.addMarker(markerOptions);
 
-        // console.log(marker);// 0 /1
+  //       // console.log(marker);// 0 /1
 
-        // Store the marker reference in the array
-        if (marker) {
-          // window.alert('inside marker')
-          this.markers.push({
-            markerOptions,
-          });
-        }
+  //       // Store the marker reference in the array
+  //       if (marker) {
+  //         // window.alert('inside marker')
+  //         this.markers.push({
+  //           markerOptions,
+  //         });
+  //       }
 
-        console.log(this.markers);
-      });
-    }
-  }
+  //       console.log(this.markers);
+  //     });
+  //   }
+  // }
 
   ngAfterViewInit() {
     // The view, including the mapRef element, is available here.
@@ -172,7 +167,7 @@ export class GoogleMapPage implements OnInit {
     // console.log(this.mapRef.nativeElement);
 
     // Perform any operations related to the mapRef element here.
-    console.log(this.api_key);
+    //console.log(this.api_key);
 
     this.platform.ready().then(() => {
       console.log('platform is ready');
@@ -200,6 +195,6 @@ export class GoogleMapPage implements OnInit {
 
   ngOnDestroy() {
     // Clean up map reference
-    this.newMap.destroy();
+    //this.newMap.destroy();
   }
 }

@@ -22,7 +22,7 @@ PODS:
     - Capacitor
   - CordovaPluginsStatic (5.5.0):
     - CapacitorCordova
-    - OneSignalXCFramework (= 5.0.4)
+    - OneSignalXCFramework (= 5.0.5)
   - Google-Maps-iOS-Utils (4.2.2):
     - Google-Maps-iOS-Utils/Clustering (= 4.2.2)
     - Google-Maps-iOS-Utils/Geometry (= 4.2.2)
@@ -47,43 +47,43 @@ PODS:
   - GoogleMaps/Base (7.4.0)
   - GoogleMaps/Maps (7.4.0):
     - GoogleMaps/Base
-  - OneSignalXCFramework (5.0.4):
-    - OneSignalXCFramework/OneSignalComplete (= 5.0.4)
-  - OneSignalXCFramework/OneSignal (5.0.4):
+  - OneSignalXCFramework (5.0.5):
+    - OneSignalXCFramework/OneSignalComplete (= 5.0.5)
+  - OneSignalXCFramework/OneSignal (5.0.5):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalExtension
     - OneSignalXCFramework/OneSignalNotifications
     - OneSignalXCFramework/OneSignalOSCore
     - OneSignalXCFramework/OneSignalOutcomes
     - OneSignalXCFramework/OneSignalUser
-  - OneSignalXCFramework/OneSignalComplete (5.0.4):
+  - OneSignalXCFramework/OneSignalComplete (5.0.5):
     - OneSignalXCFramework/OneSignal
     - OneSignalXCFramework/OneSignalInAppMessages
     - OneSignalXCFramework/OneSignalLocation
-  - OneSignalXCFramework/OneSignalCore (5.0.4)
-  - OneSignalXCFramework/OneSignalExtension (5.0.4):
+  - OneSignalXCFramework/OneSignalCore (5.0.5)
+  - OneSignalXCFramework/OneSignalExtension (5.0.5):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalOutcomes
-  - OneSignalXCFramework/OneSignalInAppMessages (5.0.4):
+  - OneSignalXCFramework/OneSignalInAppMessages (5.0.5):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalNotifications
     - OneSignalXCFramework/OneSignalOSCore
     - OneSignalXCFramework/OneSignalOutcomes
     - OneSignalXCFramework/OneSignalUser
-  - OneSignalXCFramework/OneSignalLocation (5.0.4):
+  - OneSignalXCFramework/OneSignalLocation (5.0.5):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalNotifications
     - OneSignalXCFramework/OneSignalOSCore
     - OneSignalXCFramework/OneSignalUser
-  - OneSignalXCFramework/OneSignalNotifications (5.0.4):
+  - OneSignalXCFramework/OneSignalNotifications (5.0.5):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalExtension
     - OneSignalXCFramework/OneSignalOutcomes
-  - OneSignalXCFramework/OneSignalOSCore (5.0.4):
+  - OneSignalXCFramework/OneSignalOSCore (5.0.5):
     - OneSignalXCFramework/OneSignalCore
-  - OneSignalXCFramework/OneSignalOutcomes (5.0.4):
+  - OneSignalXCFramework/OneSignalOutcomes (5.0.5):
     - OneSignalXCFramework/OneSignalCore
-  - OneSignalXCFramework/OneSignalUser (5.0.4):
+  - OneSignalXCFramework/OneSignalUser (5.0.5):
     - OneSignalXCFramework/OneSignalCore
     - OneSignalXCFramework/OneSignalNotifications
     - OneSignalXCFramework/OneSignalOSCore
@@ -144,10 +144,10 @@ SPEC CHECKSUMS:
   CapacitorHaptics: 1fffc1217c7e64a472d7845be50fb0c2f7d4204c
   CapacitorKeyboard: b978154b024a5f65e044908e37d15b7de58b9d12
   CapacitorStatusBar: 565c0a1ebd79bb40d797606a8992b4a105885309
-  CordovaPluginsStatic: e7646863d178f68c1b47d245a9a36af6d6b03241
+  CordovaPluginsStatic: 8ca899d706aec05733d413f4d64824671e3165f4
   Google-Maps-iOS-Utils: f77eab4c4326d7e6a277f8e23a0232402731913a
   GoogleMaps: 032f676450ba0779bd8ce16840690915f84e57ac
-  OneSignalXCFramework: 7e0a6d68dda7e80b03069bd145232f480f8c2279
+  OneSignalXCFramework: a34f417512e2b897aad170d870c3613373f70a48
 
 PODFILE CHECKSUM: 5fb23af9658f0a7156505fb92e770763bc1591dc
 
