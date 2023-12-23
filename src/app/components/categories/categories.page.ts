@@ -7,7 +7,7 @@ import {
   IonCol,
   IonGrid,
 } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -30,7 +30,12 @@ export class CategoriesPage implements OnInit {
   @Input() categoryDatas!: any[];
   categoryColors = ['#a10d59', '#0B555A', '#138088', '#909e30'];
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {}
+
+  public onCatNavigate(cat: any){
+   const urlSegment = cat.url ? cat.url : cat.slug; // Choose between cat.url or cat.slug
+   this.router.navigateByUrl('/' + urlSegment);
+  }
 }

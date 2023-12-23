@@ -33,6 +33,9 @@ import {
   warningSharp,
   bookmarkOutline,
   bookmarkSharp,
+  arrowBack,
+  arrowBackOutline,
+  chevronBackOutline
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -59,6 +62,7 @@ import OneSignal, { OneSignalPlugin } from 'onesignal-cordova-plugin';
     IonIcon,
     IonLabel,
     IonRouterOutlet,
+
   ],
 })
 export class AppComponent implements OnInit {
@@ -84,12 +88,14 @@ export class AppComponent implements OnInit {
       warningSharp,
       bookmarkOutline,
       bookmarkSharp,
+      arrowBackOutline,
+      chevronBackOutline
     });
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
-      OneSignal.Debug.setLogLevel(6);
+      //OneSignal.Debug.setLogLevel(6);
       this.OneSignalInit();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
@@ -142,17 +148,5 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    // OneSignal.initialize('63767350-84be-4d5b-b23e-1b77c8aa5c71');
-    // let myClickListener = async function (event: any) {
-    //   let notificationData = JSON.stringify(event);
-    // };
-    // OneSignal.Notifications.addEventListener('click', myClickListener);
-    // // Prompts the user for notification permissions.
-    // //    * Since this shows a generic native prompt, we recommend instead using an In-App Message to prompt for notification permission (See step 7) to better communicate to your users what notifications they will get.
-    // OneSignal.Notifications.requestPermission(true).then(
-    //   (accepted: boolean) => {
-    //     console.log('User accepted notifications: ' + accepted);
-    //   }
-    // );
   }
 }

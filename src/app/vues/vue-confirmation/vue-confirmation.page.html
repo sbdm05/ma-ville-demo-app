@@ -1,16 +1,22 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>{{title| uppercase}}</ion-title>
+    <ion-title>{{ title | uppercase}}</ion-title>
+    <ion-buttons slot="start">
+
+      <ion-icon name="chevron-back-outline" size="large"></ion-icon>
+      <a [routerLink]="['/']" class='redirect-link' >
+        Retour
+      </a>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <!-- <ion-header collapse="condense">
+  <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">CONFIRMATION</ion-title>
+      <ion-title>{{ title | uppercase}}</ion-title>
     </ion-toolbar>
-  </ion-header> -->
-
+  </ion-header>
   <app-explore-container>Votre message a bien été envoyé !</app-explore-container>
 
 </ion-content>

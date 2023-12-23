@@ -6,13 +6,43 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { DatasService } from 'src/app/service/datas.service';
 import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonContent,
+  IonHeader,
+  IonSpinner,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-vue-post-details',
   templateUrl: './vue-post-details.page.html',
   styleUrls: ['./vue-post-details.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ExploreContainerComponent],
+  imports: [
+    IonBackButton,
+    IonButton,
+    IonButtons,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardTitle,
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonSpinner,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+    ExploreContainerComponent,
+  ],
 })
 export class VuePostDetailsPage implements OnInit {
   public data: any;

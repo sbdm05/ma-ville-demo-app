@@ -14,19 +14,6 @@ export class DatasService {
 
   constructor(private http: HttpClient, private platform: Platform) {}
 
-  // getTest() {
-  //   const url = 'https://jsonplaceholder.typicode.com/todos/1';
-
-  //   return CapacitorHttp.request({
-  //     method: 'GET',
-  //     url: url,
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       // Add any other headers if needed
-  //     },
-  //   });
-  // }
-
   getNewsPosts() {
     return this.http
       .get<any[]>(`https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/posts`)

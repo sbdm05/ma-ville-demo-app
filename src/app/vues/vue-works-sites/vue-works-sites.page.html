@@ -15,13 +15,14 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-google-map *ngIf="datas" [datas]='datas'></app-google-map>
+  <!-- <app-google-map *ngIf="datas" [datas]='datas'></app-google-map> -->
+  <app-leaflet-map></app-leaflet-map>
 
-  <app-explore-container *ngIf="!datas">
+  <!-- <app-explore-container *ngIf="!datas">
 
       <ion-spinner name="circles"></ion-spinner>
 
-  </app-explore-container>
+  </app-explore-container> -->
 
 </ion-content>
 

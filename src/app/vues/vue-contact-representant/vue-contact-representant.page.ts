@@ -41,7 +41,7 @@ import {
   ],
 })
 export class VueContactRepresentantPage implements OnInit {
-  public title: string = 'Contactez vos élus';
+  public title: string = 'Vos élus';
 
   constructor(private router: Router) {}
 

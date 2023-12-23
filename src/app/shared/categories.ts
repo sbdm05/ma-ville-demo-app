@@ -60,6 +60,14 @@ export const catHome = [
     name: 'Contactez vos élus',
     url: 'contactez-vos-elus',
   },
+  {
+    slug: 'balades-urbaines',
+    name: 'Balades urbaines',
+  },
+  {
+    slug: 'agenda',
+    name: 'Agenda',
+  },
 ];
 
 // export const catSignal = [

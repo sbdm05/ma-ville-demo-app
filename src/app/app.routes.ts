@@ -63,23 +63,57 @@ export const routes: Routes = [
   },
   {
     path: 'travaux',
-    component: VueWorksSitesPage,
+    loadComponent: () =>
+      import('./vues/vue-works-sites/vue-works-sites.page').then(
+        (m) => m.VueWorksSitesPage
+      ),
   },
   {
     path: 'modal',
-    component: ModalPage
+    component: ModalPage,
   },
   {
     path: 'contactez-vos-elus',
-    loadComponent: () => import('./vues/vue-contact-representant/vue-contact-representant.page').then( m => m.VueContactRepresentantPage)
+    loadComponent: () =>
+      import(
+        './vues/vue-contact-representant/vue-contact-representant.page'
+      ).then((m) => m.VueContactRepresentantPage),
   },
   {
     path: 'contactez-details/:arg',
-    loadComponent: () => import('./vues/vue-contact-representant-detail/vue-contact-representant-detail.page').then( m => m.VueContactRepresentantDetailPage)
+    loadComponent: () =>
+      import(
+        './vues/vue-contact-representant-detail/vue-contact-representant-detail.page'
+      ).then((m) => m.VueContactRepresentantDetailPage),
+  },
+  {
+    path: 'contactez-vos-elus',
+    loadComponent: () =>
+      import(
+        './vues/vue-contact-representant/vue-contact-representant.page'
+      ).then((m) => m.VueContactRepresentantPage),
+  },
+
+  {
+    path: 'balades-urbaines',
+    loadComponent: () =>
+      import('./vues/vue-balades-urbaines/vue-balades-urbaines.page').then(
+        (m) => m.VueBaladesUrbainesPage
+      ),
+  },
+  {
+    path: 'balades-urbaines/:id',
+    loadComponent: () =>
+      import(
+        './vues/vue-balades-urbaines-detail/vue-balades-urbaines-detail.page'
+      ).then((m) => m.VueBaladesUrbainesDetailPage),
   },
   {
     path: '**',
-    loadComponent: () => import('./vues/vue-not-found/vue-not-found.page').then( m => m.VueNotFoundPage)
+    loadComponent: () =>
+      import('./vues/vue-not-found/vue-not-found.page').then(
+        (m) => m.VueNotFoundPage
+      ),
   },
 ];
 

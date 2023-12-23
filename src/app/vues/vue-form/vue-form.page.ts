@@ -1,19 +1,39 @@
 import { ApplicationRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+//import { IonicModule } from '@ionic/angular';
 import { FormPage } from 'src/app/components/forms/form/form.page';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { FormMessage } from 'src/app/types/form/form';
 import { DatasService } from 'src/app/service/datas.service';
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-vue-form',
   templateUrl: './vue-form.page.html',
   styleUrls: ['./vue-form.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, FormPage],
+  imports: [
+    IonHeader,
+    IonToolbar,
+    IonButton,
+    IonButtons,
+    IonBackButton,
+    IonTitle,
+    IonContent,
+    CommonModule,
+    FormsModule,
+    FormPage,
+  ],
 })
 export class VueFormPage implements OnInit {
   title!: string;
@@ -42,9 +62,7 @@ export class VueFormPage implements OnInit {
         this.router.navigate(['confirmation']);
       },
       (error) => {
-        if (
-          error === 'Email sent successfully'
-        ) {
+        if (error === 'Email sent successfully') {
           console.log('Email was sent successfully from the form!');
           // Handle success, navigate to confirmation page, etc.
           this.router.navigate(['confirmation']);
