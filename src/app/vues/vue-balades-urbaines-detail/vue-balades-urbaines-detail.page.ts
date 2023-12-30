@@ -17,6 +17,7 @@ import { ItinerairesService } from 'src/app/service/itineraires/itineraires.serv
 export class VueBaladesUrbainesDetailPage implements OnInit {
   public id!: string;
   public datas!: any[];
+  public title: string = 'Balade';
   map!: L.Map;
   constructor(
     public plt: Platform,

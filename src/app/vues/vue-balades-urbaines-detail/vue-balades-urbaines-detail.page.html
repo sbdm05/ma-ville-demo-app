@@ -1,13 +1,17 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>vue-balades-urbaines-detail</ion-title>
+    <ion-title>{{ title | uppercase}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text='Retour' defaultHref='home-page'>
+      </ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">vue-balades-urbaines-detail</ion-title>
+      <ion-title>{{ title | uppercase}}</ion-title>
     </ion-toolbar>
   </ion-header>
 

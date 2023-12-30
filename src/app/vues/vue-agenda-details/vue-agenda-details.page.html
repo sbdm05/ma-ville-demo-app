@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{this.title}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text='Retour' defaultHref='agenda'>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title>{{this.title}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-card *ngIf='event'>
+  <img [alt]="event.title" [src]="event.image.url" />
+  <ion-card-header>
+    <ion-card-title [innerHtml]="event.title"></ion-card-title>
+
+  </ion-card-header>
+
+  <ion-card-content [innerHtml]="event.description">
+
+  </ion-card-content>
+
+</ion-card>
+</ion-content>

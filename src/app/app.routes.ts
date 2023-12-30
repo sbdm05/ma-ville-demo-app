@@ -109,6 +109,18 @@ export const routes: Routes = [
       ).then((m) => m.VueBaladesUrbainesDetailPage),
   },
   {
+    path: 'agenda',
+    loadComponent: () =>
+      import('./vues/vue-agenda/vue-agenda.page').then((m) => m.VueAgendaPage),
+  },
+  {
+    path: 'agenda/:id',
+    loadComponent: () =>
+      import('./vues/vue-agenda-details/vue-agenda-details.page').then(
+        (m) => m.VueAgendaDetailsPage
+      ),
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./vues/vue-not-found/vue-not-found.page').then(

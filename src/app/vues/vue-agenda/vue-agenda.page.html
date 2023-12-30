@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{ title | uppercase}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button text='Retour' defaultHref='home-page'>
+      </ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" >
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title>{{ title | uppercase}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ng-container *ngIf="(events$ | async) as response">
+  <div *ngIf="response.events && response.events.length">
+    <ion-card *ngFor="let event of response.events">
+      <img [alt]="event.title" [src]="event.image.url" />
+      <ion-card-header>
+        <ion-card-title [innerHtml]="event.title"></ion-card-title>
+        <ion-card-subtitle>
+          début : {{event.start_date_details.day}}
+          {{event.start_date_details.month}}
+          {{event.start_date_details.year}}
+        </ion-card-subtitle>
+      <ion-card-subtitle>
+        fin : {{event.end_date_details.day}}
+        {{event.end_date_details.month}}
+        {{event.end_date_details.year}}
+      </ion-card-subtitle>
+
+      </ion-card-header>
+
+      <ion-card-content [innerHtml]="(event.description| slice:0:120) + '...'">
+
+      </ion-card-content>
+      <ion-button (click)='onReadMore(event.id)'>Lire plus</ion-button>
+    </ion-card>
+  </div>
+  <div *ngIf="!response.events || response.events.length === 0">
+    <!-- Handle no events scenario -->
+    <p>Aucun événement en ce moment !</p>
+  </div>
+</ng-container>
+</ion-content>

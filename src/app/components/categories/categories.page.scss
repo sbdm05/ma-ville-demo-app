@@ -16,3 +16,18 @@ a{
   color: white;
 }
 
+.custom-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-tab2 {
+  flex: 1;
+  /* Each item takes one-third of the available space */
+  //max-width: calc(33.33% - 20px);
+  /* Adjust as needed to account for margins or padding */
+  box-sizing: border-box;
+  /* Ensure the padding and borders are included in the width */
+  padding: 10px;
+  /* Adjust as needed */
+}

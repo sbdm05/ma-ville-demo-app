@@ -14,6 +14,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 
 if (environment.production) {
@@ -26,5 +27,6 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(),
     provideIonicAngular(),
     provideRouter(routes),
-  ],
+    provideAnimations()
+],
 });

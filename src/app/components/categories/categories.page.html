@@ -8,14 +8,34 @@
 <!-- utilisé pour les categories dans la home-page -->
 
 <ion-grid *ngIf='mainDatas'>
-  <ion-row>
-    <ion-col class='col-tab' size='4' *ngFor='let cat of mainDatas; let i = index'
+  <ion-row cdkDropList (cdkDropListDropped)="drop($event)">
+       <ion-col
+       cdkDrag
+       class='col-tab' size='4' *ngFor='let cat of mainDatas; let i = index'
       [style.background-color]="categoryColors[i % categoryColors.length]">
       <!-- <a [routerLink]=" cat.url ? ['/', cat.url] : ['/',cat.slug] " replaceUrl="true">{{cat.name}}</a> -->
       <a (click)='onCatNavigate(cat)'>{{cat.name}}</a>
     </ion-col>
+
+
   </ion-row>
 </ion-grid>
+
+<!-- <ion-list *ngIf='mainDatas' class="custom-list">
+  <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
+
+      <ion-item class='col-tab2'
+      [style.background-color]="categoryColors[i % categoryColors.length]"
+      *ngFor='let cat of mainDatas; let i = index'
+      >
+
+        <a (click)='onCatNavigate(cat)'>{{cat.name}}</a>
+        <ion-reorder slot="end"></ion-reorder>
+      </ion-item>
+
+
+  </ion-reorder-group>
+</ion-list> -->
 
 
 <!-- utilisé pour les sous-categories par exemple carte d'identite-->
