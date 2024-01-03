@@ -56,25 +56,34 @@ export class CategoriesPage implements OnInit {
     private router: Router,
     private localStorage_cat: StorageCategoriesPreferenceService
   ) {
+
+    this.populateMainDatas()
+  }
+
+  populateMainDatas() {
     const categories_pref = this.localStorage_cat.getData(
       'categories_preference'
     );
-    if (categories_pref) {
-      console.log(categories_pref, 'CATEGORIESPREF')
+    if (categories_pref && this.checkRouteToShowGrid()) {
+      console.log(categories_pref, 'CATEGORIESPREF');
       this.mainDatas = categories_pref;
     }
   }
 
+  // Function to check the current URL or route
+  checkRouteToShowGrid(): boolean {
+    // Get the current URL
+    const currentUrl = this.router.url;
+
+    // Check the current URL or perform any logic
+    // For instance, to show the grid on '/specific-page' route:
+    return currentUrl === '/home-page';
+  }
+
   ngOnInit() {}
 
-  ngOnChanges(){
-    const categories_pref = this.localStorage_cat.getData(
-      'categories_preference'
-    );
-    if (categories_pref) {
-      console.log(categories_pref, 'CATEGORIESPREF');
-      this.mainDatas = categories_pref;
-    }
+  ngOnChanges() {
+   this.populateMainDatas()
   }
 
   public onCatNavigate(cat: any) {
@@ -89,5 +98,13 @@ export class CategoriesPage implements OnInit {
     // save the preference into localStorage
     this.reorderedDatas = [...this.mainDatas];
     this.localStorage_cat.setData('categories_preference', this.reorderedDatas);
+  }
+
+  ngOnDestroy() {
+    // Check if mainDatas exists and then clear it or perform necessary cleanup
+    if (this.mainDatas) {
+      this.mainDatas = []; // Clearing the array
+      // Perform other cleanup tasks if needed
+    }
   }
 }

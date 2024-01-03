@@ -1,18 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, Platform } from '@ionic/angular';
+//import { IonicModule, Platform } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { LeafletMapComponent } from 'src/app/components/leaflet-map/leaflet-map.component';
 import * as L from 'leaflet';
 import { ItinerairesService } from 'src/app/service/itineraires/itineraires.service';
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonSpinner,
+  IonTitle,
+  IonToolbar,
+  Platform,
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-vue-balades-urbaines-detail',
   templateUrl: './vue-balades-urbaines-detail.page.html',
   styleUrls: ['./vue-balades-urbaines-detail.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, LeafletMapComponent],
+  imports: [
+    IonBackButton,
+    IonButtons,
+    IonContent,
+    IonHeader,
+    IonSpinner,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+    LeafletMapComponent,
+  ],
 })
 export class VueBaladesUrbainesDetailPage implements OnInit {
   public id!: string;
@@ -23,9 +44,7 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
     public plt: Platform,
     private activatedRoute: ActivatedRoute,
     private itinerairesService: ItinerairesService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
@@ -37,7 +56,7 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
             console.log(data);
             if (data) {
               this.datas = data;
-              this.addMarkers(this.datas)
+              //this.addMarkers(this.datas);
             }
             // this.categories = data;
           },
@@ -49,30 +68,34 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
     });
   }
 
+  ngOnInit() {
+
+  }
+
   ionViewDidEnter() {
     this.plt.ready().then(() => {
       this.initMap();
+      this.addMarkers(this.datas);
     });
   }
 
   public async initMap() {
-    this.map = new L.Map('map-id').setView([48.992128, 2.2779189], 15);
+    this.map = await new L.Map('map-id').setView([48.992128, 2.2779189], 15);
 
-    const map = await L.tileLayer(
+    const mapLayer = await L.tileLayer(
       'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
       {
         maxZoom: 19,
       }
     ).addTo(this.map);
-    if (map) {
+    if (mapLayer) {
       console.log(this.datas, 'inside map');
-      this.addMarkers(this.datas);
+      await this.addMarkers(this.datas);
     }
   }
 
   public async addMarkers(datas: any[]) {
-
-    const coordinates: any[] = []
+    const coordinates: any[] = [];
     // itérer dans le tableau et ajouter des markeurs
     console.log(this.datas);
 
@@ -89,15 +112,20 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
           <h6>Date fin : ${data.acf.date_fin}</h6>
         </div>`;
         marker.bindPopup(DIV);
-        this.map.addLayer(marker);
+        console.log(this.map, 'depuis ligne 91');
+        if (this.map) {
+          console.log(this.map, 'depuis ligne 92');
+          this.map.addLayer(marker);
+        }
 
         // Add coordinates to the array
         coordinates.push([data.acf.adresse.lat, data.acf.adresse.lng]);
-
-
       });
 
-        const polyline = L.polyline(coordinates).addTo(this.map);
+      if (coordinates && coordinates.length >= 2) {
+        const polyline = L.polyline(coordinates)?.addTo(this.map);
+        // Autres actions à effectuer si la condition est vraie
+      }
     }
   }
 }

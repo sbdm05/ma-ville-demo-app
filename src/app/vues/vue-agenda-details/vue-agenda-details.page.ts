@@ -4,17 +4,46 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { AgendaService } from 'src/app/service/agenda/agenda.service';
+import {
+  IonBackButton,
+  IonButton,
+  IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-vue-agenda-details',
   templateUrl: './vue-agenda-details.page.html',
   styleUrls: ['./vue-agenda-details.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [
+    IonBackButton,
+    IonButton,
+    IonButtons,
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+  ],
 })
 export class VueAgendaDetailsPage implements OnInit {
   public event!: any;
-  public title: string = 'Evénement'
+  public title: string = 'Evénement';
   constructor(
     private activatedRoute: ActivatedRoute,
     private agendaService: AgendaService
@@ -28,7 +57,7 @@ export class VueAgendaDetailsPage implements OnInit {
           console.log(event);
 
           this.event = event;
-          this.title = event.title
+          this.title = event.title;
         });
       }
     });

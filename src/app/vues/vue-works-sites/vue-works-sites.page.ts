@@ -55,8 +55,8 @@ export class VueWorksSitesPage implements OnInit {
     private http: HttpClient
   ) {
     this.datasService.getWorksSitesAddress().subscribe((datas) => {
-      this.datas = datas;
-      if (this.datas) {
+      if (datas) {
+        this.datas = datas;
         this.addMarkers(this.datas);
       }
     });
@@ -89,14 +89,14 @@ export class VueWorksSitesPage implements OnInit {
   // ngAfterViewInit() {
   //   console.log('inside afterviewchecked');
   // }
-  public async addMarkers(datas: any[]) {
+  public async addMarkers(datas: any) {
     // itérer dans le tableau et ajouter des markeurs
     console.log(this.datas);
 
     if (datas) {
       console.log(this.datas);
 
-      datas.forEach((data) => {
+      datas.forEach((data: any) => {
         let marker = L.marker([data.acf.adresse.lat, data.acf.adresse.lng]);
 
         const DIV = `
@@ -106,7 +106,9 @@ export class VueWorksSitesPage implements OnInit {
           <h6>Date fin : ${data.acf.date_fin}</h6>
         </div>`;
         marker.bindPopup(DIV);
-        this.map.addLayer(marker);
+        if (this.map) {
+          this.map.addLayer(marker);
+        }
       });
     }
   }

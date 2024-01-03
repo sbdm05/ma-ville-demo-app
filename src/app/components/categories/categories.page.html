@@ -21,22 +21,6 @@
   </ion-row>
 </ion-grid>
 
-<!-- <ion-list *ngIf='mainDatas' class="custom-list">
-  <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
-
-      <ion-item class='col-tab2'
-      [style.background-color]="categoryColors[i % categoryColors.length]"
-      *ngFor='let cat of mainDatas; let i = index'
-      >
-
-        <a (click)='onCatNavigate(cat)'>{{cat.name}}</a>
-        <ion-reorder slot="end"></ion-reorder>
-      </ion-item>
-
-
-  </ion-reorder-group>
-</ion-list> -->
-
 
 <!-- utilisé pour les sous-categories par exemple carte d'identite-->
 <ion-grid *ngIf='categoryDatas'>
