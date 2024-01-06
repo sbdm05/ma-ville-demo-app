@@ -15,6 +15,6 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-leaflet-map></app-leaflet-map>
-  
+  <!-- ici on ajoute les catrgories -->
+<app-categories [categoryDatas]='this.category[0].categories'></app-categories>
 </ion-content>

@@ -121,6 +121,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'shopping',
+    loadComponent: () =>
+      import(
+        './vues/shoopping-categories/shoopping-categories.page'
+      ).then((m) => m.ShooppingCategoriesPage),
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./vues/vue-not-found/vue-not-found.page').then(

@@ -68,6 +68,24 @@ export const catHome = [
     slug: 'agenda',
     name: 'Agenda',
   },
+  {
+    slug: 'shopping',
+    name: 'Shopping',
+    categories: [
+      {
+        slug: 'restaurants',
+        name: "Restaurants",
+      },
+      {
+        slug: 'hotels',
+        name: 'Hôtels',
+      },
+      {
+        slug: 'parking',
+        name: 'Parking',
+      },
+    ],
+  },
 ];
 
 // export const catSignal = [
@@ -283,3 +301,4 @@ export const contacts: any[] = [
     ],
   },
 ];
+// export const shoppingCat: any[] = ['Restaurants', 'Hôtels', 'Parkings'];

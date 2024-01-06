@@ -57,6 +57,8 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
             if (data) {
               this.datas = data;
               //this.addMarkers(this.datas);
+              console.log(this.datas, 'just after line 59');
+              this.initMap();
             }
             // this.categories = data;
           },
@@ -68,14 +70,25 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   ionViewDidEnter() {
     this.plt.ready().then(() => {
-      this.initMap();
-      this.addMarkers(this.datas);
+      console.log(this.datas, 'depuis ligne 77');
+      //this.initMap();
+      //this.addMarkers(this.datas);
+    });
+  }
+
+  ngAfterViewInit() {
+    this.plt.ready().then(() => {
+      if (this.datas) {
+        console.log(this.datas, 'depuis ligne 77');
+
+        this.initMap();
+      }
+
+      //this.addMarkers(this.datas);
     });
   }
 
@@ -88,7 +101,7 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
         maxZoom: 19,
       }
     ).addTo(this.map);
-    if (mapLayer) {
+    if (mapLayer && this.datas) {
       console.log(this.datas, 'inside map');
       await this.addMarkers(this.datas);
     }
@@ -97,7 +110,7 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
   public async addMarkers(datas: any[]) {
     const coordinates: any[] = [];
     // itérer dans le tableau et ajouter des markeurs
-    console.log(this.datas);
+    console.log(this.datas, 'this.datas');
 
     if (datas) {
       console.log(this.datas);
@@ -113,7 +126,7 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
         </div>`;
         marker.bindPopup(DIV);
         console.log(this.map, 'depuis ligne 91');
-        if (this.map) {
+        if (this.map && marker) {
           console.log(this.map, 'depuis ligne 92');
           this.map.addLayer(marker);
         }

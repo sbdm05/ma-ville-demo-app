@@ -22,16 +22,16 @@ export class DatasService {
           // Use forkJoin to combine multiple observables into a single array.
           return forkJoin(
             posts.map((post) => {
-              console.log(post);
+              //console.log(post);
               const featuredMediaId = post.featured_media;
-              console.log(featuredMediaId);
+              //console.log(featuredMediaId);
               return this.http
                 .get<any>(
                   `https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/media/${featuredMediaId}`
                 )
                 .pipe(
                   map((media) => {
-                    console.log(media);
+                    //console.log(media);
                     // Map the response structure to match your desired structure for each post.
                     return {
                       id: post.id,
