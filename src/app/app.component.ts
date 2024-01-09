@@ -35,7 +35,8 @@ import {
   bookmarkSharp,
   arrowBack,
   arrowBackOutline,
-  chevronBackOutline
+  chevronBackOutline,
+  listOutline
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -89,7 +90,8 @@ export class AppComponent implements OnInit {
       bookmarkOutline,
       bookmarkSharp,
       arrowBackOutline,
-      chevronBackOutline
+      chevronBackOutline,
+      listOutline
     });
   }
 

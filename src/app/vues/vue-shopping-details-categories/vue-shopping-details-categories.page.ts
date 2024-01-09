@@ -14,9 +14,11 @@ import {
   IonTitle,
   IonToolbar,
   Platform,
+
 } from '@ionic/angular/standalone';
 import { LeafletMapComponent } from 'src/app/components/leaflet-map/leaflet-map.component';
 import * as L from 'leaflet';
+import { IonFabPageIcons } from 'src/app/components/ion-fab/ion-fab.page';
 
 @Component({
   selector: 'app-vue-shopping-details-categories',
@@ -34,6 +36,7 @@ import * as L from 'leaflet';
     CommonModule,
     FormsModule,
     LeafletMapComponent,
+    IonFabPageIcons,
   ],
 })
 export class VueShoppingDetailsCategoriesPage implements OnInit {

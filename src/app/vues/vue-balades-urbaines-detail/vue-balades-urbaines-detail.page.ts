@@ -16,6 +16,7 @@ import {
   IonToolbar,
   Platform,
 } from '@ionic/angular/standalone';
+import { IonFabPageIcons } from 'src/app/components/ion-fab/ion-fab.page';
 
 @Component({
   selector: 'app-vue-balades-urbaines-detail',
@@ -33,6 +34,7 @@ import {
     CommonModule,
     FormsModule,
     LeafletMapComponent,
+  
   ],
 })
 export class VueBaladesUrbainesDetailPage implements OnInit {
