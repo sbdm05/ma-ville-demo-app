@@ -123,9 +123,16 @@ export const routes: Routes = [
   {
     path: 'shopping',
     loadComponent: () =>
+      import('./vues/shoopping-categories/shoopping-categories.page').then(
+        (m) => m.ShooppingCategoriesPage
+      ),
+  },
+  {
+    path: 'shopping/:id',
+    loadComponent: () =>
       import(
-        './vues/shoopping-categories/shoopping-categories.page'
-      ).then((m) => m.ShooppingCategoriesPage),
+        './vues/vue-shopping-details-categories/vue-shopping-details-categories.page'
+      ).then((m) => m.VueShoppingDetailsCategoriesPage),
   },
   {
     path: '**',
@@ -135,5 +142,3 @@ export const routes: Routes = [
       ),
   },
 ];
-
-
