@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 //import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { ShoppingService } from 'src/app/service/shopping/shopping.service';
-
+import { ModalController } from '@ionic/angular';
 import {
   IonBackButton,
   IonButtons,
@@ -14,11 +14,11 @@ import {
   IonTitle,
   IonToolbar,
   Platform,
-
 } from '@ionic/angular/standalone';
 import { LeafletMapComponent } from 'src/app/components/leaflet-map/leaflet-map.component';
 import * as L from 'leaflet';
 import { IonFabPageIcons } from 'src/app/components/ion-fab/ion-fab.page';
+import { ModalPage } from 'src/app/components/modal/modal.page';
 
 @Component({
   selector: 'app-vue-shopping-details-categories',
@@ -37,6 +37,7 @@ import { IonFabPageIcons } from 'src/app/components/ion-fab/ion-fab.page';
     FormsModule,
     LeafletMapComponent,
     IonFabPageIcons,
+    ModalPage,
   ],
 })
 export class VueShoppingDetailsCategoriesPage implements OnInit {
@@ -49,7 +50,8 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private shoppingService: ShoppingService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private modalCtrl: ModalController
   ) {
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -118,5 +120,20 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
         // Add coordinates to the array
       });
     }
+  }
+
+  public async onIconClicked() {
+    console.log(this.datas);
+    // ouverture de la modal
+    const modal = await this.modalCtrl.create({
+      component: ModalPage,
+      componentProps: {
+        placesToShop: this.datas,
+      },
+      breakpoints: [0, 0.3],
+      initialBreakpoint: 0.3,
+    });
+    console.log(modal, 'MODAL');
+    await modal.present();
   }
 }

@@ -12,7 +12,7 @@ import {
   IonIcon,
   IonToolbar,
   IonTitle,
-  IonModal
+  IonModal,
 } from '@ionic/angular/standalone';
 import { DateFormatPipe } from 'src/app/shared/pipes/date-format.pipe';
 
@@ -34,15 +34,24 @@ import { DateFormatPipe } from 'src/app/shared/pipes/date-format.pipe';
     FormsModule,
     IonIcon,
     DateFormatPipe,
-    IonModal
+    IonModal,
   ],
 })
 export class ModalPage implements OnInit {
   @Input() marker!: any;
-
+  @Input() placesToShop!: any;
+  public title!: string;
+  public colorToolbar!: string;
   constructor() {}
 
   ngOnInit() {
-    console.log(this.marker);
+    console.log(this.placesToShop);
+    if (this.placesToShop) {
+      this.title = 'Annuaire';
+      this.colorToolbar = 'dark';
+    } else if (this.marker) {
+      this.title = 'Chantiers';
+      this.colorToolbar = 'warning';
+    }
   }
 }

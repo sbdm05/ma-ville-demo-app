@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color='warning'>
-    <ion-title>Infos Travaux</ion-title>
+  <ion-toolbar [color]='colorToolbar'>
+    <ion-title>{{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,17 +10,33 @@
       <ion-title size="large">modal</ion-title>
     </ion-toolbar>
   </ion-header> -->
-<ion-card>
+<ion-card *ngIf='marker'>
   <ion-card-header >
-    <ion-card-title>{{marker.markerOptions.title}}</ion-card-title>
+    <ion-card-title>{{marker.markerOptions?.title}}</ion-card-title>
     <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
   </ion-card-header>
 
   <ion-card-content>
-    <p>Date début : {{marker.markerOptions.date_debut | dateFormat }}</p>
-    <p>Date fin : {{marker.markerOptions.date_fin | dateFormat}}</p>
+    <p>Date début : {{marker.markerOptions?.date_debut | dateFormat }}</p>
+    <p>Date fin : {{marker.markerOptions?.date_fin | dateFormat}}</p>
   </ion-card-content>
 </ion-card>
+
+<ng-container *ngIf='placesToShop'>
+  <ion-card *ngFor='let place of placesToShop' >
+    <ion-card-header>
+      <ion-card-title>{{place.title.rendered}}</ion-card-title>
+      <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{place.acf.addresse?.address}}</p>
+      <p>tél : 01 90 98 80 99</p>
+      <p>website : www.company.fr</p>
+    </ion-card-content>
+  </ion-card>
+</ng-container>
+
 
 
 

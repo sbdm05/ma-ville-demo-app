@@ -18,9 +18,13 @@
   <h2>{{errorMsg}}</h2>
 </div>
 
-<app-leaflet-map *ngIf='!errorMsg'></app-leaflet-map>
+<app-leaflet-map *ngIf='!errorMsg'>
+</app-leaflet-map>
 
-<app-ion-fab-icons></app-ion-fab-icons>
+<app-ion-fab-icons iconName='list-outline' *ngIf='!errorMsg' (clicked)='onIconClicked()'></app-ion-fab-icons>
+
+<app-modal trigger='open-modal' id='open-modal'></app-modal>
+
 
 
 </ion-content>
