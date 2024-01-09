@@ -14,6 +14,12 @@
       <ion-title>{{ title | uppercase}}</ion-title>
     </ion-toolbar>
   </ion-header>
+<div class='msg-error' *ngIf='errorMsg'>
+  <h2>{{errorMsg}}</h2>
+</div>
 
-  <app-leaflet-map></app-leaflet-map>
+<app-leaflet-map *ngIf='!errorMsg'></app-leaflet-map>
+
+
+
 </ion-content>

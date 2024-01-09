@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 //import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { ShoppingService } from 'src/app/service/shopping/shopping.service';
+
 import {
   IonBackButton,
   IonButtons,
@@ -40,10 +41,12 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
   public id!: string;
   public datas!: [];
   map!: L.Map;
+  public errorMsg!: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private shoppingService: ShoppingService
+    private shoppingService: ShoppingService,
+    private cdr: ChangeDetectorRef
   ) {
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -51,13 +54,18 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
       if (id) {
         console.log(id);
         this.id = id;
-        this.shoppingService.getCatByName(this.id).subscribe((data) => {
-          console.log(data);
-
-          if (data) {
+        this.shoppingService.getCatByName(this.id).subscribe({
+          next: (data) => {
             this.datas = data;
             this.initMap();
-          }
+          },
+          error: (e) => {
+            console.log(e);
+            this.errorMsg = 'Désolé, aucune offre ne correspond à ce critère';
+            console.log(this.errorMsg);
+
+            this.cdr.detectChanges();
+          },
         });
       }
     });
