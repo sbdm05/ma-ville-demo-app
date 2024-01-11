@@ -15,6 +15,7 @@ import {
   IonModal,
 } from '@ionic/angular/standalone';
 import { DateFormatPipe } from 'src/app/shared/pipes/date-format.pipe';
+import { IconPage } from '../icons/icon/icon.page';
 
 @Component({
   selector: 'app-modal',
@@ -35,6 +36,7 @@ import { DateFormatPipe } from 'src/app/shared/pipes/date-format.pipe';
     IonIcon,
     DateFormatPipe,
     IonModal,
+    IconPage
   ],
 })
 export class ModalPage implements OnInit {

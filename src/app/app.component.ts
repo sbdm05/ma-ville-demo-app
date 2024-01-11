@@ -36,7 +36,9 @@ import {
   arrowBack,
   arrowBackOutline,
   chevronBackOutline,
-  listOutline
+  listOutline,
+  globeOutline,
+  callOutline
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -63,7 +65,6 @@ import OneSignal, { OneSignalPlugin } from 'onesignal-cordova-plugin';
     IonIcon,
     IonLabel,
     IonRouterOutlet,
-
   ],
 })
 export class AppComponent implements OnInit {
@@ -91,7 +92,9 @@ export class AppComponent implements OnInit {
       bookmarkSharp,
       arrowBackOutline,
       chevronBackOutline,
-      listOutline
+      listOutline,
+      globeOutline,
+      callOutline
     });
   }
 

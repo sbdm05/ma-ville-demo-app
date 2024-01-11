@@ -62,7 +62,7 @@ export const routes: Routes = [
     component: VueKiosquePage,
   },
   {
-    path: 'travaux',
+    path: 'chantiers',
     loadComponent: () =>
       import('./vues/vue-works-sites/vue-works-sites.page').then(
         (m) => m.VueWorksSitesPage
@@ -141,5 +141,9 @@ export const routes: Routes = [
         (m) => m.VueNotFoundPage
       ),
   },
-  
+  {
+    path: 'icon',
+    loadComponent: () => import('./components/icons/icon/icon.page').then( m => m.IconPage)
+  },
+
 ];

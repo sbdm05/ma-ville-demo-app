@@ -44,8 +44,8 @@ export const catHome = [
     ],
   },
   {
-    slug: 'travaux',
-    name: 'Travaux',
+    slug: 'chantiers',
+    name: 'Chantiers',
   },
   {
     slug: 'kiosque',
@@ -74,7 +74,7 @@ export const catHome = [
     categories: [
       {
         slug: 'restaurants',
-        name: "Restaurants",
+        name: 'Restaurants',
       },
       {
         slug: 'hotels',
@@ -83,6 +83,10 @@ export const catHome = [
       {
         slug: 'parking',
         name: 'Parking',
+      },
+      {
+        slug: 'bibliotheques',
+        name: 'Bibliothèques',
       },
     ],
   },

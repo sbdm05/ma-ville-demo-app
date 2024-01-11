@@ -108,7 +108,7 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
         <div>
           <h5>${data.title.rendered}</h5>
           <h6>Adresse : ${data.acf.adresse.address}</h6>
-          <h6>Tél : à compléter</h6>
+          <h6>Tél : ${data.acf.telephone}</h6>
         </div>`;
         marker.bindPopup(DIV);
         console.log(this.map, 'depuis ligne 91');
@@ -131,7 +131,7 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
         placesToShop: this.datas,
       },
       breakpoints: [0, 0.3],
-      initialBreakpoint: 0.3,
+      initialBreakpoint: 1,
     });
     console.log(modal, 'MODAL');
     await modal.present();

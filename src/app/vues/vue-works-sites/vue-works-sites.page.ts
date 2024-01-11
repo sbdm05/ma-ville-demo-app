@@ -43,7 +43,7 @@ import { tap } from 'rxjs';
   ],
 })
 export class VueWorksSitesPage implements OnInit {
-  public title: string = 'Carte des Travaux';
+  public title: string = 'Carte des Chantiers';
   public backBtn: string = 'Retour';
   public datas!: any[];
   map!: L.Map;

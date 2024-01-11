@@ -31,11 +31,30 @@
 
     <ion-card-content>
       <p>{{place.acf.addresse?.address}}</p>
-      <p>tél : 01 90 98 80 99</p>
-      <p>website : www.company.fr</p>
+      <h4>
+        <span>
+            <app-icon icon='globe-outline'></app-icon>
+        </span>
+        <a [href]='place.acf.site_internet'>{{place.acf.site_internet}}</a>
+      </h4>
+      <h3>
+        <span>
+          <app-icon icon='call-outline'></app-icon>
+        </span>
+        <a [href]="'tel:+' + place.acf.telephone">{{place.acf.telephone}}</a>
+      </h3>
+      <h3>
+        Horaires:
+        <div [innerHtml]="place.acf.horaires">
+
+        </div>
+      </h3>
     </ion-card-content>
   </ion-card>
 </ng-container>
+
+<!-- ajouter icone devant internet + tel
+et offre speciale ???? -->
 
 
 
