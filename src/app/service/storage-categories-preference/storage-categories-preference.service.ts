@@ -20,6 +20,7 @@ export class StorageCategoriesPreferenceService {
 
           localStorage.setItem(key, JSON.stringify(filteredTab));
         } else {
+          data.saved = true;
           datasAlreadySaved = [...datasAlreadySaved, data];
           localStorage.setItem(key, JSON.stringify(datasAlreadySaved));
         }
