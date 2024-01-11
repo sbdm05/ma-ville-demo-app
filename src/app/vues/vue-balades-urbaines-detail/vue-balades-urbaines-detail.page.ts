@@ -129,8 +129,8 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
         const DIV = `
         <div>
           <h5>${data.title.rendered}</h5>
-          <h6>Date début : ${data.acf.date_debut}</h6>
-          <h6>Date fin : ${data.acf.date_fin}</h6>
+          <h6>${data.acf.adresse.address}</h6>
+         
         </div>`;
         marker.bindPopup(DIV);
         console.log(this.map, 'depuis ligne 91');
@@ -140,13 +140,13 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
         }
 
         // Add coordinates to the array
-        coordinates.push([data.acf.adresse.lat, data.acf.adresse.lng]);
+        //coordinates.push([data.acf.adresse.lat, data.acf.adresse.lng]);
       });
 
-      if (coordinates && coordinates.length >= 2) {
-        const polyline = L.polyline(coordinates)?.addTo(this.map);
-        // Autres actions à effectuer si la condition est vraie
-      }
+      // if (coordinates && coordinates.length >= 2) {
+      //   const polyline = L.polyline(coordinates)?.addTo(this.map);
+      //   // Autres actions à effectuer si la condition est vraie
+      // }
     }
   }
   public async onIconClicked() {

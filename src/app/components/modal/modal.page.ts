@@ -56,6 +56,7 @@ export class ModalPage implements OnInit {
       this.title = 'Chantiers';
       this.colorToolbar = 'warning';
     } else if(this.placesToVisit){
+      this.title = 'En savoir plus';
       this.colorToolbar = 'dark';
     }
   }
