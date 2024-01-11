@@ -15,8 +15,10 @@
     </ion-toolbar>
   </ion-header>
 <ion-card *ngFor='let category of categories'>
+  <div class='image-container'>
+    <img [alt]="category.name" [src]="category.imageLink" />
+  </div>
 
-  <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
   <ion-card-header>
     <ion-card-title>{{ category.name}}</ion-card-title>
 

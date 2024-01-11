@@ -10,6 +10,8 @@ export class ItinerairesService {
     'https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/itineraires';
   public subCatUrl =
     'https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/categories?parent';
+  public rootImageObj =
+    'https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/media';
 
   constructor(private http: HttpClient) {}
 
@@ -42,5 +44,9 @@ export class ItinerairesService {
 
   public getPlacesByCategory(id: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.itinerairesUrl}?categories=${id}`);
+  }
+
+  public getCategoryImage(id: number): Observable<any> {
+    return this.http.get<any>(`${this.rootImageObj}/${id}`);
   }
 }
