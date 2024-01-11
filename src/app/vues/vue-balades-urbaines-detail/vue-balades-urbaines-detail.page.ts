@@ -128,8 +128,8 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
 
         const DIV = `
         <div>
-          <h5>${data.title.rendered}</h5>
-          <h6>${data.acf.adresse.address}</h6>
+          <h5>${data.title}</h5>
+          <h6>${data.acf.adresse}</h6>
 
         </div>`;
         marker.bindPopup(DIV);
