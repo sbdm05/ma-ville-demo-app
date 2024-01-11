@@ -16,6 +16,10 @@ import {
   IonLabel,
   IonRouterOutlet,
   Platform,
+  IonTabs,
+  IonTabBar,
+  IonTabButton,
+  IonHeader,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -41,10 +45,13 @@ import {
   callOutline,
   recordingOutline,
   addCircleOutline,
+  bookmarksOutline,
+  homeOutline
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
 import OneSignal, { OneSignalPlugin } from 'onesignal-cordova-plugin';
+import { MenuBottomFixedPage } from './components/menu-bottom-fixed/menu-bottom-fixed.page';
 
 @Component({
   selector: 'app-root',
@@ -67,6 +74,8 @@ import OneSignal, { OneSignalPlugin } from 'onesignal-cordova-plugin';
     IonIcon,
     IonLabel,
     IonRouterOutlet,
+    IonHeader,
+    MenuBottomFixedPage
   ],
 })
 export class AppComponent implements OnInit {
@@ -98,7 +107,9 @@ export class AppComponent implements OnInit {
       globeOutline,
       callOutline,
       recordingOutline,
-      addCircleOutline
+      addCircleOutline,
+      bookmarksOutline,
+      homeOutline
     });
   }
 

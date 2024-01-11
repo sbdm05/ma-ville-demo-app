@@ -18,14 +18,21 @@
 
 <ion-card *ngIf='event'>
   <img [alt]="event.title" [src]="event.image.url" />
-  <ion-card-header>
+  <ion-card-header class='ion-title-flex-display'>
     <ion-card-title [innerHtml]="event.title"></ion-card-title>
+    <app-icon icon='bookmarks-outline' sizeIcon='small'></app-icon>
 
   </ion-card-header>
 
-  <ion-card-content [innerHtml]="event.description">
+
+     <ion-card-content [innerHtml]="event.description">
 
   </ion-card-content>
+
+
+
+
+
 
 </ion-card>
 </ion-content>

@@ -18,6 +18,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { IconPage } from 'src/app/components/icons/icon/icon.page';
 
 @Component({
   selector: 'app-vue-agenda-details',
@@ -39,6 +40,7 @@ import {
     IonToolbar,
     CommonModule,
     FormsModule,
+    IconPage
   ],
 })
 export class VueAgendaDetailsPage implements OnInit {

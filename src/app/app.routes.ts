@@ -135,15 +135,17 @@ export const routes: Routes = [
       ).then((m) => m.VueShoppingDetailsCategoriesPage),
   },
   {
+    path: 'favoris',
+    loadComponent: () =>
+      import('./vues/vue-favoris/vue-favoris.page').then(
+        (m) => m.VueFavorisPage
+      ),
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./vues/vue-not-found/vue-not-found.page').then(
         (m) => m.VueNotFoundPage
       ),
   },
-  {
-    path: 'icon',
-    loadComponent: () => import('./components/icons/icon/icon.page').then( m => m.IconPage)
-  },
-
 ];

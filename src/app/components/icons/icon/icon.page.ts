@@ -12,7 +12,8 @@ import { IonIcon } from '@ionic/angular/standalone';
   imports: [IonicModule, CommonModule, FormsModule]
 })
 export class IconPage implements OnInit {
-  @Input() icon!: string; 
+  @Input() icon!: string;
+  @Input() sizeIcon!: string;
 
   constructor() { }
 
