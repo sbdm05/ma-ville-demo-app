@@ -42,6 +42,7 @@ import { IconPage } from '../icons/icon/icon.page';
 export class ModalPage implements OnInit {
   @Input() marker!: any;
   @Input() placesToShop!: any;
+  @Input() placesToVisit!: any;
   public title!: string;
   public colorToolbar!: string;
   constructor() {}
@@ -54,6 +55,8 @@ export class ModalPage implements OnInit {
     } else if (this.marker) {
       this.title = 'Chantiers';
       this.colorToolbar = 'warning';
+    } else if(this.placesToVisit){
+      this.colorToolbar = 'dark';
     }
   }
 }

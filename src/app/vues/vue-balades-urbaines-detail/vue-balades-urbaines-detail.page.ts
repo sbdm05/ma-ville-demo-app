@@ -17,6 +17,8 @@ import {
   Platform,
 } from '@ionic/angular/standalone';
 import { IonFabPageIcons } from 'src/app/components/ion-fab/ion-fab.page';
+import { ModalPage } from 'src/app/components/modal/modal.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-vue-balades-urbaines-detail',
@@ -34,7 +36,8 @@ import { IonFabPageIcons } from 'src/app/components/ion-fab/ion-fab.page';
     CommonModule,
     FormsModule,
     LeafletMapComponent,
-  
+    ModalPage,
+    IonFabPageIcons,
   ],
 })
 export class VueBaladesUrbainesDetailPage implements OnInit {
@@ -42,10 +45,12 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
   public datas!: any[];
   public title: string = 'Balade';
   map!: L.Map;
+  public errorMsg!: string;
   constructor(
     public plt: Platform,
     private activatedRoute: ActivatedRoute,
-    private itinerairesService: ItinerairesService
+    private itinerairesService: ItinerairesService,
+    private modalCtrl: ModalController
   ) {
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
@@ -66,6 +71,7 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
           },
           error: (e) => {
             console.log(e);
+             this.errorMsg = 'Désolé, aucune offre ne correspond à ce critère';
           },
         });
       }
@@ -142,5 +148,19 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
         // Autres actions à effectuer si la condition est vraie
       }
     }
+  }
+  public async onIconClicked() {
+    console.log(this.datas);
+    // ouverture de la modal
+    const modal = await this.modalCtrl.create({
+      component: ModalPage,
+      componentProps: {
+        placesToVisit: this.datas,
+      },
+      breakpoints: [0, 0.3],
+      initialBreakpoint: 1,
+    });
+    console.log(modal, 'MODAL');
+    await modal.present();
   }
 }
