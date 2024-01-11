@@ -6,7 +6,27 @@ import { Injectable } from '@angular/core';
 export class StorageCategoriesPreferenceService {
   constructor() {}
   setData(key: string, data: any): void {
-    localStorage.setItem(key, JSON.stringify(data));
+    if (key === 'fav') {
+      // ici on store un tableau
+      if (this.getData('fav')) {
+        let datasAlreadySaved = this.getData('fav');
+        //console.log(datasAlreadySaved, 'already saved');
+        // vérifier si valeur existante
+        const match = datasAlreadySaved.find((e: any) => data.id === e.id);
+        console.log(match, 'yes');
+        if (match) {
+          console.log('already saved');
+        } else {
+          // Ajouter une valeur au tableau
+          datasAlreadySaved = [...datasAlreadySaved, data];
+          // Mettre à jour le local storage avec le tableau modifié
+          localStorage.setItem(key, JSON.stringify(datasAlreadySaved));
+        }
+      } else {
+        localStorage.setItem(key, JSON.stringify([data]));
+      }
+    } else if (key === 'categories_preference')
+      localStorage.setItem(key, JSON.stringify(data));
   }
 
   getData(key: string): any {

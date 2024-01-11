@@ -19,6 +19,7 @@ import {
   IonToolbar,
 } from '@ionic/angular/standalone';
 import { IconPage } from 'src/app/components/icons/icon/icon.page';
+import { StorageCategoriesPreferenceService } from 'src/app/service/storage-categories-preference/storage-categories-preference.service';
 
 @Component({
   selector: 'app-vue-agenda-details',
@@ -40,20 +41,27 @@ import { IconPage } from 'src/app/components/icons/icon/icon.page';
     IonToolbar,
     CommonModule,
     FormsModule,
-    IconPage
+    IconPage,
   ],
 })
 export class VueAgendaDetailsPage implements OnInit {
   public event!: any;
   public title: string = 'Evénement';
+  public favDatas!: any[]
   constructor(
     private activatedRoute: ActivatedRoute,
-    private agendaService: AgendaService
-  ) {}
+    private agendaService: AgendaService,
+    private favorisService: StorageCategoriesPreferenceService
+  ) {
+    //
+  }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
+      // ici on vérifie le localStorage
+      // si présent dans localStorage alors this.event = event du localstorage
+      // sinon, on fait la suite
       if (id) {
         this.agendaService.getEventDetails(id).subscribe((event) => {
           console.log(event);
@@ -63,5 +71,12 @@ export class VueAgendaDetailsPage implements OnInit {
         });
       }
     });
+  }
+
+  public onSave(item: any) {
+    console.log('saved');
+
+    // stocker l'objet dans le localStorage
+    this.favorisService.setData('fav', item );
   }
 }
