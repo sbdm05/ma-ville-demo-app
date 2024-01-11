@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -51,7 +51,8 @@ export class VueAgendaDetailsPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private agendaService: AgendaService,
-    private favorisService: StorageCategoriesPreferenceService
+    private favorisService: StorageCategoriesPreferenceService,
+    private cdr: ChangeDetectorRef
   ) {
     //
   }
@@ -81,11 +82,12 @@ export class VueAgendaDetailsPage implements OnInit {
     console.log('saved');
     //item.saved = true;
     // stocker l'objet dans le localStorage
-    this.favorisService.setData('fav', item);
-  }
+    if (item.saved) {
+      Object.assign(item, { saved: false });
 
-  public onUpdate(item: any) {
-    item.saved = null;
-    this.favorisService.setData('fav', item);
+      this.favorisService.setData('fav', item);
+    } else {
+      this.favorisService.setData('fav', item);
+    }
   }
 }
