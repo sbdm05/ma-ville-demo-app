@@ -61,7 +61,7 @@
     </ion-card-header>
 
     <ion-card-content>
-      <p>{{place.acf.addresse?.address}}</p>
+      <p>{{place.acf.adresse}}</p>
       <!-- <h4>
         <span>
           <app-icon icon='globe-outline'></app-icon>
@@ -75,12 +75,9 @@
 
         <audio controls [src]="place.acf.enregistrement"></audio>
       </h3>
-      <!-- <h3>
-        Horaires:
-        <div [innerHtml]="place.acf.horaires">
-
-        </div>
-      </h3> -->
+     <div>
+       <img [src]="place.featuredImage.imageUrl" [alt]="place.title.rendered">
+     </div>
     </ion-card-content>
   </ion-card>
 </ng-container>

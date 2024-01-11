@@ -124,18 +124,18 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
       console.log(this.datas);
 
       datas.forEach((data) => {
-        let marker = L.marker([data.acf.adresse.lat, data.acf.adresse.lng]);
+        let marker = L.marker([data.acf.lat, data.acf.lng]);
 
         const DIV = `
         <div>
           <h5>${data.title.rendered}</h5>
           <h6>${data.acf.adresse.address}</h6>
-         
+
         </div>`;
         marker.bindPopup(DIV);
-        console.log(this.map, 'depuis ligne 91');
+        //console.log(this.map, 'depuis ligne 91');
         if (this.map && marker) {
-          console.log(this.map, 'depuis ligne 92');
+          //console.log(this.map, 'depuis ligne 92');
           this.map.addLayer(marker);
         }
 
