@@ -5,3 +5,8 @@ h3 span,
 h4 span {
   padding-right: 10px;
 }
+ion-content {
+  --offset-top: unset !important;
+  --offset-bottom: unset !important;
+  overflow: auto !important;
+}
