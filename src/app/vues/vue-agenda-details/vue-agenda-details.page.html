@@ -20,7 +20,8 @@
   <img [alt]="event.title" [src]="event.image.url" />
   <ion-card-header class='ion-title-flex-display'>
     <ion-card-title [innerHtml]="event.title"></ion-card-title>
-    <app-icon icon='bookmarks-outline' sizeIcon='small' (click)='onSave(event)'></app-icon>
+    <app-icon *ngIf='!event.saved' icon='bookmarks-outline' sizeIcon='small' (click)='onSave(event)'></app-icon>
+    <app-icon *ngIf='event.saved' icon='bookmarks' sizeIcon='small' (click)='onUpdate(event)'></app-icon>
 
   </ion-card-header>
 

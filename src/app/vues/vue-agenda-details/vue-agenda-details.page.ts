@@ -47,7 +47,7 @@ import { StorageCategoriesPreferenceService } from 'src/app/service/storage-cate
 export class VueAgendaDetailsPage implements OnInit {
   public event!: any;
   public title: string = 'Evénement';
-  public favDatas!: any[]
+  public favDatas!: any[];
   constructor(
     private activatedRoute: ActivatedRoute,
     private agendaService: AgendaService,
@@ -62,7 +62,11 @@ export class VueAgendaDetailsPage implements OnInit {
       // ici on vérifie le localStorage
       // si présent dans localStorage alors this.event = event du localstorage
       // sinon, on fait la suite
-      if (id) {
+      const response = this.favorisService.getDataById('fav', id);
+      console.log(response, 'response');
+      this.event = response;
+
+      if (!response && id) {
         this.agendaService.getEventDetails(id).subscribe((event) => {
           console.log(event);
 
@@ -75,8 +79,13 @@ export class VueAgendaDetailsPage implements OnInit {
 
   public onSave(item: any) {
     console.log('saved');
-
+    //item.saved = true;
     // stocker l'objet dans le localStorage
-    this.favorisService.setData('fav', item );
+    this.favorisService.setData('fav', item);
+  }
+
+  public onUpdate(item: any) {
+    item.saved = null;
+    this.favorisService.setData('fav', item);
   }
 }
