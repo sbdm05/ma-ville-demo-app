@@ -38,10 +38,6 @@ export const routes: Routes = [
     component: VuePostsPage,
   },
   {
-    path: 'actus',
-    component: VuePostsPage,
-  },
-  {
     path: 'actus/:id',
     component: VuePostDetailsPage,
   },
@@ -149,11 +145,26 @@ export const routes: Routes = [
         (m) => m.VueFavorisPage
       ),
   },
+
+  {
+    path: 'settings',
+    loadComponent: () =>
+      import('./vues/vue-settings/vue-settings.page').then(
+        (m) => m.VueSettingsPage
+      ),
+  },
   {
     path: '**',
     loadComponent: () =>
       import('./vues/vue-not-found/vue-not-found.page').then(
         (m) => m.VueNotFoundPage
+      ),
+  },
+  {
+    path: 'vue-settings',
+    loadComponent: () =>
+      import('./vues/vue-settings/vue-settings.page').then(
+        (m) => m.VueSettingsPage
       ),
   },
 ];

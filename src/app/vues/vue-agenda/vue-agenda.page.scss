@@ -1,0 +1,36 @@
+.btn-event{
+  // padding: 5px;
+}
+ion-button{
+  --background: rgb(251, 184, 60)!important;
+}
+.event-details {
+  display: flex;
+}
+
+.sub-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.event-details>* {
+  padding-right: 10px;
+}
+
+ion-badge {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.category-sorties {
+  background: blue;
+}
+
+.category-sport {
+  background: orange;
+}
+
+.category-kids {
+  background: green;
+}

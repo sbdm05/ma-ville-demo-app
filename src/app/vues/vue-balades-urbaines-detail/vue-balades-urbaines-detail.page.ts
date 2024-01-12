@@ -71,7 +71,7 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
           },
           error: (e) => {
             console.log(e);
-             this.errorMsg = 'Désolé, aucune offre ne correspond à ce critère';
+            this.errorMsg = 'Désolé, aucune offre ne correspond à ce critère';
           },
         });
       }
@@ -101,17 +101,19 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
   }
 
   public async initMap() {
-    this.map = await new L.Map('map-id').setView([48.992128, 2.2779189], 15);
+    if (!this.map) {
+      this.map = await new L.Map('map-id').setView([48.992128, 2.2779189], 15);
 
-    const mapLayer = await L.tileLayer(
-      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        maxZoom: 19,
+      const mapLayer = await L.tileLayer(
+        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+          maxZoom: 19,
+        }
+      ).addTo(this.map);
+      if (mapLayer && this.datas) {
+        console.log(this.datas, 'inside map');
+        await this.addMarkers(this.datas);
       }
-    ).addTo(this.map);
-    if (mapLayer && this.datas) {
-      console.log(this.datas, 'inside map');
-      await this.addMarkers(this.datas);
     }
   }
 
