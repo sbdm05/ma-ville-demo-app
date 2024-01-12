@@ -148,4 +148,8 @@ export const routes: Routes = [
         (m) => m.VueNotFoundPage
       ),
   },
+  {
+    path: 'header',
+    loadComponent: () => import('./components/header/header.page').then( m => m.HeaderPage)
+  },
 ];

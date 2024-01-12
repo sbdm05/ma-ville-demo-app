@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageCategoriesPreferenceService {
+  public favDatas$: BehaviorSubject<any>= new BehaviorSubject([])
   constructor() {}
   setData(key: string, data: any): void {
     if (key === 'fav') {
@@ -19,14 +21,20 @@ export class StorageCategoriesPreferenceService {
           );
 
           localStorage.setItem(key, JSON.stringify(filteredTab));
+          this.favDatas$.next(filteredTab);
         } else {
           data.saved = true;
           datasAlreadySaved = [...datasAlreadySaved, data];
           localStorage.setItem(key, JSON.stringify(datasAlreadySaved));
+
+          // gestion du behaviorSubject
+          this.favDatas$.next(datasAlreadySaved);
         }
       } else {
         data.saved = true;
         localStorage.setItem(key, JSON.stringify([data]));
+        // gestion du behaviorSubject
+        this.favDatas$.next([data]);
       }
     } else if (key === 'categories_preference')
       localStorage.setItem(key, JSON.stringify(data));

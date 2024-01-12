@@ -1,13 +1,15 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>vue-favoris</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">vue-favoris</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<app-header title='Favoris'></app-header>
+
+
+<ion-content  [fullscreen]="true">
+  <ion-list>
+    <ion-item *ngFor='let fav of datas '>
+      <ion-label>{{ fav?.id}}</ion-label>
+    </ion-item>
+
+  </ion-list>
+
+
 </ion-content>
