@@ -82,6 +82,12 @@ export class StorageCategoriesPreferenceService {
     localStorage.removeItem(key);
   }
 
+  updateData(key: string, data: any){
+    if(key === 'fav'){
+      localStorage.setItem('fav', JSON.stringify(data))
+    }
+  }
+
   clearAll(): void {
     localStorage.clear();
   }

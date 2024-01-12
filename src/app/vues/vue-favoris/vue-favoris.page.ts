@@ -32,13 +32,12 @@ import { CategoryDirective } from 'src/app/shared/directives/category.directive'
     HeaderPage,
     IconPage,
     IonBadge,
-    CategoryDirective
+    CategoryDirective,
   ],
 })
 export class VueFavorisPage implements OnInit {
   public title: string = 'Mes favoris';
   public datas!: any[];
-
 
   constructor(private favorisService: StorageCategoriesPreferenceService) {
     //this.favorisService.getData('fav')
@@ -56,4 +55,14 @@ export class VueFavorisPage implements OnInit {
   }
 
   ngOnInit() {}
+
+  public onDelete(obj: any) {
+    console.log(obj.id);
+
+    // filtrer datas
+    const filteredDatas = this.datas.filter((e) => e.id !== obj.id);
+    console.log(filteredDatas);
+    this.favorisService.favDatas$.next(filteredDatas);
+    this.favorisService.updateData('fav', filteredDatas)
+  }
 }
