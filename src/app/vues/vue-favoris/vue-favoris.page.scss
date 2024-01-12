@@ -1,6 +1,11 @@
 .event-details{
   display: flex;
 }
+.sub-details{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .event-details > *{
   padding-right: 10px;
 }
@@ -12,7 +17,7 @@ ion-badge{
   background: blue;
 }
 .category-sport {
-  background: yellow;
+  background: orange;
 }
 .category-kids {
   background: green;
