@@ -4,12 +4,16 @@
 
 
 <ion-content  [fullscreen]="true">
-  <ion-list>
-    <ion-item *ngFor='let fav of datas '>
-      <ion-label>{{ fav?.id}}</ion-label>
-    </ion-item>
+<ion-card *ngFor='let fav of datas'>
+  <ion-card-header>
+    <ion-card-title>{{fav.title}}</ion-card-title>
+    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+  </ion-card-header>
 
-  </ion-list>
+  <ion-card-content>
+    Here's a small text description for the card content. Nothing more, nothing less.
+  </ion-card-content>
+</ion-card>
 
 
 </ion-content>

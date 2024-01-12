@@ -5,8 +5,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class StorageCategoriesPreferenceService {
-  public favDatas$: BehaviorSubject<any>= new BehaviorSubject([])
-  constructor() {}
+  public favDatas$: BehaviorSubject<any> = new BehaviorSubject([]);
+  constructor() {
+    const storedData = localStorage.getItem('fav');
+    if (storedData) {
+      this.favDatas$.next(JSON.parse(storedData));
+    }
+  }
   setData(key: string, data: any): void {
     if (key === 'fav') {
       // ici on store un tableau
@@ -42,6 +47,9 @@ export class StorageCategoriesPreferenceService {
 
   getData(key: string): any {
     const data = localStorage.getItem(key);
+    if(key === 'fav'){
+      this.favDatas$.next(data)
+    }
     return data ? JSON.parse(data) : null;
   }
 
