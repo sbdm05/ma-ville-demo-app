@@ -4,16 +4,39 @@
 
 
 <ion-content  [fullscreen]="true">
-<ion-card *ngFor='let fav of datas'>
+<ion-card *ngFor='let fav of datas; let i = index'>
   <ion-card-header>
     <ion-card-title>{{fav.title}}</ion-card-title>
-    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-  </ion-card-header>
+    <!-- <ion-card-subtitle>
+      {{fav.categories[0]?.name}}</ion-card-subtitle> -->
+    </ion-card-header>
 
-  <ion-card-content>
-    Here's a small text description for the card content. Nothing more, nothing less.
+    <ion-card-content>
+    <ion-badge slot="start">{{fav.categories[0]?.name}}</ion-badge>
+    <div class='event-details'>
+      <app-icon icon='location-outline'></app-icon>
+      <h3>{{fav.venue.address}}</h3>
+    </div>
+    <div class='event-details'>
+      <app-icon icon='calendar-outline'></app-icon>
+      <h3>
+        <ion-card-subtitle>
+          début : {{fav.start_date_details.day}}
+          {{fav.start_date_details.month}}
+          {{fav.start_date_details.year}}
+        </ion-card-subtitle>
+        <ion-card-subtitle>
+          fin : {{fav.end_date_details.day}}
+          {{fav.end_date_details.month}}
+          {{fav.end_date_details.year}}
+        </ion-card-subtitle>
+      </h3>
+    </div>
   </ion-card-content>
 </ion-card>
 
 
 </ion-content>
+
+
+

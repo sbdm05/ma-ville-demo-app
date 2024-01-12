@@ -47,7 +47,9 @@ import {
   addCircleOutline,
   bookmarksOutline,
   homeOutline,
-  bookmarks
+  bookmarks,
+  locationOutline,
+  calendarOutline
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -111,7 +113,9 @@ export class AppComponent implements OnInit {
       addCircleOutline,
       bookmarksOutline,
       bookmarks,
-      homeOutline
+      homeOutline,
+      locationOutline,
+      calendarOutline
     });
   }
 

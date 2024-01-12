@@ -3,18 +3,40 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StorageCategoriesPreferenceService } from 'src/app/service/storage-categories-preference/storage-categories-preference.service';
 import { HeaderPage } from 'src/app/components/header/header.page';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonItem, IonLabel, IonList } from '@ionic/angular/standalone';
+import {
+  IonBadge,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+  IonContent,
+} from '@ionic/angular/standalone';
+import { IconPage } from 'src/app/components/icons/icon/icon.page';
 
 @Component({
   selector: 'app-vue-favoris',
   templateUrl: './vue-favoris.page.html',
   styleUrls: ['./vue-favoris.page.scss'],
   standalone: true,
-  imports: [IonContent, IonCard,IonCardHeader,IonCardTitle, IonCardSubtitle, IonCardContent, CommonModule, FormsModule, HeaderPage],
+  imports: [
+    IonContent,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonCardContent,
+    CommonModule,
+    FormsModule,
+    HeaderPage,
+    IconPage,
+    IonBadge,
+  ],
 })
 export class VueFavorisPage implements OnInit {
   public title: string = 'Mes favoris';
-  public datas!: any[] ;
+  public datas!: any[];
+  
 
   constructor(private favorisService: StorageCategoriesPreferenceService) {
     //this.favorisService.getData('fav')
@@ -23,7 +45,7 @@ export class VueFavorisPage implements OnInit {
     this.favorisService.favDatas$.subscribe({
       next: (data) => {
         this.datas = data;
-        console.log(data,this.datas);
+        console.log(data, this.datas);
       },
       error: (e) => {
         console.log(e);

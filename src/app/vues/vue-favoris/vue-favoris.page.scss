@@ -1,0 +1,10 @@
+.event-details{
+  display: flex;
+}
+.event-details > *{
+  padding-right: 10px;
+}
+ion-badge{
+  margin-bottom: 10px;
+  padding: 5px;
+}
