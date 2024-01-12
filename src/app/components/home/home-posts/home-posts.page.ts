@@ -11,7 +11,7 @@ import { IonicModule } from '@ionic/angular';
 import { SwipperPage } from '../../swipper/swipper.page';
 import { DatasService } from 'src/app/service/datas.service';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
 import {
   IonButton,
@@ -38,14 +38,19 @@ import {
     FormsModule,
     SwipperPage,
     ExploreContainerComponent,
-    IonSpinner
+    IonSpinner,
   ],
 })
 export class HomePostsPage implements OnInit {
   public posts$!: Observable<any[]>;
+  public datasResolved!: any[]
   public datas!: [];
   @Output() emitted = new EventEmitter();
-  constructor(private datasService: DatasService, private router: Router) {
+  constructor(
+    private datasService: DatasService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     // this.datasService.getTest().subscribe(data=>{
     //   console.log(data, 'test');
     // })
@@ -58,6 +63,11 @@ export class HomePostsPage implements OnInit {
 
       this.emitted.next('value');
     }
+
+    // use of the resolver
+    // this.datasResolved = this.route.snapshot.data['posts'];
+    // console.log(this.datasResolved);
+
   }
 
   onReadMoreDetails(obj: any) {

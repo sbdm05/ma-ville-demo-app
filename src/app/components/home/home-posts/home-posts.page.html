@@ -12,15 +12,24 @@
   </ion-header> -->
 
 
+<!-- <ng-container *ngIf="datasResolved else loading">
+
+
+  <app-swipper  *ngIf='datasResolved' [datas]="datasResolved" (onReadMoreEvent)='onReadMoreDetails($event)'>
+  </app-swipper>
+
+
+</ng-container> -->
+
+
 <ng-container *ngIf="posts$ | async as datas else loading">
 
 
-  <app-swipper  *ngIf='datas' [datas]="datas" (onReadMoreEvent)='onReadMoreDetails($event)'>
+  <app-swipper *ngIf='datas' [datas]="datas" (onReadMoreEvent)='onReadMoreDetails($event)'>
   </app-swipper>
 
 
 </ng-container>
-
 <ng-template #loading>
 
     <ion-spinner name="circles" class='ion-spinner-home-posts' ></ion-spinner>

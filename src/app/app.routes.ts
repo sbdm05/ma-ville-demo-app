@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ModalPage } from './components/modal/modal.page';
+import { PostsResolver } from './service/resolvers/posts.resolver';
 import { HomePagePage } from './vues/home-page/home-page.page';
 import { VueConfirmationPage } from './vues/vue-confirmation/vue-confirmation.page';
 import { VueDemarchesPage } from './vues/vue-demarches/vue-demarches.page';
@@ -13,7 +14,7 @@ import { VueWorksSitesPage } from './vues/vue-works-sites/vue-works-sites.page';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home-page',
+    redirectTo: 'loading',
     pathMatch: 'full',
   },
   // {
@@ -24,6 +25,13 @@ export const routes: Routes = [
   {
     path: 'home-page',
     component: HomePagePage,
+    // resolve: { posts: PostsResolver },
+  },
+
+  {
+    path: 'loading',
+    loadComponent: () =>
+      import('./folder/folder.page').then((m) => m.FolderPage),
   },
   {
     path: 'actus',
@@ -147,9 +155,5 @@ export const routes: Routes = [
       import('./vues/vue-not-found/vue-not-found.page').then(
         (m) => m.VueNotFoundPage
       ),
-  },
-  {
-    path: 'header',
-    loadComponent: () => import('./components/header/header.page').then( m => m.HeaderPage)
   },
 ];

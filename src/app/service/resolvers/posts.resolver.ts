@@ -1,0 +1,20 @@
+import { Injectable } from '@angular/core';
+import {
+  Router, Resolve,
+  RouterStateSnapshot,
+  ActivatedRouteSnapshot
+} from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { DatasService } from '../datas.service';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class PostsResolver implements Resolve<any> {
+  constructor(private datasService: DatasService) {
+    console.log('resolver appelé')
+  }
+  resolve(): Observable<any> {
+    return this.datasService.getNewsPosts();
+  }
+}
