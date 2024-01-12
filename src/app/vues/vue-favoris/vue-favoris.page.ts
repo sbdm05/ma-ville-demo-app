@@ -5,6 +5,8 @@ import { StorageCategoriesPreferenceService } from 'src/app/service/storage-cate
 import { HeaderPage } from 'src/app/components/header/header.page';
 import {
   IonBadge,
+  IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -14,6 +16,9 @@ import {
 } from '@ionic/angular/standalone';
 import { IconPage } from 'src/app/components/icons/icon/icon.page';
 import { CategoryDirective } from 'src/app/shared/directives/category.directive';
+import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-vue-favoris',
@@ -33,6 +38,9 @@ import { CategoryDirective } from 'src/app/shared/directives/category.directive'
     IconPage,
     IonBadge,
     CategoryDirective,
+    ExploreContainerComponent,
+    IonButton,
+    RouterLink
   ],
 })
 export class VueFavorisPage implements OnInit {

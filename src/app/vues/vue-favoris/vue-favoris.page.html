@@ -39,6 +39,13 @@
   </ion-card-content>
 </ion-card>
 
+<ng-container *ngIf='datas.length === 0'>
+  <app-explore-container>
+    <p>Aucun favoris !</p>
+    <ion-button [routerLink]="['/', 'agenda']">Je parcours l'agenda</ion-button>
+  </app-explore-container>
+</ng-container>
+
 
 </ion-content>
 
