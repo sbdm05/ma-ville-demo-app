@@ -12,7 +12,7 @@
     </ion-card-header>
 
     <ion-card-content>
-    <ion-badge slot="start">{{fav.categories[0]?.name}}</ion-badge>
+    <ion-badge slot="start" appCategory [cat]='fav.categories[0]?.name'>{{fav.categories[0]?.name}}</ion-badge>
     <div class='event-details'>
       <app-icon icon='location-outline'></app-icon>
       <h3>{{fav.venue.address}}</h3>

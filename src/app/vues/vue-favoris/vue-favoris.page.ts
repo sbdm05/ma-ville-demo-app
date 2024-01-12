@@ -13,6 +13,7 @@ import {
   IonContent,
 } from '@ionic/angular/standalone';
 import { IconPage } from 'src/app/components/icons/icon/icon.page';
+import { CategoryDirective } from 'src/app/shared/directives/category.directive';
 
 @Component({
   selector: 'app-vue-favoris',
@@ -31,12 +32,13 @@ import { IconPage } from 'src/app/components/icons/icon/icon.page';
     HeaderPage,
     IconPage,
     IonBadge,
+    CategoryDirective
   ],
 })
 export class VueFavorisPage implements OnInit {
   public title: string = 'Mes favoris';
   public datas!: any[];
-  
+
 
   constructor(private favorisService: StorageCategoriesPreferenceService) {
     //this.favorisService.getData('fav')
