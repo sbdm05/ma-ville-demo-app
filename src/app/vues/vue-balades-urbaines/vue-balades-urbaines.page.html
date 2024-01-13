@@ -14,9 +14,11 @@
       <ion-title>{{ title | uppercase}}</ion-title>
     </ion-toolbar>
   </ion-header>
-<ion-card *ngFor='let category of categories'>
+
+  <ng-container *ngIf="categories?.length ?? 0 > 0; else loading">
+    <ion-card *ngFor='let category of categories'>
   <div class='image-container'>
-    <img [alt]="category.name" [src]="category.imageLink" />
+    <img [alt]="category.name" [src]="category.imageLink" loading="lazy" />
   </div>
 
   <ion-card-header>
@@ -30,5 +32,14 @@
     Here's a small text description for the card content. Nothing more, nothing less.
   </ion-card-content> -->
 </ion-card>
+  </ng-container>
+
+
+<ng-template #loading >
+  <app-skeleton></app-skeleton>
+  <app-skeleton></app-skeleton>
+
+
+</ng-template>
 
 </ion-content>

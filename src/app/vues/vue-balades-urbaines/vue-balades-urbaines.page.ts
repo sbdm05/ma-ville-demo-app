@@ -19,6 +19,7 @@ import {
   IonToolbar,
   Platform,
 } from '@ionic/angular/standalone';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-vue-balades-urbaines',
@@ -39,6 +40,7 @@ import {
     IonButton,
     CommonModule,
     FormsModule,
+    SkeletonPage
   ],
 })
 export class VueBaladesUrbainesPage implements OnInit {
