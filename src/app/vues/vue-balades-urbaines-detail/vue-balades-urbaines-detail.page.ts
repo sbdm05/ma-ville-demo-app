@@ -19,6 +19,7 @@ import {
 import { IonFabPageIcons } from 'src/app/components/ion-fab/ion-fab.page';
 import { ModalPage } from 'src/app/components/modal/modal.page';
 import { ModalController } from '@ionic/angular';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-vue-balades-urbaines-detail',
@@ -38,6 +39,7 @@ import { ModalController } from '@ionic/angular';
     LeafletMapComponent,
     ModalPage,
     IonFabPageIcons,
+    SkeletonPage
   ],
 })
 export class VueBaladesUrbainesDetailPage implements OnInit {
@@ -133,6 +135,7 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
         <div>
           <h5>${data.title}</h5>
           <h6>${data.acf.adresse}</h6>
+          <img src='${data.featuredImage.imageUrl}' width='150'/ >
 
         </div>`;
         marker.bindPopup(DIV);

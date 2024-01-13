@@ -58,6 +58,7 @@ import {
   calendarOutline,
   settingsOutline,
   bulbOutline,
+  musicalNotesOutline
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -87,6 +88,7 @@ import { MenuBottomFixedPage } from './components/menu-bottom-fixed/menu-bottom-
     IonRouterOutlet,
     IonHeader,
     MenuBottomFixedPage,
+
   ],
 })
 export class AppComponent {
@@ -132,6 +134,7 @@ export class AppComponent {
       calendarOutline,
       settingsOutline,
       bulbOutline,
+      musicalNotesOutline,
     });
   }
 

@@ -18,6 +18,7 @@
   <h2>{{errorMsg}}</h2>
 </div>
 
+<app-skeleton *ngIf='!loaded'></app-skeleton>
 <app-leaflet-map *ngIf='!errorMsg' [mapId]='mapId'>
 </app-leaflet-map>
 

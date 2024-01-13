@@ -19,6 +19,7 @@ import { LeafletMapComponent } from 'src/app/components/leaflet-map/leaflet-map.
 import * as L from 'leaflet';
 import { IonFabPageIcons } from 'src/app/components/ion-fab/ion-fab.page';
 import { ModalPage } from 'src/app/components/modal/modal.page';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-vue-shopping-details-categories',
@@ -38,6 +39,7 @@ import { ModalPage } from 'src/app/components/modal/modal.page';
     LeafletMapComponent,
     IonFabPageIcons,
     ModalPage,
+    SkeletonPage
   ],
 })
 export class VueShoppingDetailsCategoriesPage implements OnInit {
@@ -101,7 +103,7 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
         console.log(this.datas, 'inside map');
         await this.addMarkers(this.datas);
         // afficher le favicon que si les markers existent
-        //this.loaded = true;
+        this.loaded = true;
       }
     } else {
       ('already dans le else');

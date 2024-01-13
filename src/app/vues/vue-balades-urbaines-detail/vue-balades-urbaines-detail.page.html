@@ -19,10 +19,11 @@
     <h2>{{errorMsg}}</h2>
   </div>
 
+  <app-skeleton *ngIf='!loaded'></app-skeleton>
   <app-leaflet-map *ngIf='!errorMsg' [mapId]='mapId'></app-leaflet-map>
 
 
-<app-ion-fab-icons *ngIf='!errorMsg && loaded' iconName='add-circle-outline' (clicked)='onIconClicked()'></app-ion-fab-icons>
+<app-ion-fab-icons *ngIf='!errorMsg && loaded' iconName='musical-notes-outline' (clicked)='onIconClicked()'></app-ion-fab-icons>
 
 
 </ion-content>

@@ -21,6 +21,7 @@ import { HttpClient } from '@angular/common/http';
 import * as L from 'leaflet';
 import { DateFormatPipe } from 'src/app/shared/pipes/date-format.pipe';
 import { tap } from 'rxjs';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-vue-works-sites',
@@ -41,6 +42,7 @@ import { tap } from 'rxjs';
     IonContent,
     LeafletMapComponent,
     DateFormatPipe,
+    SkeletonPage
   ],
 })
 export class VueWorksSitesPage implements OnInit {
@@ -49,6 +51,7 @@ export class VueWorksSitesPage implements OnInit {
   public datas!: any[];
   map!: L.Map;
   public mapId: string = 'map-work-sites';
+  public loaded: boolean = false;
 
   constructor(
     private datasService: DatasService,
@@ -100,6 +103,7 @@ export class VueWorksSitesPage implements OnInit {
         console.log(this.datas, 'inside map');
 
         await this.addMarkers(this.datas);
+        this.loaded = true;
       }
     } else {
       console.log('already!!!');
