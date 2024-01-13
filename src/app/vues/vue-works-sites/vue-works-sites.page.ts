@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 //import { IonicModule } from '@ionic/angular';
 import { GoogleMapPage } from 'src/app/components/google-map/google-map.page';
@@ -40,6 +40,7 @@ import { tap } from 'rxjs';
     IonBackButton,
     IonContent,
     LeafletMapComponent,
+    DateFormatPipe,
   ],
 })
 export class VueWorksSitesPage implements OnInit {
@@ -47,6 +48,7 @@ export class VueWorksSitesPage implements OnInit {
   public backBtn: string = 'Retour';
   public datas!: any[];
   map!: L.Map;
+  public mapId: string = 'map-work-sites';
 
   constructor(
     private datasService: DatasService,
@@ -54,11 +56,21 @@ export class VueWorksSitesPage implements OnInit {
     public router: Router,
     private http: HttpClient
   ) {
-    this.datasService.getWorksSitesAddress().subscribe((datas) => {
-      if (datas) {
-        this.datas = datas;
-        this.addMarkers(this.datas);
-      }
+    if (this.map) {
+      this.map.remove();
+      this.map.off();
+    }
+
+    this.datasService.getWorksSitesAddress().subscribe({
+      next: (data) => {
+        console.log(data);
+        console.log('dans data');
+        this.datas = data;
+        this.initMap();
+      },
+      error: (e) => {
+        console.log(e);
+      },
     });
   }
 
@@ -66,23 +78,34 @@ export class VueWorksSitesPage implements OnInit {
 
   ionViewDidEnter() {
     this.plt.ready().then(() => {
-      this.initMap();
+      //this.initMap();
     });
   }
 
+  ngAfterViewInit() {
+    //this.initMap();
+  }
+
   public async initMap() {
-    this.map = new L.Map('map-id').setView([48.992128, 2.2779189], 15);
+    if (!this.map) {
+      this.map = new L.Map(this.mapId).setView([48.992128, 2.2779189], 15);
 
-    const map = await L.tileLayer(
-      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        maxZoom: 19,
+      const map = await L.tileLayer(
+        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+          maxZoom: 19,
+        }
+      ).addTo(this.map);
+      if (map) {
+        console.log(this.datas, 'inside map');
+
+        await this.addMarkers(this.datas);
       }
-    ).addTo(this.map);
-    if (map) {
-      console.log(this.datas, 'inside map');
+    } else {
+      console.log('already!!!');
 
-      this.addMarkers(this.datas);
+      this.map.remove();
+      this.map.off();
     }
   }
 
@@ -91,25 +114,41 @@ export class VueWorksSitesPage implements OnInit {
   // }
   public async addMarkers(datas: any) {
     // itérer dans le tableau et ajouter des markeurs
-    console.log(this.datas);
+    console.log(datas);
 
     if (datas) {
-      console.log(this.datas);
+      console.log(datas);
 
       datas.forEach((data: any) => {
         let marker = L.marker([data.acf.adresse.lat, data.acf.adresse.lng]);
 
+        const year = data.acf.date_debut.slice(0, 4);
+        const month = data.acf.date_debut.slice(4, 6);
+        const day = data.acf.date_debut.slice(6, 8);
+
+        const yearEnd = data.acf.date_fin.slice(0, 4);
+        const monthEnd = data.acf.date_fin.slice(4, 6);
+        const dayEnd = data.acf.date_fin.slice(6, 8);
+
         const DIV = `
         <div>
-          <h5>${data.title.rendered}</h5>
-          <h6>Date début : ${data.acf.date_debut}</h6>
-          <h6>Date fin : ${data.acf.date_fin}</h6>
+          <h5 style="font-weight: 900; font-size:1.5rem">${data.title.rendered}</h5>
+          <h6>Date début : ${day} ${month} ${year}</h6>
+          <h6>Date fin : ${dayEnd} ${monthEnd} ${yearEnd}</h6>
         </div>`;
         marker.bindPopup(DIV);
+
         if (this.map) {
           this.map.addLayer(marker);
         }
       });
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.map) {
+      this.map.remove();
+      this.map.off();
     }
   }
 }

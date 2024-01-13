@@ -44,8 +44,10 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
   public title: string = 'Shopping';
   public id!: string;
   public datas!: [];
-  map!: L.Map;
+  mapChantiers!: L.Map;
   public errorMsg!: string;
+  public loaded: boolean = false;
+  public mapId: string = 'map-shopping'
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -53,6 +55,11 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
     private cdr: ChangeDetectorRef,
     private modalCtrl: ModalController
   ) {
+
+    if (this.mapChantiers) {
+      this.mapChantiers.remove();
+      this.mapChantiers.off();
+    }
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = params.get('id');
       this.title = String(id);
@@ -68,8 +75,6 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
             console.log(e);
             this.errorMsg = 'Désolé, aucune offre ne correspond à ce critère';
             console.log(this.errorMsg);
-
-            this.cdr.detectChanges();
           },
         });
       }
@@ -78,18 +83,30 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
 
   ngOnInit() {}
 
-  public async initMap() {
-    this.map = await new L.Map('map-id').setView([48.992128, 2.2779189], 15);
+  ngAfterViewInit() {
+    //this.initMap();
+  }
 
-    const mapLayer = await L.tileLayer(
-      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        maxZoom: 19,
+  public async initMap() {
+    if (!this.mapChantiers) {
+      this.mapChantiers = new L.Map(this.mapId).setView([48.992128, 2.2779189], 15);
+
+      const mapLayer = await L.tileLayer(
+        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+          maxZoom: 19,
+        }
+      ).addTo(this.mapChantiers);
+      if (mapLayer && this.datas) {
+        console.log(this.datas, 'inside map');
+        await this.addMarkers(this.datas);
+        // afficher le favicon que si les markers existent
+        //this.loaded = true;
       }
-    ).addTo(this.map);
-    if (mapLayer && this.datas) {
-      console.log(this.datas, 'inside map');
-      await this.addMarkers(this.datas);
+    } else {
+      ('already dans le else');
+      this.mapChantiers.remove();
+      this.mapChantiers.off();
     }
   }
 
@@ -111,10 +128,10 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
           <h6>Tél : ${data.acf.telephone}</h6>
         </div>`;
         marker.bindPopup(DIV);
-        console.log(this.map, 'depuis ligne 91');
-        if (this.map && marker) {
-          console.log(this.map, 'depuis ligne 92');
-          this.map.addLayer(marker);
+        console.log(this.mapChantiers, 'depuis ligne 91');
+        if (this.mapChantiers && marker) {
+          console.log(this.mapChantiers, 'depuis ligne 92');
+          this.mapChantiers.addLayer(marker);
         }
 
         // Add coordinates to the array
@@ -135,5 +152,13 @@ export class VueShoppingDetailsCategoriesPage implements OnInit {
     });
     console.log(modal, 'MODAL');
     await modal.present();
+  }
+
+  ngOnDestroy() {
+    if(this.mapChantiers){
+      this.mapChantiers.remove();
+    this.mapChantiers.off();
+    }
+
   }
 }

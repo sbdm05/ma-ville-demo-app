@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive,
+} from '@angular/router';
 
 import {
   IonApp,
@@ -51,7 +57,7 @@ import {
   locationOutline,
   calendarOutline,
   settingsOutline,
-  bulbOutline
+  bulbOutline,
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -80,13 +86,19 @@ import { MenuBottomFixedPage } from './components/menu-bottom-fixed/menu-bottom-
     IonLabel,
     IonRouterOutlet,
     IonHeader,
-    MenuBottomFixedPage
+    MenuBottomFixedPage,
   ],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   statusBar: any;
   splashScreen: any;
-  constructor(private platform: Platform, private router: Router) {
+  public bottomNavVisible: boolean = false;
+  currentUrl!: string;
+  constructor(
+    private platform: Platform,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
     // pour faire fonctionner la modal
     // https://github.com/ionic-team/ionic-framework/issues/28385
     this.initializeApp();
@@ -119,7 +131,7 @@ export class AppComponent implements OnInit {
       locationOutline,
       calendarOutline,
       settingsOutline,
-      bulbOutline
+      bulbOutline,
     });
   }
 
@@ -153,12 +165,12 @@ export class AppComponent implements OnInit {
             const urlToFollow = schemeRemoved.substring(pathStartIndex + 1);
             // this is not working
             // i want to use the key work this here
-            self.router.navigate([urlToFollow]);
+            self.router.navigate(['actus']);
           }
         }
-      }else{
+      } else {
         //const create_adress_url =
-        self.router.navigate(['travaux']);
+        self.router.navigate(['chantiers']);
       }
 
       return null;
@@ -178,5 +190,19 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
+    // this.router.events.subscribe((event) => {
+    //   if (event instanceof NavigationEnd) {
+    //     // Access the full URL
+    //     this.currentUrl = this.router.url;
+    //     console.log('Current URL:', this.currentUrl);
+    //     if(this.currentUrl === '/loading'){
+    //       this.bottomNavVisible = false
+    //     }else{
+    //       this.bottomNavVisible = true;
+    //     }
+    //   }
+    // });
   }
+
+  ngOnChanges() {}
 }

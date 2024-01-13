@@ -43,9 +43,13 @@ import { ModalController } from '@ionic/angular';
 export class VueBaladesUrbainesDetailPage implements OnInit {
   public id!: string;
   public datas!: any[];
-  public title: string = 'Balade';
+  public title: string = 'Balades';
   map!: L.Map;
   public errorMsg!: string;
+  public loaded: boolean = false;
+  public mapId: string = 'map-balades';
+
+
   constructor(
     public plt: Platform,
     private activatedRoute: ActivatedRoute,
@@ -89,20 +93,12 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.plt.ready().then(() => {
-      if (this.datas) {
-        console.log(this.datas, 'depuis ligne 77');
-
-        this.initMap();
-      }
-
-      //this.addMarkers(this.datas);
-    });
+    //this.initMap();
   }
 
   public async initMap() {
     if (!this.map) {
-      this.map = await new L.Map('map-id').setView([48.992128, 2.2779189], 15);
+      this.map = await new L.Map(this.mapId).setView([48.992128, 2.2779189], 15);
 
       const mapLayer = await L.tileLayer(
         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -113,7 +109,12 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
       if (mapLayer && this.datas) {
         console.log(this.datas, 'inside map');
         await this.addMarkers(this.datas);
+        // afficher le favicon que si les markers existent
+        this.loaded = true;
       }
+    } else {
+      this.map.remove();
+      this.map.off();
     }
   }
 
@@ -151,6 +152,7 @@ export class VueBaladesUrbainesDetailPage implements OnInit {
       // }
     }
   }
+
   public async onIconClicked() {
     console.log(this.datas);
     // ouverture de la modal

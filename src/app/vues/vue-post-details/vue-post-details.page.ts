@@ -51,16 +51,24 @@ export class VuePostDetailsPage implements OnInit {
     private datasService: DatasService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(){
     this.activatedRoute.paramMap.subscribe((params) => {
       const id = Number(params.get('id'));
       if (id) {
-        this.datasService.getPostDetails(id).subscribe((post) => {
-          console.log(post);
-
-          this.data = post;
+        this.datasService.getPostDetails(id).subscribe({
+          next: (data) => {
+            console.log(data);
+            this.data = data;
+          },
+          error: (e) => {
+            console.log(e);
+          },
         });
       }
     });
+  }
+
+  ngOnChanges() {
+
   }
 }

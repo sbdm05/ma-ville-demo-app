@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -19,6 +19,7 @@ export class LeafletMapComponent implements OnInit {
   ) {}
 
   map!: L.Map;
+  @Input() mapId!: string;
 
   ngOnInit() {
     console.log('testdepuis ion ng oninit');
@@ -33,12 +34,12 @@ export class LeafletMapComponent implements OnInit {
       //   .pipe(map((res) => res.json()))
       //   .subscribe((restaurants) => this.initMap(restaurants));
 
-      this.initMap();
+      //this.initMap();
     });
   }
 
   public initMap() {
-    this.map = new L.Map('map-id').setView([48.866667, 2.333333], 23);
+    this.map = new L.Map(this.mapId).setView([48.866667, 2.333333], 23);
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
