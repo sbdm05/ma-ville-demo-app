@@ -20,6 +20,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-vue-post-details',
@@ -42,6 +43,7 @@ import {
     CommonModule,
     FormsModule,
     ExploreContainerComponent,
+    SkeletonPage
   ],
 })
 export class VuePostDetailsPage implements OnInit {

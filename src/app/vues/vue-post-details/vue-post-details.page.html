@@ -14,7 +14,6 @@
       <ion-title size="large">vue-post-details</ion-title>
     </ion-toolbar>
   </ion-header> -->
-  test
 
   <ion-card *ngIf='data'>
     <img [alt]="data.featuredImage.title" [src]="data.featuredImage.imageUrl" />
@@ -29,11 +28,9 @@
 
     </ion-card>
 
-    <app-explore-container *ngIf='!data'>
+    <app-skeleton *ngIf='!data'></app-skeleton>
 
-      <ion-spinner name="circles"></ion-spinner>
 
-    </app-explore-container>
 
 
 </ion-content>
