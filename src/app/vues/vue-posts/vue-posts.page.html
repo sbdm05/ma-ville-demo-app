@@ -17,16 +17,26 @@
       </ion-toolbar>
     </ion-header>
 
-  <ion-card *ngFor='let data of datas$| async'>
-    <img [alt]="data.featuredImage.title" [src]="data.featuredImage.imageUrl" />
-    <ion-card-header>
-      <ion-card-title [innerHtml]="data.title"></ion-card-title>
 
-    </ion-card-header>
+    <ng-template #loading>
+      <app-skeleton></app-skeleton>
+    </ng-template>
 
-    <ion-card-content [innerHtml]="(data.content| slice:0:120) + '...'">
+    <ng-container *ngIf="(datas$ | async) as datas; else loading">
 
-    </ion-card-content>
-    <ion-button (click)='onReadMore(data)'>Lire plus</ion-button>
-  </ion-card>
+        <ion-card *ngFor="let data of datas">
+        <img [alt]="data.featuredImage.title" [src]="data.featuredImage.imageUrl" />
+        <ion-card-header>
+          <ion-card-title [innerHtml]="data.title"></ion-card-title>
+
+        </ion-card-header>
+
+        <ion-card-content [innerHtml]="(data.content| slice:0:120) + '...'">
+
+        </ion-card-content>
+        <ion-button (click)='onReadMore(data)'>Lire plus</ion-button>
+      </ion-card>
+    </ng-container>
+
+
 </ion-content>

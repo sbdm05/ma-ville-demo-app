@@ -18,6 +18,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-vue-posts',
@@ -37,7 +38,8 @@ import {
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
-    IonButton
+    IonButton,
+    SkeletonPage,
   ],
 })
 export class VuePostsPage implements OnInit {
