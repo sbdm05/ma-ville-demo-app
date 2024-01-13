@@ -6,6 +6,7 @@ import { HomePostsPage } from '../../components/home/home-posts/home-posts.page'
 import { CategoriesPage } from 'src/app/components/categories/categories.page';
 import { catHome } from 'src/app/shared/categories';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/angular/standalone';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-home-page',
@@ -22,7 +23,8 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/
     IonToolbar,
     IonTitle,
     IonContent,
-    IonButtons
+    IonButtons,
+    SkeletonPage
   ],
 })
 export class HomePagePage implements OnInit {

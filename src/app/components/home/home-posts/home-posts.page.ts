@@ -21,6 +21,7 @@ import {
   IonCardTitle,
   IonSpinner
 } from '@ionic/angular/standalone';
+import { SkeletonPage } from '../../skeleton/skeleton.page';
 
 @Component({
   selector: 'app-home-posts',
@@ -39,6 +40,7 @@ import {
     SwipperPage,
     ExploreContainerComponent,
     IonSpinner,
+    SkeletonPage
   ],
 })
 export class HomePostsPage implements OnInit {

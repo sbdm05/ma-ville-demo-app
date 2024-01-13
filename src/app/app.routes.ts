@@ -167,4 +167,8 @@ export const routes: Routes = [
         (m) => m.VueSettingsPage
       ),
   },
+  {
+    path: 'skeleton',
+    loadComponent: () => import('./components/skeleton/skeleton.page').then( m => m.SkeletonPage)
+  },
 ];

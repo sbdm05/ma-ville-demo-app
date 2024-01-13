@@ -12,6 +12,9 @@ import {
   IonReorder,
   IonLabel,
   ItemReorderEventDetail,
+  IonSkeletonText,
+  IonListHeader,
+  IonThumbnail
 } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
 import {
@@ -44,6 +47,7 @@ import { StorageCategoriesPreferenceService } from 'src/app/service/storage-cate
     IonLabel,
     CdkDrag,
     DragDropModule,
+
   ],
 })
 export class CategoriesPage implements OnInit {

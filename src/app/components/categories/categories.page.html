@@ -7,11 +7,26 @@
 
 <!-- utilisé pour les categories dans la home-page -->
 
-<ion-grid *ngIf='mainDatas'>
+
+<!-- CODE POUR LE DRAG AND DROP -->
+<!-- <ion-grid *ngIf='mainDatas'>
   <ion-row cdkDropList (cdkDropListDropped)="drop($event)">
        <ion-col
        cdkDrag
        class='col-tab' size='4' *ngFor='let cat of mainDatas; let i = index'
+      [style.background-color]="categoryColors[i % categoryColors.length]"> -->
+      <!-- <a [routerLink]=" cat.url ? ['/', cat.url] : ['/',cat.slug] " replaceUrl="true">{{cat.name}}</a> -->
+      <!-- <a (click)='onCatNavigate(cat)'>{{cat.name}}</a>
+    </ion-col>
+
+
+  </ion-row>
+</ion-grid> -->
+
+
+<ion-grid *ngIf='mainDatas'>
+  <ion-row>
+    <ion-col class='col-tab' size='4' *ngFor='let cat of mainDatas; let i = index'
       [style.background-color]="categoryColors[i % categoryColors.length]">
       <!-- <a [routerLink]=" cat.url ? ['/', cat.url] : ['/',cat.slug] " replaceUrl="true">{{cat.name}}</a> -->
       <a (click)='onCatNavigate(cat)'>{{cat.name}}</a>
@@ -20,6 +35,7 @@
 
   </ion-row>
 </ion-grid>
+
 
 
 <!-- utilisé pour les sous-categories par exemple carte d'identite-->
