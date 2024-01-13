@@ -22,6 +22,7 @@ import {
 import { Router } from '@angular/router';
 import { CategoryDirective } from 'src/app/shared/directives/category.directive';
 import { IconPage } from 'src/app/components/icons/icon/icon.page';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-vue-agenda',
@@ -45,7 +46,8 @@ import { IconPage } from 'src/app/components/icons/icon/icon.page';
     FormsModule,
     IonBadge,
     CategoryDirective,
-    IconPage
+    IconPage,
+    SkeletonPage
   ],
 })
 export class VueAgendaPage implements OnInit {

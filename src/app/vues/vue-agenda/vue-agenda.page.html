@@ -15,7 +15,14 @@
     </ion-toolbar>
   </ion-header>
 
-<ng-container *ngIf="(events$ | async) as response">
+    <ng-template #loading>
+      <app-skeleton></app-skeleton>
+      <app-skeleton></app-skeleton>
+      <app-skeleton></app-skeleton>
+
+    </ng-template>
+
+<ng-container *ngIf="(events$ | async) as response; else loading">
   <div *ngIf="response.events && response.events.length">
 
 
@@ -75,6 +82,8 @@
 
 
 </ng-container>
+
+
 </ion-content>
 
 

@@ -20,6 +20,7 @@ import {
 } from '@ionic/angular/standalone';
 import { IconPage } from 'src/app/components/icons/icon/icon.page';
 import { StorageCategoriesPreferenceService } from 'src/app/service/storage-categories-preference/storage-categories-preference.service';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-vue-agenda-details',
@@ -42,6 +43,7 @@ import { StorageCategoriesPreferenceService } from 'src/app/service/storage-cate
     CommonModule,
     FormsModule,
     IconPage,
+    SkeletonPage
   ],
 })
 export class VueAgendaDetailsPage implements OnInit {
