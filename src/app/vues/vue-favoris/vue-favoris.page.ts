@@ -18,7 +18,7 @@ import { IconPage } from 'src/app/components/icons/icon/icon.page';
 import { CategoryDirective } from 'src/app/shared/directives/category.directive';
 import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
 import { RouterLink } from '@angular/router';
-
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-vue-favoris',
@@ -40,15 +40,17 @@ import { RouterLink } from '@angular/router';
     CategoryDirective,
     ExploreContainerComponent,
     IonButton,
-    RouterLink
+    RouterLink,
   ],
 })
 export class VueFavorisPage implements OnInit {
-  public title: string = 'Mes favoris';
+  public title: string = 'Mon activité';
   public datas!: any[];
+  public emailSent$!: Observable<any>;
 
   constructor(private favorisService: StorageCategoriesPreferenceService) {
     //this.favorisService.getData('fav')
+    this.emailSent$ = this.favorisService.emailSentDatas$
 
     // souscrit à l'obs
     this.favorisService.favDatas$.subscribe({
@@ -71,6 +73,6 @@ export class VueFavorisPage implements OnInit {
     const filteredDatas = this.datas.filter((e) => e.id !== obj.id);
     console.log(filteredDatas);
     this.favorisService.favDatas$.next(filteredDatas);
-    this.favorisService.updateData('fav', filteredDatas)
+    this.favorisService.updateData('fav', filteredDatas);
   }
 }

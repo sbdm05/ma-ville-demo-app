@@ -1,6 +1,6 @@
 
 
-<app-header title='Favoris'></app-header>
+<app-header title='Mon Activité'></app-header>
 
 
 <ion-content  [fullscreen]="true">
@@ -39,12 +39,42 @@
   </ion-card-content>
 </ion-card>
 
-<ng-container *ngIf='datas.length === 0'>
+
+<ng-container *ngIf="emailSent$| async as emailSent">
+
+  <ion-card *ngFor='let email of emailSent; let i = index'>
+
+    <ion-card-header>
+      <ion-card-subtitle>Catégorie : {{email.category}}</ion-card-subtitle>
+      <ion-card-subtitle>
+        Envoyé le ...</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <div class='sub-details'>
+        <div>
+           Vous avez fait le signalement suivant:
+            <ul>
+              <li>{{ email.address}}</li>
+              <li>{{ email?.description}}</li>
+
+            </ul>
+        </div>
+        <app-icon icon='trash-outline' sizeIcon='small'></app-icon>
+      </div>
+
+    </ion-card-content>
+
+
+  </ion-card>
+</ng-container>
+
+
+<!-- <ng-container *ngIf='datas.length === 0'>
   <app-explore-container>
     <p>Aucun favori !</p>
     <ion-button [routerLink]="['/', 'agenda']">Je parcours l'agenda</ion-button>
   </app-explore-container>
-</ng-container>
+</ng-container> -->
 
 
 </ion-content>

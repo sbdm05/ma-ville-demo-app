@@ -6,10 +6,19 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class StorageCategoriesPreferenceService {
   public favDatas$: BehaviorSubject<any> = new BehaviorSubject([]);
+  public emailSentDatas$: BehaviorSubject<any> = new BehaviorSubject([]);
+
   constructor() {
+    console.log('dans le service');
+
     const storedData = localStorage.getItem('fav');
+    const emailSentData = localStorage.getItem('email-sent');
+
     if (storedData) {
       this.favDatas$.next(JSON.parse(storedData));
+    }
+    if (emailSentData) {
+      this.emailSentDatas$.next(JSON.parse(emailSentData));
     }
   }
   setData(key: string, data: any): void {
@@ -51,8 +60,13 @@ export class StorageCategoriesPreferenceService {
 
         datasAlreadySaved = [...datasAlreadySaved, copyWithoutPicture];
         localStorage.setItem(key, JSON.stringify(datasAlreadySaved));
+        // gestion du behaviorSubject
+        this.emailSentDatas$.next(datasAlreadySaved);
       } else {
-        localStorage.setItem(key, JSON.stringify([data]));
+        const copyWithoutPicture = { ...data };
+        delete copyWithoutPicture.picture;
+        localStorage.setItem(key, JSON.stringify([copyWithoutPicture]));
+        this.emailSentDatas$.next(copyWithoutPicture);
       }
     }
   }
@@ -61,6 +75,8 @@ export class StorageCategoriesPreferenceService {
     const data = localStorage.getItem(key);
     if (key === 'fav') {
       this.favDatas$.next(data);
+    } else if (key === 'email-sent') {
+      this.emailSentDatas$.next(data);
     }
     return data ? JSON.parse(data) : null;
   }
