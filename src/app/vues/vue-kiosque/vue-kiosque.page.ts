@@ -7,6 +7,7 @@ import { forkJoin, Observable } from 'rxjs';
 import { Router, RouterLink } from '@angular/router';
 import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
 import { IonBackButton, IonButtons, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonSpinner, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 
 @Component({
   selector: 'app-vue-kiosque',
@@ -30,6 +31,7 @@ import { IonBackButton, IonButtons, IonCard, IonCardHeader, IonCardSubtitle, Ion
     FormsModule,
     RouterLink,
     ExploreContainerComponent,
+    SkeletonPage
   ],
 })
 export class VueKiosquePage implements OnInit {

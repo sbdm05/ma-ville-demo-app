@@ -16,6 +16,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/angular/standalone';
+import { StorageCategoriesPreferenceService } from 'src/app/service/storage-categories-preference/storage-categories-preference.service';
 
 @Component({
   selector: 'app-vue-form',
@@ -42,7 +43,8 @@ export class VueFormPage implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private datasService: DatasService,
-    private router: Router
+    private router: Router,
+    private sentEmailLocalStorage : StorageCategoriesPreferenceService
   ) {}
 
   ngOnInit() {
@@ -58,8 +60,12 @@ export class VueFormPage implements OnInit {
     console.log(obj);
     this.datasService.sendMessage(obj).subscribe(
       (data) => {
-        console.log(data); // email sent successfully
-        this.router.navigate(['confirmation']);
+        if (data === 'Email sent successfully'){
+          // store the info dans localStorage
+          console.log(obj); // email sent successfully
+          this.sentEmailLocalStorage.setData('email-sent', obj)
+          this.router.navigate(['confirmation']);
+        }
       },
       (error) => {
         if (error === 'Email sent successfully') {

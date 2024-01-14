@@ -41,14 +41,26 @@ export class StorageCategoriesPreferenceService {
         // gestion du behaviorSubject
         this.favDatas$.next([data]);
       }
-    } else if (key === 'categories_preference')
+    } else if (key === 'categories_preference') {
       localStorage.setItem(key, JSON.stringify(data));
+    } else if (key === 'email-sent') {
+      if (this.getData('email-sent')) {
+        let datasAlreadySaved = this.getData('email-sent');
+        const copyWithoutPicture = { ...data };
+        delete copyWithoutPicture.picture;
+
+        datasAlreadySaved = [...datasAlreadySaved, copyWithoutPicture];
+        localStorage.setItem(key, JSON.stringify(datasAlreadySaved));
+      } else {
+        localStorage.setItem(key, JSON.stringify([data]));
+      }
+    }
   }
 
   getData(key: string): any {
     const data = localStorage.getItem(key);
-    if(key === 'fav'){
-      this.favDatas$.next(data)
+    if (key === 'fav') {
+      this.favDatas$.next(data);
     }
     return data ? JSON.parse(data) : null;
   }
@@ -82,9 +94,9 @@ export class StorageCategoriesPreferenceService {
     localStorage.removeItem(key);
   }
 
-  updateData(key: string, data: any){
-    if(key === 'fav'){
-      localStorage.setItem('fav', JSON.stringify(data))
+  updateData(key: string, data: any) {
+    if (key === 'fav') {
+      localStorage.setItem('fav', JSON.stringify(data));
     }
   }
 
