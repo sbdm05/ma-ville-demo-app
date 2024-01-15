@@ -4,7 +4,11 @@
 
 
 <ion-content  [fullscreen]="true">
+
   <ng-container *ngIf='favDatas'>
+          <ion-item-divider>
+            <ion-label> Agenda </ion-label>
+          </ion-item-divider>
 <ion-card *ngFor='let fav of favDatas; let i = index'>
   <ion-card-header>
     <ion-card-title>{{fav.title}}</ion-card-title>
@@ -44,6 +48,9 @@
 
 
   <ng-container *ngIf="emailDatas">
+          <ion-item-divider>
+            <ion-label> Signalements </ion-label>
+          </ion-item-divider>
 
     <ion-card *ngFor='let email of emailDatas; let i = index'>
 

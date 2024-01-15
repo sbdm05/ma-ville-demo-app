@@ -13,6 +13,8 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonContent,
+  IonItemDivider,
+  IonLabel,
 } from '@ionic/angular/standalone';
 import { IconPage } from 'src/app/components/icons/icon/icon.page';
 import { CategoryDirective } from 'src/app/shared/directives/category.directive';
@@ -41,6 +43,8 @@ import { Observable, Subscription } from 'rxjs';
     ExploreContainerComponent,
     IonButton,
     RouterLink,
+    IonItemDivider,
+    IonLabel
   ],
 })
 export class VueFavorisPage implements OnInit {
