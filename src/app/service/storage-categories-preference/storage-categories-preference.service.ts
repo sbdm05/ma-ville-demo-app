@@ -114,6 +114,9 @@ export class StorageCategoriesPreferenceService {
     if (key === 'fav') {
       localStorage.setItem('fav', JSON.stringify(data));
     }
+    if(key === 'email'){
+      localStorage.setItem('email-sent', JSON.stringify(data));
+    }
   }
 
   clearAll(): void {

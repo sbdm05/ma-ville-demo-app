@@ -118,6 +118,7 @@ export class FormPage implements OnInit {
             Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
           ],
         ],
+        id: []
       });
     }
   }
@@ -161,6 +162,8 @@ export class FormPage implements OnInit {
 
     const tempForm = this.form.value;
     tempForm.picture = this.obj.picture;
+    tempForm.id = new Date().getTime();
+    tempForm.date = new Date();
     console.log(tempForm);
 
     this.formValue.emit(tempForm);

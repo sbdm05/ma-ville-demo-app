@@ -4,14 +4,15 @@
 
 
 <ion-content  [fullscreen]="true">
-<ion-card *ngFor='let fav of datas; let i = index'>
+  <ng-container *ngIf='favDatas'>
+<ion-card *ngFor='let fav of favDatas; let i = index'>
   <ion-card-header>
     <ion-card-title>{{fav.title}}</ion-card-title>
     <!-- <ion-card-subtitle>
       {{fav.categories[0]?.name}}</ion-card-subtitle> -->
-    </ion-card-header>
+  </ion-card-header>
 
-    <ion-card-content>
+  <ion-card-content>
     <ion-badge slot="start" appCategory [cat]='fav.categories[0]?.name'>{{fav.categories[0]?.name}}</ion-badge>
     <div class='event-details'>
       <app-icon icon='location-outline'></app-icon>
@@ -33,41 +34,43 @@
           </ion-card-subtitle>
         </h3>
       </div>
-      <app-icon icon='trash-outline' sizeIcon='small' (click)='onDelete(fav)'></app-icon>
+      <app-icon icon='trash-outline' sizeIcon='small' (click)="onDelete(fav, 'fav')"></app-icon>
     </div>
 
   </ion-card-content>
 </ion-card>
 
+  </ng-container>
 
-<ng-container *ngIf="emailSent$| async as emailSent">
 
-  <ion-card *ngFor='let email of emailSent; let i = index'>
+  <ng-container *ngIf="emailDatas">
 
-    <ion-card-header>
-      <ion-card-subtitle>Catégorie : {{email.category}}</ion-card-subtitle>
-      <ion-card-subtitle>
-        Envoyé le ...</ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-badge slot="start">Signalement</ion-badge>
-      <div class='sub-details'>
-        <div>
-           Vous avez fait le signalement suivant:
-            <ul>
-              <li>{{ email.address}}</li>
-              <li>{{ email?.description}}</li>
+    <ion-card *ngFor='let email of emailDatas; let i = index'>
 
-            </ul>
+      <ion-card-header>
+        <ion-card-subtitle>Catégorie : {{email.category}}</ion-card-subtitle>
+        <ion-card-subtitle>
+          Envoyé le {{email.date  | date:'dd.MM.yyyy'}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-badge slot="start">Signalement</ion-badge>
+        <div class='sub-details signalement'>
+          <div>
+            Vous avez fait le signalement suivant:
+              <ul>
+                <li>{{ email.address}}</li>
+                <li>{{ email?.description}}</li>
+
+              </ul>
+          </div>
+          <app-icon icon='trash-outline' sizeIcon='small' (click)="onDelete(email, 'email')"></app-icon>
         </div>
-        <app-icon icon='trash-outline' sizeIcon='small'></app-icon>
-      </div>
 
-    </ion-card-content>
+      </ion-card-content>
 
 
-  </ion-card>
-</ng-container>
+    </ion-card>
+  </ng-container>
 
 
 <!-- <ng-container *ngIf='datas.length === 0'>
