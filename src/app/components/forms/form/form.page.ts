@@ -96,8 +96,7 @@ export class FormPage implements OnInit {
           [Validators.required, , Validators.minLength(3)],
         ],
         picture: [
-          this.obj.picture,
-          [Validators.required],
+          this.obj.picture
         ],
         contact_name: [
           this.obj.contact?.name,
@@ -141,7 +140,7 @@ export class FormPage implements OnInit {
   }
 
   async onSelectPic() {
-    this.form.get('picture')?.setErrors({ imageSizeExceeded: false });
+    this.form.get('picture')?.setErrors(null);
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
@@ -169,6 +168,7 @@ export class FormPage implements OnInit {
         this.photos.unshift({
           src: imageConverted,
         });
+        this.form.get('picture')?.setErrors(null);
       } else {
         console.log('erreur dans la taille');
         this.form.get('picture')?.setErrors({ imageSizeExceeded: true });
@@ -179,6 +179,7 @@ export class FormPage implements OnInit {
   onDeletePic() {
     this.photos = [];
     this.addPicActive = false;
+    this.form.get('picture')?.setErrors(null);;
   }
 
   onSubmit() {
