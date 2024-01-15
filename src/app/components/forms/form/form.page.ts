@@ -95,7 +95,10 @@ export class FormPage implements OnInit {
           this.obj.description,
           [Validators.required, , Validators.minLength(3)],
         ],
-        picture: [this.obj.picture],
+        picture: [
+          this.obj.picture,
+          [Validators.required],
+        ],
         contact_name: [
           this.obj.contact?.name,
           [Validators.required, , Validators.minLength(3)],
@@ -118,12 +121,27 @@ export class FormPage implements OnInit {
             Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
           ],
         ],
-        id: []
+        id: [],
       });
     }
   }
 
+  validateImageSize(control: any) {
+    const value = control.value;
+    console.log(value, 'dans validateImage');
+
+    if (!value || !value.base64String) {
+      return null; // La validation est réussie si la valeur est nulle (pas de fichier sélectionné)
+    }
+
+    const sizeInBytes = value.base64String.length * 0.75; // Convertir la taille de base64 en octets
+    const maxSizeInBytes = 1048576; // Taille maximale autorisée (1 Mo)
+
+    return sizeInBytes <= maxSizeInBytes ? null : { imageSizeExceeded: true };
+  }
+
   async onSelectPic() {
+    this.form.get('picture')?.setErrors({ imageSizeExceeded: false });
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
@@ -136,17 +154,25 @@ export class FormPage implements OnInit {
     if (image.base64String) {
       //console.log(image.base64String, '[IMAGE.BASE64STRING');
 
-      this.obj.picture = image;
+      // check image size
+      const sizeInBytes = image.base64String.length * 0.75;
+      const maxSizeInBytes = 1048576;
+      if (sizeInBytes <= maxSizeInBytes) {
+        this.obj.picture = image;
 
-      // pour affichage dans template HTML
-      let imageConverted;
-      imageConverted = 'data:image/jpeg;base64, ' + image.base64String;
-      // disabled the add button
-      this.addPicActive = true;
-      // pusher l'image dans la boucle
-      this.photos.unshift({
-        src: imageConverted,
-      });
+        // pour affichage dans template HTML
+        let imageConverted;
+        imageConverted = 'data:image/jpeg;base64, ' + image.base64String;
+        // disabled the add button
+        this.addPicActive = true;
+        // pusher l'image dans la boucle
+        this.photos.unshift({
+          src: imageConverted,
+        });
+      } else {
+        console.log('erreur dans la taille');
+        this.form.get('picture')?.setErrors({ imageSizeExceeded: true });
+      }
     }
   }
 

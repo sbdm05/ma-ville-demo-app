@@ -27,7 +27,21 @@
         </ion-item>
 
         <ion-item>
-          <ion-button (click)='onSelectPic()' [disabled]='addPicActive' ngDefaultControl>Sélectionner une image dans votre album</ion-button>
+          <div>
+              <ion-button (click)='onSelectPic()' [disabled]='addPicActive' ngDefaultControl>Sélectionner une image dans votre album</ion-button>
+          <!-- <div *ngIf="form.get('picture')?.hasError('imageSizeExceeded')">Ce champ doit être complété</div> -->
+          <div *ngIf="form.controls['picture'].errors?.['imageSizeExceeded']">
+            <div class='error'>
+               <p>
+              Désolé, l'image est trop lourde.
+            </p>
+            <p>Veuillez choisir une autre image</p>
+            </div>
+
+          </div>
+
+          </div>
+
         </ion-item>
 
         <ion-grid>
