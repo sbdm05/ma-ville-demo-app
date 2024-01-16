@@ -122,7 +122,7 @@ export class FormPage implements OnInit {
             Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
           ],
         ],
-        hasValidated: [this.obj.hasValidated, Validators.requiredTrue],
+        hasValidated: [this.obj.hasValidated, Validators.required],
         id: [],
       });
     }

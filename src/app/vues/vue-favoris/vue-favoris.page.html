@@ -5,49 +5,60 @@
 
 <ion-content  [fullscreen]="true">
 
-  <ng-container *ngIf='favDatas'>
+  <ng-container *ngIf='favDatas.length >0 ; else noFav'>
           <ion-item-divider>
             <ion-label> Agenda </ion-label>
           </ion-item-divider>
-<ion-card *ngFor='let fav of favDatas; let i = index'>
-  <ion-card-header>
-    <ion-card-title>{{fav.title}}</ion-card-title>
-    <!-- <ion-card-subtitle>
-      {{fav.categories[0]?.name}}</ion-card-subtitle> -->
-  </ion-card-header>
+        <ion-card *ngFor='let fav of favDatas; let i = index'>
+          <ion-card-header>
+            <ion-card-title>{{fav.title}}</ion-card-title>
+            <!-- <ion-card-subtitle>
+              {{fav.categories[0]?.name}}</ion-card-subtitle> -->
+          </ion-card-header>
 
-  <ion-card-content>
-    <ion-badge slot="start" appCategory [cat]='fav.categories[0]?.name'>{{fav.categories[0]?.name}}</ion-badge>
-    <div class='event-details'>
-      <app-icon icon='location-outline'></app-icon>
-      <h3>{{fav.venue.address}}</h3>
-    </div>
-    <div class='sub-details'>
-      <div class='event-details'>
-        <app-icon icon='calendar-outline'></app-icon>
-        <h3>
-          <ion-card-subtitle>
-            début : {{fav.start_date_details.day}}
-            {{fav.start_date_details.month}}
-            {{fav.start_date_details.year}}
-          </ion-card-subtitle>
-          <ion-card-subtitle>
-            fin : {{fav.end_date_details.day}}
-            {{fav.end_date_details.month}}
-            {{fav.end_date_details.year}}
-          </ion-card-subtitle>
-        </h3>
-      </div>
-      <app-icon icon='trash-outline' sizeIcon='small' (click)="onDelete(fav, 'fav')"></app-icon>
-    </div>
+          <ion-card-content>
+            <ion-badge slot="start" appCategory [cat]='fav.categories[0]?.name'>{{fav.categories[0]?.name}}</ion-badge>
+            <div class='event-details'>
+              <app-icon icon='location-outline'></app-icon>
+              <h3>{{fav.venue.address}}</h3>
+            </div>
+            <div class='sub-details'>
+              <div class='event-details'>
+                <app-icon icon='calendar-outline'></app-icon>
+                <h3>
+                  <ion-card-subtitle>
+                    début : {{fav.start_date_details.day}}
+                    {{fav.start_date_details.month}}
+                    {{fav.start_date_details.year}}
+                  </ion-card-subtitle>
+                  <ion-card-subtitle>
+                    fin : {{fav.end_date_details.day}}
+                    {{fav.end_date_details.month}}
+                    {{fav.end_date_details.year}}
+                  </ion-card-subtitle>
+                </h3>
+              </div>
+              <app-icon icon='trash-outline' sizeIcon='small' (click)="onDelete(fav, 'fav')"></app-icon>
+            </div>
 
-  </ion-card-content>
-</ion-card>
+          </ion-card-content>
+        </ion-card>
 
   </ng-container>
 
+  <ng-template #noFav>
+    <ion-item-divider>
+      <ion-label> Agenda </ion-label>
+    </ion-item-divider>
 
-  <ng-container *ngIf="emailDatas">
+      <ion-item>Pas d'événement dans vos favoris</ion-item>
+      <ion-button [routerLink]="['/', 'agenda']">Je parcours l'agenda</ion-button>
+
+  </ng-template>
+
+
+
+  <ng-container *ngIf="emailDatas.length >0 ; else noEmail">
           <ion-item-divider>
             <ion-label> Signalements </ion-label>
           </ion-item-divider>
@@ -79,13 +90,18 @@
     </ion-card>
   </ng-container>
 
+  <ng-template #noEmail>
+    <ion-item-divider>
+      <ion-label> Signalements </ion-label>
+    </ion-item-divider>
+      <ion-item>Pas de signalements</ion-item>
+      <ion-button [routerLink]="['/', 'signaler']">Faire un signalement</ion-button>
 
-<ng-container *ngIf='emailDatas.length === 0 && favDatas.length === 0'>
-  <app-explore-container>
-    <p>Aucun favori !</p>
-    <ion-button [routerLink]="['/', 'agenda']">Je parcours l'agenda</ion-button>
-  </app-explore-container>
-</ng-container>
+  </ng-template>
+
+
+
+
 
 
 </ion-content>

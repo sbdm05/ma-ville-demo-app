@@ -13,6 +13,7 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonContent,
+  IonItem,
   IonItemDivider,
   IonLabel,
 } from '@ionic/angular/standalone';
@@ -44,7 +45,8 @@ import { Observable, Subscription } from 'rxjs';
     IonButton,
     RouterLink,
     IonItemDivider,
-    IonLabel
+    IonLabel,
+    IonItem
   ],
 })
 export class VueFavorisPage implements OnInit {
