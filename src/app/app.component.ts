@@ -65,6 +65,8 @@ import {
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
 import OneSignal, { OneSignalPlugin } from 'onesignal-cordova-plugin';
 import { MenuBottomFixedPage } from './components/menu-bottom-fixed/menu-bottom-fixed.page';
+import { OneSignalService } from './service/one-signal/one-signal.service';
+import { StorageCategoriesPreferenceService } from './service/storage-categories-preference/storage-categories-preference.service';
 
 @Component({
   selector: 'app-root',
@@ -99,7 +101,8 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private statusStorage : StorageCategoriesPreferenceService
   ) {
     // pour faire fonctionner la modal
     // https://github.com/ionic-team/ionic-framework/issues/28385
@@ -190,6 +193,9 @@ export class AppComponent {
     OneSignal.Notifications.requestPermission(true).then(
       (accepted: boolean) => {
         console.log('User accepted notifications: ' + accepted);
+        // this.oneSignalService.notifStatus$.next(accepted)
+        // on stocke l'info dans le localStorage
+        this.statusStorage.setData('notif-status', accepted);
       }
     );
 

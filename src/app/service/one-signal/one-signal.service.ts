@@ -37,6 +37,7 @@ export class OneSignalService {
       this.statusStorage.setData('notif-status', currentStatus);
       OneSignal.User.pushSubscription.optIn();
       // here i need to reflect that on the settings of the phone
+      
     }
   }
 }
