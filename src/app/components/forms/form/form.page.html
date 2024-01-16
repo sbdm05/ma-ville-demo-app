@@ -89,10 +89,12 @@
 
       </ion-item>
       <ion-item>
-        <ion-label class='full-text'>
+        <ion-label class='full-text' id='validation-rgpd'>
           J'accepte que mes données personnelles soient utilisées pour me contacter dans le cadre de ma demande.
         </ion-label>
-        <ion-checkbox></ion-checkbox>
+        <ion-checkbox aria-labelledby='validation-rgpd' formControlName="hasValidated"></ion-checkbox>
+        <div *ngIf="form.controls['hasValidated'].errors?.['requiredTrue']">Vous devez valider</div>
+
       </ion-item>
 
 
