@@ -13,9 +13,12 @@ import {
   IonLabel,
   IonList,
   IonThumbnail,
+  IonToggle,
 } from '@ionic/angular/standalone';
 import { IconPage } from 'src/app/components/icons/icon/icon.page';
 import { RouterLink } from '@angular/router';
+import { OneSignalService } from 'src/app/service/one-signal/one-signal.service';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-vue-settings',
@@ -37,11 +40,29 @@ import { RouterLink } from '@angular/router';
     IconPage,
     CommonModule,
     FormsModule,
-    RouterLink
+    RouterLink,
+    IonToggle,
   ],
 })
 export class VueSettingsPage implements OnInit {
-  constructor() {}
+  public currentStatusSub!: Subscription;
+  public currentStatus!: boolean;
+
+  public current: boolean = false;
+  constructor(private notifService: OneSignalService) {
+    this.currentStatus = this.notifService.getStatus();
+    console.log(this.currentStatus);
+
+  }
 
   ngOnInit() {}
+
+  public onChange() {
+    this.currentStatus = !this.currentStatus;
+    this.notifService.changeStatus(this.currentStatus);
+  }
+
+  ngOnDestroy() {
+    this.currentStatusSub.unsubscribe();
+  }
 }

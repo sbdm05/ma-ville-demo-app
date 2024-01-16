@@ -68,6 +68,8 @@ export class StorageCategoriesPreferenceService {
         localStorage.setItem(key, JSON.stringify([copyWithoutPicture]));
         this.emailSentDatas$.next(copyWithoutPicture);
       }
+    } else if (key === 'notif-status'){
+      localStorage.setItem('notif-status', data)
     }
   }
 

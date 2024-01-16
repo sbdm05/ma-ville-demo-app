@@ -35,7 +35,7 @@
                <p>
               Désolé, l'image est trop lourde.
             </p>
-            <p>Veuillez choisir une autre image</p>
+            <p>Veuillez choisir une autre image.</p>
             </div>
 
           </div>
@@ -85,10 +85,10 @@
       </ion-list>
     </ion-list>
   <ion-button expand="block" type='submit' [disabled]='this.form.invalid' *ngIf='!isSending'>Envoyer</ion-button>
-  <ion-button expand="block" *ngIf='isSending'>Envoi en cours</ion-button>
+  <ion-button expand="block" *ngIf='isSending' color='warning'>Envoi en cours</ion-button>
 
   </form>
-  {{this.form.invalid}}
+  <!-- {{this.form.invalid}} -->
 
 </ion-content>
 

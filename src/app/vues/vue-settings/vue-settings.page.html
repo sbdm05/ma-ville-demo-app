@@ -21,6 +21,15 @@
             <app-icon icon='bulb-outline'></app-icon>
 
             <ion-label>Proposer un sujet ou faire une suggestion ?</ion-label>
+
+          </ion-item>
+
+          <ion-item>
+
+            <app-icon icon='bulb-outline' icon='notifications-outline' ></app-icon>
+            
+
+            <ion-toggle [checked]="currentStatus" (ionChange)='onChange()'>Activer les notifications</ion-toggle><br /><br />
           </ion-item>
 
 

@@ -58,7 +58,8 @@ import {
   calendarOutline,
   settingsOutline,
   bulbOutline,
-  musicalNotesOutline
+  musicalNotesOutline,
+  notificationsOutline
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -88,7 +89,6 @@ import { MenuBottomFixedPage } from './components/menu-bottom-fixed/menu-bottom-
     IonRouterOutlet,
     IonHeader,
     MenuBottomFixedPage,
-
   ],
 })
 export class AppComponent {
@@ -135,6 +135,7 @@ export class AppComponent {
       settingsOutline,
       bulbOutline,
       musicalNotesOutline,
+      notificationsOutline,
     });
   }
 
@@ -181,6 +182,7 @@ export class AppComponent {
       // let notificationData = JSON.stringify(event);
       // console.log(notificationData, 'event ligne 108');
     };
+
     OneSignal.Notifications.addEventListener('click', myClickListener);
 
     // Prompts the user for notification permissions.
@@ -190,6 +192,8 @@ export class AppComponent {
         console.log('User accepted notifications: ' + accepted);
       }
     );
+
+    this.disablePush();
   }
 
   ngOnInit() {
@@ -205,6 +209,11 @@ export class AppComponent {
     //     }
     //   }
     // });
+  }
+
+  disablePush() {
+    const currentNotifPermission = OneSignal.Notifications.hasPermission();
+    console.log(currentNotifPermission, 'current');
   }
 
   ngOnChanges() {}
