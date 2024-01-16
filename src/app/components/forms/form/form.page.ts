@@ -24,11 +24,13 @@ import {
 } from '@capacitor/camera';
 import {
   IonButton,
+  IonCheckbox,
   IonCol,
   IonContent,
   IonGrid,
   IonHeader,
   IonItem,
+  IonLabel,
   IonList,
   IonModal,
   IonRow,
@@ -57,6 +59,8 @@ import {
     IonList,
     CommonModule,
     ReactiveFormsModule,
+    IonCheckbox,
+    IonLabel
   ],
   // providers: [
   //   {
@@ -95,9 +99,7 @@ export class FormPage implements OnInit {
           this.obj.description,
           [Validators.required, , Validators.minLength(3)],
         ],
-        picture: [
-          this.obj.picture
-        ],
+        picture: [this.obj.picture],
         contact_name: [
           this.obj.contact?.name,
           [Validators.required, , Validators.minLength(3)],
@@ -120,6 +122,7 @@ export class FormPage implements OnInit {
             Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
           ],
         ],
+        hasValidated: [this.obj.hasValidated],
         id: [],
       });
     }
@@ -179,7 +182,7 @@ export class FormPage implements OnInit {
   onDeletePic() {
     this.photos = [];
     this.addPicActive = false;
-    this.form.get('picture')?.setErrors(null);;
+    this.form.get('picture')?.setErrors(null);
   }
 
   onSubmit() {

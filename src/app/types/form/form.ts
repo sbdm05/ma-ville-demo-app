@@ -13,11 +13,10 @@ export class FormMessage implements FormI {
     mail: string;
     tel: string;
   };
+  hasValidated!: boolean;
   constructor(obj?: Partial<FormMessage>) {
     if (obj) {
       Object.assign(this, obj);
     }
   }
 }
-
-
