@@ -1,0 +1,12 @@
+<form>
+        <ion-item>
+
+          <ion-input placeholder='Que recherchez-vous ?' type="text" [(ngModel)]='inputValue' name='input-value' (input)="onInputChange()">
+          </ion-input>
+          <!-- <div *ngIf="form.controls['search'].errors?.['pattern']">10 chiffres sans espace</div> -->
+          <ion-button type='submit'><app-icon icon='search-outline'></app-icon></ion-button>
+
+        </ion-item>
+
+</form>
+

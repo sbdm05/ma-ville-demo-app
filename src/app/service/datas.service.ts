@@ -14,9 +14,50 @@ export class DatasService {
 
   constructor(private http: HttpClient, private platform: Platform) {}
 
-  getNewsPosts() {
+  getNewsPosts_swipper() {
     return this.http
-      .get<any[]>(`https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/posts`)
+      .get<any[]>(
+        `https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/posts?per_page=3&order=desc&orderby=date`
+      )
+      .pipe(
+        mergeMap((posts) => {
+          // Use forkJoin to combine multiple observables into a single array.
+          return forkJoin(
+            posts.map((post) => {
+              //console.log(post);
+              const featuredMediaId = post.featured_media;
+              //console.log(featuredMediaId);
+              return this.http
+                .get<any>(
+                  `https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/media/${featuredMediaId}`
+                )
+                .pipe(
+                  map((media) => {
+                    //console.log(media);
+                    // Map the response structure to match your desired structure for each post.
+                    return {
+                      id: post.id,
+                      title: post.title.rendered,
+                      content: post.content.rendered,
+                      featuredImage: {
+                        id: media.id,
+                        imageUrl: media.guid.rendered,
+                        title: media.title.rendered,
+                      },
+                    };
+                  })
+                );
+            })
+          );
+        })
+      );
+  }
+
+  getNewsPosts_last_month() {
+    return this.http
+      .get<any[]>(
+        `https://ma-ville-demo.ohmycode.io/wp-json/wp/v2/posts?order=desc&orderby=date&date_query[after]=1%20month%20ago`
+      )
       .pipe(
         mergeMap((posts) => {
           // Use forkJoin to combine multiple observables into a single array.
@@ -73,7 +114,11 @@ export class DatasService {
       errorMessage = `Client-side error: ${error.error.message}`;
     } else {
       // Server-side error
-      if (error && error.error && error.error.text === 'Email sent successfully') {
+      if (
+        error &&
+        error.error &&
+        error.error.text === 'Email sent successfully'
+      ) {
         // Perform actions if the text property is "Email sent successfully"
         console.log('Email was sent successfully from the service!');
         return throwError('Email sent successfully');

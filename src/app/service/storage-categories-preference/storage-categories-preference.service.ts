@@ -18,6 +18,8 @@ export class StorageCategoriesPreferenceService {
       this.favDatas$.next(JSON.parse(storedData));
     }
     if (emailSentData) {
+      console.log(emailSentData);
+
       this.emailSentDatas$.next(JSON.parse(emailSentData));
     }
   }
@@ -59,28 +61,47 @@ export class StorageCategoriesPreferenceService {
         delete copyWithoutPicture.picture;
 
         datasAlreadySaved = [...datasAlreadySaved, copyWithoutPicture];
+        console.log(datasAlreadySaved, 'après ajout');
+
         localStorage.setItem(key, JSON.stringify(datasAlreadySaved));
         // gestion du behaviorSubject
         this.emailSentDatas$.next(datasAlreadySaved);
       } else {
+        console.log('inside de pas de storage présent');
+
         const copyWithoutPicture = { ...data };
         delete copyWithoutPicture.picture;
-        localStorage.setItem(key, JSON.stringify([copyWithoutPicture]));
-        this.emailSentDatas$.next(copyWithoutPicture);
+        const tempArray = [copyWithoutPicture];
+        localStorage.setItem(key, JSON.stringify(tempArray));
+
+        this.emailSentDatas$.next(tempArray);
+        console.log(this.emailSentDatas$.value);
       }
-    } else if (key === 'notif-status'){
-      localStorage.setItem('notif-status', data)
+    } else if (key === 'notif-status') {
+      localStorage.setItem('notif-status', data);
     }
   }
 
   getData(key: string): any {
-    const data = localStorage.getItem(key);
-    if (key === 'fav') {
-      this.favDatas$.next(data);
-    } else if (key === 'email-sent') {
-      this.emailSentDatas$.next(data);
+    const storedData = localStorage.getItem(key);
+    console.log(storedData, 'depuis getdata');
+    if (storedData) {
+      const data = JSON.parse(storedData);
+      console.log(data, 'depuis getdata');
+
+      if (key === 'fav') {
+        this.favDatas$.next(data);
+      } else if (key === 'email-sent') {
+        this.emailSentDatas$.next(data);
+      }
+
+      return data;
+    } else {
+      // Gérer le cas où la clé n'existe pas dans le stockage local
+      console.warn(`La clé '${key}' n'existe pas dans le stockage local.`);
+      return null;
     }
-    return data ? JSON.parse(data) : null;
+    //return data ? JSON.parse(data) : null;
   }
 
   getDataById(key: string, id: number): any {
@@ -116,7 +137,7 @@ export class StorageCategoriesPreferenceService {
     if (key === 'fav') {
       localStorage.setItem('fav', JSON.stringify(data));
     }
-    if(key === 'email'){
+    if (key === 'email') {
       localStorage.setItem('email-sent', JSON.stringify(data));
     }
   }

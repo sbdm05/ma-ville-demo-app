@@ -1,0 +1,9 @@
+<app-header title='Rechercher'></app-header>
+<ion-content>
+  <app-search-input (submitted)='onSubmit($event)'></app-search-input>
+
+  <ng-container>
+
+    <app-list [savedData]='returnedValue' [hightLightTerm]='searchValue'></app-list>
+  </ng-container>
+</ion-content>

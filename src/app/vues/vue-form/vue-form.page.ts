@@ -70,6 +70,7 @@ export class VueFormPage implements OnInit {
       (error) => {
         if (error === 'Email sent successfully') {
           console.log('Email was sent successfully from the form!');
+          this.sentEmailLocalStorage.setData('email-sent', obj);
           // Handle success, navigate to confirmation page, etc.
           this.router.navigate(['confirmation']);
         } else {

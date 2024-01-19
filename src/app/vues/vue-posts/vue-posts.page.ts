@@ -51,7 +51,7 @@ export class VuePostsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.datas$ = this.datasService.getNewsPosts();
+    this.datas$ = this.datasService.getNewsPosts_last_month();
   }
 
   public onReadMore(data: any) {

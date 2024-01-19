@@ -59,9 +59,11 @@ export class VueFavorisPage implements OnInit {
   constructor(private favorisService: StorageCategoriesPreferenceService) {
     //this.favorisService.getData('fav')
     this.subscriptionEmailSent = this.favorisService.emailSentDatas$.subscribe({
-      next: (data) => {
+      next: (data: []) => {
         this.emailDatas = data;
         console.log(data, this.emailDatas);
+        console.log('length', this.emailDatas.length);
+
       },
       error: (e) => {
         console.log(e);

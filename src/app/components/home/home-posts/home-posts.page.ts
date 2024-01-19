@@ -59,7 +59,7 @@ export class HomePostsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.posts$ = this.datasService.getNewsPosts();
+    this.posts$ = this.datasService.getNewsPosts_swipper();
     if (this.posts$) {
       console.log(this.posts$);
 

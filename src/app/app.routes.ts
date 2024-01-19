@@ -154,6 +154,12 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'rechercher',
+    resolve: { posts: PostsResolver },
+    loadComponent: () =>
+      import('./vues/vue-search/vue-search.page').then((m) => m.VueSearchPage),
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./vues/vue-not-found/vue-not-found.page').then(
@@ -161,14 +167,14 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'vue-settings',
+    path: 'search-input',
     loadComponent: () =>
-      import('./vues/vue-settings/vue-settings.page').then(
-        (m) => m.VueSettingsPage
+      import('./components/search-input/search-input.page').then(
+        (m) => m.SearchInputPage
       ),
   },
   {
-    path: 'skeleton',
-    loadComponent: () => import('./components/skeleton/skeleton.page').then( m => m.SkeletonPage)
+    path: 'list',
+    loadComponent: () => import('./components/list/list.page').then( m => m.ListPage)
   },
 ];
