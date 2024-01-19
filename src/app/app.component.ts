@@ -60,7 +60,8 @@ import {
   bulbOutline,
   musicalNotesOutline,
   notificationsOutline,
-  searchOutline
+  searchOutline,
+  helpOutline
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -140,7 +141,8 @@ export class AppComponent {
       bulbOutline,
       musicalNotesOutline,
       notificationsOutline,
-      searchOutline
+      searchOutline,
+      helpOutline
     });
   }
 

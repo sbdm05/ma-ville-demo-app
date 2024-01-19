@@ -8,6 +8,8 @@ import { SearchInputPage } from 'src/app/components/search-input/search-input.pa
 import { SearchService } from 'src/app/service/search/search.service';
 import { ActivatedRoute } from '@angular/router';
 import { ListPage } from 'src/app/components/list/list.page';
+import { ExploreContainerComponent } from 'src/app/explore-container/explore-container.component';
+import { IconPage } from 'src/app/components/icons/icon/icon.page';
 
 @Component({
   selector: 'app-vue-search',
@@ -21,6 +23,8 @@ import { ListPage } from 'src/app/components/list/list.page';
     CommonModule,
     FormsModule,
     ListPage,
+    ExploreContainerComponent,
+    IconPage
   ],
 })
 export class VueSearchPage implements OnInit {
@@ -31,6 +35,7 @@ export class VueSearchPage implements OnInit {
   public returnedEvents!: any[];
 
   public searchValue!: string;
+  public noAnswer: boolean = false;
   constructor(
     private searchService: SearchService,
     private route: ActivatedRoute
@@ -70,6 +75,7 @@ export class VueSearchPage implements OnInit {
           if (typeof value === 'string') {
             return value.toLowerCase().includes(term);
           }
+          this.noAnswer = true;
           return false;
         });
       })
@@ -94,6 +100,8 @@ export class VueSearchPage implements OnInit {
           if (typeof value === 'string') {
             return value.toLowerCase().includes(term);
           }
+          console.log('depuis no answer');
+          this.noAnswer = true
           return false;
         });
       })
