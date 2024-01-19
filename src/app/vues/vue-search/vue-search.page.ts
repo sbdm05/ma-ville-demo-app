@@ -42,6 +42,10 @@ export class VueSearchPage implements OnInit {
   ) {}
 
   ngOnInit() {
+
+
+
+
     const resolvedData = this.route.snapshot.data['posts'];
     const resolvedEvents = this.route.snapshot.data['events'];
 
@@ -51,6 +55,11 @@ export class VueSearchPage implements OnInit {
     // Utilisez la valeur résolue comme nécessaire
     console.log('Valeur résolue:', this.savedData);
     console.log('Events:', this.savedEvents);
+  }
+
+  ionViewDidEnter(){
+    console.log('test depuis view');
+    
   }
 
   onSubmit(input: string) {
@@ -142,4 +151,6 @@ export class VueSearchPage implements OnInit {
     // Retourner les phrases contextuelles
     return contextPhrases.join(' ');
   }
+
+
 }

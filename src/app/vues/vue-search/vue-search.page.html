@@ -14,7 +14,7 @@
 
     <ng-container *ngIf='returnedEvents?.length === 0 && returnedValue?.length === 0 && noAnswer'>
       <app-explore-container>
-        <h3>Désolé, nous n'avons rien trouvé avec le terme {{searchValue}}</h3>
+        <h3>Désolé, aucun résultat ne correspond à la recherche <i>{{searchValue}}</i></h3>
         <!-- <app-icon icon='help-outline' size='large'></app-icon> -->
       </app-explore-container>
     </ng-container>
