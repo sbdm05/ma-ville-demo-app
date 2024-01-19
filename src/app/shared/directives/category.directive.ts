@@ -12,7 +12,7 @@ export class CategoryDirective {
     console.log('depuis constructr');
   }
 
-  ngOnInit() {
+  ngOnChanges() {
     console.log(this.cat);
     this.classBadge = `category-${this.cat}`
   }

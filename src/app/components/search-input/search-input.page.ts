@@ -30,8 +30,14 @@ export class SearchInputPage implements OnInit {
     console.log(this.inputValue);
     if (this.inputValue.length ===  0) {
       this.onSubmit('');
+      this.inputValue = '';
     }else{
       this.onSubmit(this.inputValue)
     }
+  }
+
+  onReset(){
+    this.onSubmit('');
+    this.inputValue = ''
   }
 }
