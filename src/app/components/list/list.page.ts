@@ -31,7 +31,7 @@ import { Router } from '@angular/router';
     CommonModule,
     FormsModule,
     IconPage,
-   
+
   ],
 })
 
@@ -84,7 +84,14 @@ export class ListPage implements OnInit {
     return item.id; // Assurez-vous que votre objet a une propriété "title"
   }
 
-  onReadMore(id:number){
-    this.router.navigate(['actus', id])
+  onReadMore(item: any){
+    console.log(item);
+    if(item.type === 'event'){
+      this.router.navigate(['agenda', item.id]);
+
+    } else if(item.type === 'post'){
+      this.router.navigate(['actus', item.id])
+
+    }
   }
 }

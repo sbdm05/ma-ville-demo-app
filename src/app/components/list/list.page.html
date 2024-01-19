@@ -1,7 +1,7 @@
 
 
 <ion-card *ngFor="let item of savedData; trackBy:trackById"
-(click)='onReadMore(item.id)'
+(click)='onReadMore(item)'
 >
   <ion-card-header>
     <ion-card-title [innerHTML]='item.title'>{{item.title}}</ion-card-title>

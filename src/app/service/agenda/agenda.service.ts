@@ -10,6 +10,10 @@ export class AgendaService {
     'https://ma-ville-demo.ohmycode.io/wp-json/tribe/events/v1/events';
   constructor(private http: HttpClient) {}
 
+  resolve(): Observable<any> {
+    return this.getAllEvents();
+  }
+
   public getAllEvents(): Observable<any[]> {
     return this.http.get<any[]>(this.urlAgenda);
   }

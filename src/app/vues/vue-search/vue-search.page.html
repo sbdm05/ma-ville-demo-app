@@ -2,8 +2,13 @@
 <ion-content>
   <app-search-input (submitted)='onSubmit($event)'></app-search-input>
 
-  <ng-container>
+  <ng-container *ngIf='returnedValue'>
 
     <app-list [savedData]='returnedValue' [hightLightTerm]='searchValue'></app-list>
   </ng-container>
+
+    <ng-container *ngIf='returnedEvents'>
+
+      <app-list [savedData]='returnedEvents' [hightLightTerm]='searchValue'></app-list>
+    </ng-container>
 </ion-content>

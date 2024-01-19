@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { ModalPage } from './components/modal/modal.page';
+import { AgendaService } from './service/agenda/agenda.service';
 import { PostsResolver } from './service/resolvers/posts.resolver';
 import { HomePagePage } from './vues/home-page/home-page.page';
 import { VueConfirmationPage } from './vues/vue-confirmation/vue-confirmation.page';
@@ -155,7 +156,7 @@ export const routes: Routes = [
   },
   {
     path: 'rechercher',
-    resolve: { posts: PostsResolver },
+    resolve: { posts: PostsResolver, events : AgendaService },
     loadComponent: () =>
       import('./vues/vue-search/vue-search.page').then((m) => m.VueSearchPage),
   },
@@ -165,16 +166,5 @@ export const routes: Routes = [
       import('./vues/vue-not-found/vue-not-found.page').then(
         (m) => m.VueNotFoundPage
       ),
-  },
-  {
-    path: 'search-input',
-    loadComponent: () =>
-      import('./components/search-input/search-input.page').then(
-        (m) => m.SearchInputPage
-      ),
-  },
-  {
-    path: 'list',
-    loadComponent: () => import('./components/list/list.page').then( m => m.ListPage)
   },
 ];

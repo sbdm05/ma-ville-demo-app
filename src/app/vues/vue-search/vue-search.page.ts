@@ -25,7 +25,11 @@ import { ListPage } from 'src/app/components/list/list.page';
 })
 export class VueSearchPage implements OnInit {
   public savedData!: any[];
+  public savedEvents!: any[];
+
   public returnedValue!: any[];
+  public returnedEvents!: any[];
+
   public searchValue!: string;
   constructor(
     private searchService: SearchService,
@@ -34,9 +38,14 @@ export class VueSearchPage implements OnInit {
 
   ngOnInit() {
     const resolvedData = this.route.snapshot.data['posts'];
+    const resolvedEvents = this.route.snapshot.data['events'];
+
     this.savedData = resolvedData;
+    this.savedEvents = resolvedEvents.events;
+
     // Utilisez la valeur résolue comme nécessaire
     console.log('Valeur résolue:', this.savedData);
+    console.log('Events:', this.savedEvents);
   }
 
   onSubmit(input: string) {
@@ -45,24 +54,35 @@ export class VueSearchPage implements OnInit {
 
     if (input.length === 0) {
       this.returnedValue = [];
+      this.returnedEvents = [];
     } else {
       this.returnedValue = this.searchTerm(input.toLocaleLowerCase());
+      this.returnedEvents = this.searchTermInEvent(input.toLocaleLowerCase());
     }
   }
 
-  // searchTerm(term: string): any | undefined {
-  //   // cherche le terme dans le tableau des articles
-  //   return this.savedData.filter((element) => {
-  //     // Utilisez la logique de recherche spécifique ici
-  //     // Dans cet exemple, nous recherchons si le terme est inclus dans l'élément
-  //     return Object.values(element).some((value) => {
-  //       if (typeof value === 'string') {
-  //         return value.toLowerCase().includes(term);
-  //       }
-  //       return false;
-  //     });
-  //   });
-  // }
+  searchTermInEvent(term: string) {
+    return this.savedEvents
+      .filter((element) => {
+        // Utilisez la logique de recherche spécifique ici
+        // Dans cet exemple, nous recherchons si le terme est inclus dans l'élément
+        return Object.values(element).some((value) => {
+          if (typeof value === 'string') {
+            return value.toLowerCase().includes(term);
+          }
+          return false;
+        });
+      })
+      .map((element) => {
+        // Construire l'objet résultant avec l'id et la propriété "content"
+        return {
+          id: element.id, // Remplacez 'id' par le nom de la propriété contenant l'id dans votre objet
+          content: this.extractContext(element.description, term),
+          title: element.title,
+          type: 'event'
+        };
+      });
+  }
 
   searchTerm(term: string): any[] {
     // cherche le terme dans le tableau des articles
@@ -83,6 +103,7 @@ export class VueSearchPage implements OnInit {
           id: element.id, // Remplacez 'id' par le nom de la propriété contenant l'id dans votre objet
           content: this.extractContext(element.content, term),
           title: element.title,
+          type: 'post',
         };
       });
   }
