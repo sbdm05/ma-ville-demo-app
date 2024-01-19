@@ -29,7 +29,11 @@
     <ion-col class='col-tab' size='4' *ngFor='let cat of mainDatas; let i = index'
       [style.background-color]="categoryColors[i % categoryColors.length]">
       <!-- <a [routerLink]=" cat.url ? ['/', cat.url] : ['/',cat.slug] " replaceUrl="true">{{cat.name}}</a> -->
-      <a (click)='onCatNavigate(cat)'>{{cat.name}}</a>
+      <div class='cat-display'>
+        <app-icon [icon]='cat.icon' size='large'></app-icon>
+        <a (click)='onCatNavigate(cat)'>{{cat.name}}</a>
+      </div>
+
     </ion-col>
 
 

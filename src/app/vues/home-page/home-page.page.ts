@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { HomePostsPage } from '../../components/home/home-posts/home-posts.page';
 import { CategoriesPage } from 'src/app/components/categories/categories.page';
 import { catHome } from 'src/app/shared/categories';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton } from '@ionic/angular/standalone';
 import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
+import { BurgerMenuPage } from 'src/app/components/burger-menu/burger-menu.page';
 
 @Component({
   selector: 'app-home-page',
@@ -24,7 +25,9 @@ import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
     IonTitle,
     IonContent,
     IonButtons,
-    SkeletonPage
+    SkeletonPage,
+    BurgerMenuPage,
+    IonMenuButton
   ],
 })
 export class HomePagePage implements OnInit {

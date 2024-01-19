@@ -31,13 +31,13 @@ import { catHome } from 'src/app/shared/categories';
   ],
 })
 export class ShooppingCategoriesPage implements OnInit {
-  public title: string = 'Boutiques';
+  public title: string = 'Annuaire';
   public category!: any[]
 
   constructor() {}
 
   ngOnInit() {
-    this.category = catHome.filter((item) => item.slug === 'shopping');
+    this.category = catHome.filter((item) => item.slug === 'annuaire');
     console.log(this.category[0].categories);
   }
 }

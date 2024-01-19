@@ -31,3 +31,10 @@ a{
   padding: 10px;
   /* Adjust as needed */
 }
+.cat-display{
+  display: flex;
+  flex-direction: column;
+}
+.cat-display a{
+  font-size: 12px;
+}

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { IonIcon } from '@ionic/angular/standalone';
+import { IonIcon, IonInput } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-icon',
@@ -14,6 +14,7 @@ import { IonIcon } from '@ionic/angular/standalone';
 export class IconPage implements OnInit {
   @Input() icon!: string;
   @Input() sizeIcon!: string;
+  @Input() colorIcon!: string; 
 
   constructor() { }
 

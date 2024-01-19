@@ -25,6 +25,7 @@ import {
   DragDropModule,
 } from '@angular/cdk/drag-drop';
 import { StorageCategoriesPreferenceService } from 'src/app/service/storage-categories-preference/storage-categories-preference.service';
+import { IconPage } from '../icons/icon/icon.page';
 
 @Component({
   selector: 'app-categories',
@@ -47,7 +48,7 @@ import { StorageCategoriesPreferenceService } from 'src/app/service/storage-cate
     IonLabel,
     CdkDrag,
     DragDropModule,
-
+    IconPage
   ],
 })
 export class CategoriesPage implements OnInit {

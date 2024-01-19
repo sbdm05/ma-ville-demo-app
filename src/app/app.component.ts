@@ -62,7 +62,14 @@ import {
   notificationsOutline,
   searchOutline,
   helpOutline,
-  closeCircleOutline
+  closeCircleOutline,
+  clipboardOutline,
+  alertCircleOutline,
+  buildOutline,
+  newspaperOutline,
+  chatbubblesOutline,
+  megaphoneOutline,
+  earthOutline
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -70,6 +77,7 @@ import OneSignal, { OneSignalPlugin } from 'onesignal-cordova-plugin';
 import { MenuBottomFixedPage } from './components/menu-bottom-fixed/menu-bottom-fixed.page';
 import { OneSignalService } from './service/one-signal/one-signal.service';
 import { StorageCategoriesPreferenceService } from './service/storage-categories-preference/storage-categories-preference.service';
+import { BurgerMenuPage } from './components/burger-menu/burger-menu.page';
 
 @Component({
   selector: 'app-root',
@@ -94,6 +102,7 @@ import { StorageCategoriesPreferenceService } from './service/storage-categories
     IonRouterOutlet,
     IonHeader,
     MenuBottomFixedPage,
+    BurgerMenuPage
   ],
 })
 export class AppComponent {
@@ -144,7 +153,14 @@ export class AppComponent {
       notificationsOutline,
       searchOutline,
       helpOutline,
-      closeCircleOutline
+      closeCircleOutline,
+      clipboardOutline,
+      alertCircleOutline,
+      buildOutline,
+      newspaperOutline,
+      chatbubblesOutline,
+      megaphoneOutline,
+      earthOutline
     });
   }
 

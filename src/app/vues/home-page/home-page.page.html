@@ -1,5 +1,13 @@
-<ion-header>
+
+<app-burger-menu contentId='main-content'></app-burger-menu>
+
+<div id="main-content" class="ion-page">
+
+  <ion-header>
   <ion-toolbar [color]='colorBg'>
+    <ion-buttons slot="start" class='white'>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <a routerLink="/home-page">
       <img src='../../../assets/logo-ss-fond.png'  >
     </a>
@@ -15,7 +23,10 @@
 
   <app-categories [mainDatas]='categories' ></app-categories>
 
-  
+
 
 
 </ion-content>
+
+</div>
+

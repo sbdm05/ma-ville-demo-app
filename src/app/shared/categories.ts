@@ -2,6 +2,7 @@ export const catHome = [
   {
     slug: 'mes-demarches',
     name: 'Mes Démarches',
+    icon: 'clipboard-outline',
     categories: [
       {
         slug: 'carte-identite',
@@ -24,6 +25,7 @@ export const catHome = [
   {
     slug: 'signaler',
     name: 'Signaler',
+    icon: 'alert-circle-outline',
     categories: [
       {
         slug: 'voirie',
@@ -46,31 +48,38 @@ export const catHome = [
   {
     slug: 'chantiers',
     name: 'Chantiers',
+    icon: 'build-outline',
   },
   {
     slug: 'kiosque',
     name: 'Kiosque',
+    icon: 'newspaper-outline',
   },
   {
     slug: 'actus',
     name: 'Actualités',
+    icon: 'megaphone-outline',
   },
   {
-    slug: 'contact-elus',
+    slug: 'contactez-vos-elus',
     name: 'Contactez vos élus',
     url: 'contactez-vos-elus',
+    icon: 'chatbubbles-outline',
   },
   {
     slug: 'balades-urbaines',
     name: 'Balades urbaines',
+    icon: 'location-outline',
   },
   {
     slug: 'agenda',
     name: 'Agenda',
+    icon: 'calendar-outline',
   },
   {
-    slug: 'shopping',
-    name: 'Shopping',
+    slug: 'annuaire',
+    name: 'Annuaire',
+    icon: 'earth-outline',
     categories: [
       {
         slug: 'restaurants',

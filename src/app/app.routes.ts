@@ -126,14 +126,14 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'shopping',
+    path: 'annuaire',
     loadComponent: () =>
       import('./vues/shoopping-categories/shoopping-categories.page').then(
         (m) => m.ShooppingCategoriesPage
       ),
   },
   {
-    path: 'shopping/:id',
+    path: 'annuaire/:id',
     loadComponent: () =>
       import(
         './vues/vue-shopping-details-categories/vue-shopping-details-categories.page'
@@ -166,5 +166,9 @@ export const routes: Routes = [
       import('./vues/vue-not-found/vue-not-found.page').then(
         (m) => m.VueNotFoundPage
       ),
+  },
+  {
+    path: 'burger-menu',
+    loadComponent: () => import('./components/burger-menu/burger-menu.page').then( m => m.BurgerMenuPage)
   },
 ];
