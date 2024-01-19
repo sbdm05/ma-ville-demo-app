@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import {
+  IonBadge,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -15,6 +16,7 @@ import {
 } from '@ionic/angular/standalone';
 import { IconPage } from '../icons/icon/icon.page';
 import { Router } from '@angular/router';
+import { CategoryDirective } from 'src/app/shared/directives/category.directive';
 
 @Component({
   selector: 'app-list',
@@ -31,7 +33,8 @@ import { Router } from '@angular/router';
     CommonModule,
     FormsModule,
     IconPage,
-
+    IonBadge,
+    CategoryDirective
   ],
 })
 
@@ -86,10 +89,10 @@ export class ListPage implements OnInit {
 
   onReadMore(item: any){
     console.log(item);
-    if(item.type === 'event'){
+    if(item.type === 'événement'){
       this.router.navigate(['agenda', item.id]);
 
-    } else if(item.type === 'post'){
+    } else if(item.type === 'articles'){
       this.router.navigate(['actus', item.id])
 
     }

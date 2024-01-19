@@ -79,7 +79,7 @@ export class VueSearchPage implements OnInit {
           id: element.id, // Remplacez 'id' par le nom de la propriété contenant l'id dans votre objet
           content: this.extractContext(element.description, term),
           title: element.title,
-          type: 'event'
+          type: 'événement'
         };
       });
   }
@@ -103,7 +103,7 @@ export class VueSearchPage implements OnInit {
           id: element.id, // Remplacez 'id' par le nom de la propriété contenant l'id dans votre objet
           content: this.extractContext(element.content, term),
           title: element.title,
-          type: 'post',
+          type: 'articles',
         };
       });
   }
