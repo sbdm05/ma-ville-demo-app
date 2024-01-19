@@ -3,5 +3,8 @@ ion-label {
   white-space: normal!important;
 }
 app-icon{
-  padding: 10px;
+  padding-right: 10px;
+}
+ion-item{
+  --padding-start: 0px;
 }
