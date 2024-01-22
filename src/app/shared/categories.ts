@@ -97,6 +97,11 @@ export const catHome = [
         slug: 'bibliotheques',
         name: 'Bibliothèques',
       },
+      {
+        // slug: 'pharmacies-de-garde',
+        name: 'Pharmacies de garde',
+        url:'pharmacies-de-garde'
+      },
     ],
   },
 ];

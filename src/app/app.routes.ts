@@ -156,9 +156,16 @@ export const routes: Routes = [
   },
   {
     path: 'rechercher',
-    resolve: { posts: PostsResolver, events : AgendaService },
+    resolve: { posts: PostsResolver, events: AgendaService },
     loadComponent: () =>
       import('./vues/vue-search/vue-search.page').then((m) => m.VueSearchPage),
+  },
+  {
+    path: 'pharmacies-de-garde',
+    loadComponent: () =>
+      import('./vues/pharmacies-de-garde/pharmacies-de-garde.page').then(
+        (m) => m.PharmaciesDeGardePage
+      ),
   },
   {
     path: '**',
@@ -166,9 +173,5 @@ export const routes: Routes = [
       import('./vues/vue-not-found/vue-not-found.page').then(
         (m) => m.VueNotFoundPage
       ),
-  },
-  {
-    path: 'burger-menu',
-    loadComponent: () => import('./components/burger-menu/burger-menu.page').then( m => m.BurgerMenuPage)
   },
 ];

@@ -46,7 +46,7 @@
 <ion-grid *ngIf='categoryDatas'>
 <ion-row>
   <ion-col class='col-tab' size='12' *ngFor='let cat of categoryDatas; let i = index' [style.background-color]="categoryColors[i % categoryColors.length]">
-    <a [routerLink]="[cat.slug]" replaceUrl="true" >
+    <a [routerLink]="cat.slug ? [cat.slug] : (cat.url ? ['/', cat.url] : null)" replaceUrl="true">
       {{cat.name}}
     </a>
   </ion-col>

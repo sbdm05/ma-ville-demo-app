@@ -1,6 +1,9 @@
 ion-menu{
   --background: var(--dark-green);
 }
-ion-label{
+ion-label, p{
   color: white!important;
+}
+ion-footer{
+  margin: 10px;
 }

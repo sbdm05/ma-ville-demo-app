@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import {
   IonContent,
+  IonFooter,
   IonHeader,
   IonItem,
   IonLabel,
@@ -33,7 +34,7 @@ import { Router } from '@angular/router';
     CommonModule,
     FormsModule,
     IconPage,
-
+    IonFooter
   ],
 })
 export class BurgerMenuPage implements OnInit {
