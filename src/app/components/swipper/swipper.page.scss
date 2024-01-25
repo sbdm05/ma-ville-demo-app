@@ -22,6 +22,7 @@
 }
 ion-card-title, ion-card-content{
   color: rgb(255, 255, 255);
+  font-size: 25px;
 }
 ion-button{
   padding-inline: 20px;
@@ -29,14 +30,22 @@ ion-button{
   padding-bottom: 16px;
 }
 ion-content {
-  height: 200px;
+  height: 130px;
 }
 ion-card{
-  height: 150px;
+  height: 100px;
   position: relative;
+  margin-top: 10px;
+}
+ion-card-header{
+  width: 80%;
+}
+ion-card-title{
+  font-size: 20px;
 }
 ion-button{
   position: absolute;
   bottom: -8px;
   right: -10px;
+  // padding: 2px;
 }

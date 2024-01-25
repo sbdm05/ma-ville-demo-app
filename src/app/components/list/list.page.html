@@ -11,10 +11,30 @@
     <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
   </ion-card-header>
   <ion-card-content>
-    
+
     <ion-badge slot="start" appCategory [cat]='item.type' [innerHTML]='item.type'></ion-badge>
     <p [innerHTML]='item.content'></p>
 
   </ion-card-content>
 
 </ion-card>
+
+<ng-container *ngIf='savedNotifications'>
+  <ion-card *ngFor="let item of savedNotifications" (click)='onReadMore(item)'>
+    <ion-card-header>
+      <ion-card-title [innerHTML]='item.headings.en'></ion-card-title>
+
+      <ion-card-subtitle *ngIf='item.isNew' class='new-notif'>Nouveau</ion-card-subtitle>
+
+
+      <ion-card-subtitle [innerHTML]='item.contents.en'></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+
+      <!-- <ion-badge slot="start" appCategory [cat]='item.type' [innerHTML]='item.type'></ion-badge>
+      <p [innerHTML]='item.content'></p> -->
+
+    </ion-card-content>
+
+  </ion-card>
+</ng-container>

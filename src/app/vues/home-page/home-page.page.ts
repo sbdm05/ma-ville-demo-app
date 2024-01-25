@@ -5,9 +5,20 @@ import { FormsModule } from '@angular/forms';
 import { HomePostsPage } from '../../components/home/home-posts/home-posts.page';
 import { CategoriesPage } from 'src/app/components/categories/categories.page';
 import { catHome } from 'src/app/shared/categories';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonMenuButton } from '@ionic/angular/standalone';
+import {
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+} from '@ionic/angular/standalone';
 import { SkeletonPage } from 'src/app/components/skeleton/skeleton.page';
 import { BurgerMenuPage } from 'src/app/components/burger-menu/burger-menu.page';
+import { OneSignalService } from 'src/app/service/one-signal/one-signal.service';
+import { Subscription } from 'rxjs';
+import { StorageCategoriesPreferenceService } from 'src/app/service/storage-categories-preference/storage-categories-preference.service';
+import { NotificationsGuardService } from 'src/app/service/notifications-guard/notifications-guard.service';
 
 @Component({
   selector: 'app-home-page',
@@ -27,22 +38,37 @@ import { BurgerMenuPage } from 'src/app/components/burger-menu/burger-menu.page'
     IonButtons,
     SkeletonPage,
     BurgerMenuPage,
-    IonMenuButton
+    IonMenuButton,
   ],
 })
 export class HomePagePage implements OnInit {
   public categories = catHome;
   public confirmed!: any;
   public colorBg = '#138088';
+  public nberOfNotif!: any;
 
   public onData(value: Event) {
     this.confirmed = value;
     console.log(this.confirmed);
   }
 
-  constructor() {
-    // console.log('depuis homepage');
+  constructor(
+    private notificationsGuard: NotificationsGuardService
+  ) {
+    this.notificationsGuard.currentNotif.subscribe({
+      next: (data)=>{
+        console.log(data)
+        const notifObj: any = this.categories.find(cat => cat.slug === 'notifications')
+        Object.assign(notifObj, {notifications : data})
+        console.log(notifObj);
+
+      }
+    })
   }
 
   ngOnInit() {}
+
+  ionViewDidEnter() {}
+
+  ngOnDestroy() {}
 }

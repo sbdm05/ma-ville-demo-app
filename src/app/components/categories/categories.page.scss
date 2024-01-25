@@ -35,6 +35,15 @@ a{
   display: flex;
   flex-direction: column;
 }
-.cat-display a{
-  font-size: 12px;
+// .cat-display a{
+//   font-size: 12px;
+// }
+ion-badge{
+  position: absolute;
+  top: 8px;
+    right: 8px;
+  border-radius: 50px;
+    width: 25px;
+    height: 25px;
+    line-height: 17px;
 }

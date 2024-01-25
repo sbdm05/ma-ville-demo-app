@@ -69,7 +69,8 @@ import {
   newspaperOutline,
   chatbubblesOutline,
   megaphoneOutline,
-  earthOutline
+  earthOutline,
+  helpCircleOutline,
 } from 'ionicons/icons';
 // if I were using the modalController, I would import from ion-modal
 import { defineCustomElement } from '@ionic/core/components/ion-modal.js';
@@ -102,7 +103,7 @@ import { BurgerMenuPage } from './components/burger-menu/burger-menu.page';
     IonRouterOutlet,
     IonHeader,
     MenuBottomFixedPage,
-    BurgerMenuPage
+    BurgerMenuPage,
   ],
 })
 export class AppComponent {
@@ -114,11 +115,12 @@ export class AppComponent {
     private platform: Platform,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private statusStorage : StorageCategoriesPreferenceService
+    private statusStorage: StorageCategoriesPreferenceService
   ) {
     // pour faire fonctionner la modal
     // https://github.com/ionic-team/ionic-framework/issues/28385
     this.initializeApp();
+
     defineCustomElement();
     addIcons({
       mailOutline,
@@ -160,7 +162,8 @@ export class AppComponent {
       newspaperOutline,
       chatbubblesOutline,
       megaphoneOutline,
-      earthOutline
+      earthOutline,
+      helpCircleOutline,
     });
   }
 
@@ -170,6 +173,7 @@ export class AppComponent {
       this.OneSignalInit();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
       //this.buffer();
     });
     //this.OneSignalInit();
@@ -210,6 +214,8 @@ export class AppComponent {
 
     OneSignal.Notifications.addEventListener('click', myClickListener);
 
+    this.onNotifReceived();
+
     // Prompts the user for notification permissions.
     //    * Since this shows a generic native prompt, we recommend instead using an In-App Message to prompt for notification permission (See step 7) to better communicate to your users what notifications they will get.
     OneSignal.Notifications.requestPermission(true).then(
@@ -224,20 +230,7 @@ export class AppComponent {
     this.disablePush();
   }
 
-  ngOnInit() {
-    // this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     // Access the full URL
-    //     this.currentUrl = this.router.url;
-    //     console.log('Current URL:', this.currentUrl);
-    //     if(this.currentUrl === '/loading'){
-    //       this.bottomNavVisible = false
-    //     }else{
-    //       this.bottomNavVisible = true;
-    //     }
-    //   }
-    // });
-  }
+  ngOnInit() {}
 
   disablePush() {
     const currentNotifPermission = OneSignal.Notifications.hasPermission();
@@ -245,4 +238,13 @@ export class AppComponent {
   }
 
   ngOnChanges() {}
+
+  onNotifReceived() {
+    OneSignal.Notifications.addEventListener(
+      'foregroundWillDisplay',
+      (event) => {
+        console.log(event, 'depuis foreground');
+      }
+    );
+  }
 }

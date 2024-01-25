@@ -1,6 +1,8 @@
+import { inject } from '@angular/core';
 import { Routes } from '@angular/router';
 import { ModalPage } from './components/modal/modal.page';
 import { AgendaService } from './service/agenda/agenda.service';
+import { NotifGuard, NotificationsGuardService } from './service/notifications-guard/notifications-guard.service';
 import { PostsResolver } from './service/resolvers/posts.resolver';
 import { HomePagePage } from './vues/home-page/home-page.page';
 import { VueConfirmationPage } from './vues/vue-confirmation/vue-confirmation.page';
@@ -27,6 +29,7 @@ export const routes: Routes = [
     path: 'home-page',
     component: HomePagePage,
     // resolve: { posts: PostsResolver },
+    canActivate: [NotifGuard], // Ajoutez le guard ici
   },
 
   {
@@ -165,6 +168,19 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./vues/pharmacies-de-garde/pharmacies-de-garde.page').then(
         (m) => m.PharmaciesDeGardePage
+      ),
+  },
+  {
+    path: 'survey',
+    loadComponent: () =>
+      import('./vues/vue-survey/vue-survey.page').then((m) => m.VueSurveyPage),
+  },
+
+  {
+    path: 'notifications',
+    loadComponent: () =>
+      import('./vues/vue-notifications/vue-notifications.page').then(
+        (m) => m.VueNotificationsPage
       ),
   },
   {

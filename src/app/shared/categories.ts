@@ -100,9 +100,24 @@ export const catHome = [
       {
         // slug: 'pharmacies-de-garde',
         name: 'Pharmacies de garde',
-        url:'pharmacies-de-garde'
+        url: 'pharmacies-de-garde',
       },
     ],
+  },
+  {
+    slug: 'survey',
+    name: 'Sondages',
+    icon: 'help-circle-outline',
+  },
+  {
+    slug: 'notifications',
+    name: 'Notifications',
+    icon: 'notifications-outline',
+  },
+  {
+    slug: 'settings',
+    name: 'Réglages',
+    icon: 'settings-outline',
   },
 ];
 

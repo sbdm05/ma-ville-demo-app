@@ -30,6 +30,7 @@
       [style.background-color]="categoryColors[i % categoryColors.length]">
       <!-- <a [routerLink]=" cat.url ? ['/', cat.url] : ['/',cat.slug] " replaceUrl="true">{{cat.name}}</a> -->
       <div class='cat-display'>
+        <ion-badge *ngIf='cat.notifications' color="warning">{{cat.notifications}}</ion-badge>
         <app-icon [icon]='cat.icon' size='large'></app-icon>
         <a (click)='onCatNavigate(cat)'>{{cat.name}}</a>
       </div>

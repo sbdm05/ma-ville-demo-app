@@ -79,6 +79,8 @@ export class StorageCategoriesPreferenceService {
       }
     } else if (key === 'notif-status') {
       localStorage.setItem('notif-status', data);
+    } else if (key === 'notifications') {
+      localStorage.setItem('notifications', JSON.stringify(data));
     }
   }
 

@@ -14,7 +14,8 @@ import {
   ItemReorderEventDetail,
   IonSkeletonText,
   IonListHeader,
-  IonThumbnail
+  IonThumbnail,
+  IonBadge,
 } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
 import {
@@ -48,7 +49,8 @@ import { IconPage } from '../icons/icon/icon.page';
     IonLabel,
     CdkDrag,
     DragDropModule,
-    IconPage
+    IconPage,
+    IonBadge
   ],
 })
 export class CategoriesPage implements OnInit {
@@ -61,8 +63,7 @@ export class CategoriesPage implements OnInit {
     private router: Router,
     private localStorage_cat: StorageCategoriesPreferenceService
   ) {
-
-    this.populateMainDatas()
+    this.populateMainDatas();
   }
 
   populateMainDatas() {
@@ -88,7 +89,7 @@ export class CategoriesPage implements OnInit {
   ngOnInit() {}
 
   ngOnChanges() {
-   this.populateMainDatas()
+    this.populateMainDatas();
   }
 
   public onCatNavigate(cat: any) {
